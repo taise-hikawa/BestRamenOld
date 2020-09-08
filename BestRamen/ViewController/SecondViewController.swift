@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import MapKit
 
 class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-    }
 
+        
+    }
+    @IBOutlet weak var dispMao: MKMapView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+
+    
 
 }
 

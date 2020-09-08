@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F3E5E9D55194CFD41328933 /* Pods_BestRamenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F0A0DCFABC27C8761CC9DA3 /* Pods_BestRamenTests.framework */; };
+		41D05DD015DE809F4BB57AA8 /* Pods_BestRamen_BestRamenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71A9EB647E223C30BA7B460 /* Pods_BestRamen_BestRamenUITests.framework */; };
+		5F20AF0B0E5A97AADC5D749E /* Pods_BestRamen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EECC8174A5AD6FAF351469 /* Pods_BestRamen.framework */; };
 		D337ABBB2502666D000C0D1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBA2502666D000C0D1E /* AppDelegate.swift */; };
 		D337ABBD2502666D000C0D1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBC2502666D000C0D1E /* SceneDelegate.swift */; };
 		D337ABBF2502666D000C0D1E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBE2502666D000C0D1E /* FirstViewController.swift */; };
@@ -16,6 +19,17 @@
 		D337ABC925026673000C0D1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D337ABC725026673000C0D1E /* LaunchScreen.storyboard */; };
 		D337ABD425026673000C0D1E /* BestRamenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABD325026673000C0D1E /* BestRamenTests.swift */; };
 		D337ABDF25026673000C0D1E /* BestRamenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABDE25026673000C0D1E /* BestRamenUITests.swift */; };
+		D337ABED25026779000C0D1E /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABEC25026779000C0D1E /* ThirdViewController.swift */; };
+		D375B6592503333500F511D0 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D375B6572503333500F511D0 /* CustomTableViewCell.swift */; };
+		D375B65A2503333500F511D0 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D375B6582503333500F511D0 /* CustomTableViewCell.xib */; };
+		D375B6622503805D00F511D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D375B6612503805D00F511D0 /* GoogleService-Info.plist */; };
+		D375B6652505BCB800F511D0 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = D375B6642505BCB800F511D0 /* FacebookLogin */; };
+		D375B6672505FAA100F511D0 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D375B6662505FAA100F511D0 /* MyPageViewController.swift */; };
+		D375B66925065A5E00F511D0 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D375B66825065A5E00F511D0 /* PostViewController.swift */; };
+		D390231425068DCE00C13328 /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390231325068DCD00C13328 /* UserPageViewController.swift */; };
+		D390231725068ECA00C13328 /* ShopPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390231625068ECA00C13328 /* ShopPageViewController.swift */; };
+		D390231925076E3500C13328 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390231825076E3500C13328 /* TableViewController.swift */; };
+		D390231B2507700300C13328 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390231A2507700300C13328 /* CollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +50,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A4BFA3F0F65BCFB09DEB8FC /* Pods-BestRamen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen.debug.xcconfig"; path = "Target Support Files/Pods-BestRamen/Pods-BestRamen.debug.xcconfig"; sourceTree = "<group>"; };
+		1455134CDCE2B661FDF47C49 /* Pods-BestRamenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamenTests.release.xcconfig"; path = "Target Support Files/Pods-BestRamenTests/Pods-BestRamenTests.release.xcconfig"; sourceTree = "<group>"; };
+		5E67EC9E7B0D608D3ADE4314 /* Pods-BestRamenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamenTests.debug.xcconfig"; path = "Target Support Files/Pods-BestRamenTests/Pods-BestRamenTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6F79E6D4A5555EE0BD153B2E /* Pods-BestRamen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen.release.xcconfig"; path = "Target Support Files/Pods-BestRamen/Pods-BestRamen.release.xcconfig"; sourceTree = "<group>"; };
+		77EECC8174A5AD6FAF351469 /* Pods_BestRamen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestRamen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F0A0DCFABC27C8761CC9DA3 /* Pods_BestRamenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestRamenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D337ABB72502666D000C0D1E /* BestRamen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestRamen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D337ABBA2502666D000C0D1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D337ABBC2502666D000C0D1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +71,19 @@
 		D337ABDA25026673000C0D1E /* BestRamenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BestRamenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D337ABDE25026673000C0D1E /* BestRamenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestRamenUITests.swift; sourceTree = "<group>"; };
 		D337ABE025026673000C0D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D337ABEC25026779000C0D1E /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		D375B6572503333500F511D0 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		D375B6582503333500F511D0 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		D375B6612503805D00F511D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D375B6662505FAA100F511D0 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		D375B66825065A5E00F511D0 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		D390231325068DCD00C13328 /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
+		D390231625068ECA00C13328 /* ShopPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopPageViewController.swift; sourceTree = "<group>"; };
+		D390231825076E3500C13328 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		D390231A2507700300C13328 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionViewController.swift; path = BestRamen/CollectionViewController.swift; sourceTree = SOURCE_ROOT; };
+		D71A9EB647E223C30BA7B460 /* Pods_BestRamen_BestRamenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestRamen_BestRamenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F99D159FFB28B6DA450CBB9F /* Pods-BestRamen-BestRamenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen-BestRamenUITests.release.xcconfig"; path = "Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FF7B60530FE760DC023F5510 /* Pods-BestRamen-BestRamenUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen-BestRamenUITests.debug.xcconfig"; path = "Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +91,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D375B6652505BCB800F511D0 /* FacebookLogin in Frameworks */,
+				5F20AF0B0E5A97AADC5D749E /* Pods_BestRamen.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3E5E9D55194CFD41328933 /* Pods_BestRamenTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +108,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41D05DD015DE809F4BB57AA8 /* Pods_BestRamen_BestRamenUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		59D1B2DFE5D7AD168AB9DBDA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77EECC8174A5AD6FAF351469 /* Pods_BestRamen.framework */,
+				D71A9EB647E223C30BA7B460 /* Pods_BestRamen_BestRamenUITests.framework */,
+				7F0A0DCFABC27C8761CC9DA3 /* Pods_BestRamenTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D337ABAE2502666D000C0D1E = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +132,8 @@
 				D337ABD225026673000C0D1E /* BestRamenTests */,
 				D337ABDD25026673000C0D1E /* BestRamenUITests */,
 				D337ABB82502666D000C0D1E /* Products */,
+				DF6935385E923622FB6C4B5C /* Pods */,
+				59D1B2DFE5D7AD168AB9DBDA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,14 +150,16 @@
 		D337ABB92502666D000C0D1E /* BestRamen */ = {
 			isa = PBXGroup;
 			children = (
+				D390231525068DF300C13328 /* ViewController */,
 				D337ABBA2502666D000C0D1E /* AppDelegate.swift */,
 				D337ABBC2502666D000C0D1E /* SceneDelegate.swift */,
-				D337ABBE2502666D000C0D1E /* FirstViewController.swift */,
-				D337ABC02502666D000C0D1E /* SecondViewController.swift */,
 				D337ABC22502666D000C0D1E /* Main.storyboard */,
 				D337ABC525026673000C0D1E /* Assets.xcassets */,
+				D375B6572503333500F511D0 /* CustomTableViewCell.swift */,
+				D375B6582503333500F511D0 /* CustomTableViewCell.xib */,
 				D337ABC725026673000C0D1E /* LaunchScreen.storyboard */,
 				D337ABCA25026673000C0D1E /* Info.plist */,
+				D375B6612503805D00F511D0 /* GoogleService-Info.plist */,
 			);
 			path = BestRamen;
 			sourceTree = "<group>";
@@ -131,6 +182,35 @@
 			path = BestRamenUITests;
 			sourceTree = "<group>";
 		};
+		D390231525068DF300C13328 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D390231A2507700300C13328 /* CollectionViewController.swift */,
+				D390231825076E3500C13328 /* TableViewController.swift */,
+				D390231625068ECA00C13328 /* ShopPageViewController.swift */,
+				D375B66825065A5E00F511D0 /* PostViewController.swift */,
+				D375B6662505FAA100F511D0 /* MyPageViewController.swift */,
+				D390231325068DCD00C13328 /* UserPageViewController.swift */,
+				D337ABEC25026779000C0D1E /* ThirdViewController.swift */,
+				D337ABC02502666D000C0D1E /* SecondViewController.swift */,
+				D337ABBE2502666D000C0D1E /* FirstViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DF6935385E923622FB6C4B5C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0A4BFA3F0F65BCFB09DEB8FC /* Pods-BestRamen.debug.xcconfig */,
+				6F79E6D4A5555EE0BD153B2E /* Pods-BestRamen.release.xcconfig */,
+				FF7B60530FE760DC023F5510 /* Pods-BestRamen-BestRamenUITests.debug.xcconfig */,
+				F99D159FFB28B6DA450CBB9F /* Pods-BestRamen-BestRamenUITests.release.xcconfig */,
+				5E67EC9E7B0D608D3ADE4314 /* Pods-BestRamenTests.debug.xcconfig */,
+				1455134CDCE2B661FDF47C49 /* Pods-BestRamenTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,15 +218,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D337ABE325026673000C0D1E /* Build configuration list for PBXNativeTarget "BestRamen" */;
 			buildPhases = (
+				6B14041D5E2EF3A016F0CB6E /* [CP] Check Pods Manifest.lock */,
 				D337ABB32502666D000C0D1E /* Sources */,
 				D337ABB42502666D000C0D1E /* Frameworks */,
 				D337ABB52502666D000C0D1E /* Resources */,
+				79281FC9413D1697DD07194D /* [CP] Embed Pods Frameworks */,
+				59A7E37C080781E3974434D0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = BestRamen;
+			packageProductDependencies = (
+				D375B6642505BCB800F511D0 /* FacebookLogin */,
+			);
 			productName = BestRamen;
 			productReference = D337ABB72502666D000C0D1E /* BestRamen.app */;
 			productType = "com.apple.product-type.application";
@@ -155,6 +241,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D337ABE625026673000C0D1E /* Build configuration list for PBXNativeTarget "BestRamenTests" */;
 			buildPhases = (
+				E8FDCFCC545B463A4F644BE5 /* [CP] Check Pods Manifest.lock */,
 				D337ABCB25026673000C0D1E /* Sources */,
 				D337ABCC25026673000C0D1E /* Frameworks */,
 				D337ABCD25026673000C0D1E /* Resources */,
@@ -173,9 +260,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D337ABE925026673000C0D1E /* Build configuration list for PBXNativeTarget "BestRamenUITests" */;
 			buildPhases = (
+				3D0607FE816ACD47A6CB186F /* [CP] Check Pods Manifest.lock */,
 				D337ABD625026673000C0D1E /* Sources */,
 				D337ABD725026673000C0D1E /* Frameworks */,
 				D337ABD825026673000C0D1E /* Resources */,
+				9F1FE3621A54704147ABC4E0 /* [CP] Embed Pods Frameworks */,
+				4D723EE967BF3DE4A0F140EC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -219,6 +309,9 @@
 				Base,
 			);
 			mainGroup = D337ABAE2502666D000C0D1E;
+			packageReferences = (
+				D375B6632505BCB800F511D0 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
 			productRefGroup = D337ABB82502666D000C0D1E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -237,6 +330,8 @@
 			files = (
 				D337ABC925026673000C0D1E /* LaunchScreen.storyboard in Resources */,
 				D337ABC625026673000C0D1E /* Assets.xcassets in Resources */,
+				D375B6622503805D00F511D0 /* GoogleService-Info.plist in Resources */,
+				D375B65A2503333500F511D0 /* CustomTableViewCell.xib in Resources */,
 				D337ABC42502666D000C0D1E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,13 +352,158 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3D0607FE816ACD47A6CB186F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BestRamen-BestRamenUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D723EE967BF3DE4A0F140EC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		59A7E37C080781E3974434D0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6B14041D5E2EF3A016F0CB6E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BestRamen-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79281FC9413D1697DD07194D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F1FE3621A54704147ABC4E0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8FDCFCC545B463A4F644BE5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BestRamenTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D337ABB32502666D000C0D1E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D390231B2507700300C13328 /* CollectionViewController.swift in Sources */,
+				D375B66925065A5E00F511D0 /* PostViewController.swift in Sources */,
+				D375B6672505FAA100F511D0 /* MyPageViewController.swift in Sources */,
 				D337ABC12502666D000C0D1E /* SecondViewController.swift in Sources */,
+				D390231425068DCE00C13328 /* UserPageViewController.swift in Sources */,
 				D337ABBF2502666D000C0D1E /* FirstViewController.swift in Sources */,
+				D390231725068ECA00C13328 /* ShopPageViewController.swift in Sources */,
+				D390231925076E3500C13328 /* TableViewController.swift in Sources */,
+				D375B6592503333500F511D0 /* CustomTableViewCell.swift in Sources */,
+				D337ABED25026779000C0D1E /* ThirdViewController.swift in Sources */,
 				D337ABBB2502666D000C0D1E /* AppDelegate.swift in Sources */,
 				D337ABBD2502666D000C0D1E /* SceneDelegate.swift in Sources */,
 			);
@@ -436,6 +676,7 @@
 		};
 		D337ABE425026673000C0D1E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A4BFA3F0F65BCFB09DEB8FC /* Pods-BestRamen.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -453,6 +694,7 @@
 		};
 		D337ABE525026673000C0D1E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F79E6D4A5555EE0BD153B2E /* Pods-BestRamen.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -470,6 +712,7 @@
 		};
 		D337ABE725026673000C0D1E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E67EC9E7B0D608D3ADE4314 /* Pods-BestRamenTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -491,6 +734,7 @@
 		};
 		D337ABE825026673000C0D1E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1455134CDCE2B661FDF47C49 /* Pods-BestRamenTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +756,7 @@
 		};
 		D337ABEA25026673000C0D1E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF7B60530FE760DC023F5510 /* Pods-BestRamen-BestRamenUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -531,6 +776,7 @@
 		};
 		D337ABEB25026673000C0D1E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F99D159FFB28B6DA450CBB9F /* Pods-BestRamen-BestRamenUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -588,6 +834,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D375B6632505BCB800F511D0 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D375B6642505BCB800F511D0 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D375B6632505BCB800F511D0 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D337ABAF2502666D000C0D1E /* Project object */;
 }
