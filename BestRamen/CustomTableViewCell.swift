@@ -20,7 +20,10 @@ class CustomTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var shopName: UILabel!
     
     
     

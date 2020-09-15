@@ -57,9 +57,6 @@
                                     <constraint firstAttribute="height" constant="30" id="ptP-CY-bmT"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="7DX-Pg-IpD" kind="show" id="jsW-T8-Xo2"/>
-                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E26-1j-ZLd">
                                 <rect key="frame" x="0.0" y="118" width="414" height="200"/>
@@ -73,9 +70,6 @@
                                     <constraint firstAttribute="height" constant="30" id="Qlf-GG-lfb"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="c6Q-18-WP5" kind="show" id="p62-Qc-vFI"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9h-q5-zn7">
                                 <rect key="frame" x="0.0" y="348" width="414" height="465"/>
@@ -105,6 +99,9 @@
                     <navigationItem key="navigationItem" id="Nf4-So-l61"/>
                     <connections>
                         <outlet property="postImage" destination="E26-1j-ZLd" id="UjF-eT-wgu"/>
+                        <outlet property="postLabel" destination="U9h-q5-zn7" id="xKU-PT-bbf"/>
+                        <outlet property="shopButton" destination="AGn-yf-6X5" id="qWy-aM-ZyK"/>
+                        <outlet property="userButton" destination="XWW-TU-CZm" id="MsN-OV-4au"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xxY-xi-7PQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -139,7 +136,9 @@
                                             </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="PTo-gb-bDx" firstAttribute="top" secondItem="d7u-Xa-YBi" secondAttribute="top" id="1uR-6b-OpU"/>
                                             <constraint firstAttribute="height" constant="80" id="eXP-xR-gT4"/>
+                                            <constraint firstAttribute="trailing" secondItem="PTo-gb-bDx" secondAttribute="trailing" id="n8f-Bq-q8Q"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="1Qy-Bl-D2Y">
