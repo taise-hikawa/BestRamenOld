@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UIViewController {
+class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
 
     @IBOutlet weak var tableView: UITableView! {
@@ -25,7 +25,8 @@ class TableViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
+        data.append("aaaaaaa")
+        data.append("bbbbbbbb")
     }
     
 
@@ -41,12 +42,6 @@ class TableViewController: UIViewController {
     }
     */
 
-}
-extension TableViewController: UITableViewDelegate {}
-
-// MARK: - UITableViewDataSource
-
-extension TableViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count

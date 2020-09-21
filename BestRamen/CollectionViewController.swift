@@ -2,15 +2,24 @@
 //  CollectionViewController.swift
 //  BestRamen
 //
-//  Created by Sakurako Shimbori on 2020/09/08.
+//  Created by Sakurako Shimbori on 2020/09/21.
 //  Copyright © 2020 Taisei Hikawa. All rights reserved.
 //
 
 import UIKit
-import Firebase
 
-class CollectionViewController: UIViewController {
-
+class CollectionViewController: UICollectionViewController{
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath)
+        cell.backgroundColor = .red  // セルの色
+        return cell
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

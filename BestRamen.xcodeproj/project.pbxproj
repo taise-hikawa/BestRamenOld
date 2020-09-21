@@ -28,8 +28,6 @@
 		D375B66925065A5E00F511D0 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D375B66825065A5E00F511D0 /* PostViewController.swift */; };
 		D390231425068DCE00C13328 /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390231325068DCD00C13328 /* UserPageViewController.swift */; };
 		D390231725068ECA00C13328 /* ShopPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390231625068ECA00C13328 /* ShopPageViewController.swift */; };
-		D390231925076E3500C13328 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390231825076E3500C13328 /* TableViewController.swift */; };
-		D390231B2507700300C13328 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390231A2507700300C13328 /* CollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,8 +77,6 @@
 		D375B66825065A5E00F511D0 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		D390231325068DCD00C13328 /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
 		D390231625068ECA00C13328 /* ShopPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopPageViewController.swift; sourceTree = "<group>"; };
-		D390231825076E3500C13328 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		D390231A2507700300C13328 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionViewController.swift; path = BestRamen/CollectionViewController.swift; sourceTree = SOURCE_ROOT; };
 		D71A9EB647E223C30BA7B460 /* Pods_BestRamen_BestRamenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestRamen_BestRamenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F99D159FFB28B6DA450CBB9F /* Pods-BestRamen-BestRamenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen-BestRamenUITests.release.xcconfig"; path = "Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FF7B60530FE760DC023F5510 /* Pods-BestRamen-BestRamenUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen-BestRamenUITests.debug.xcconfig"; path = "Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -185,8 +181,6 @@
 		D390231525068DF300C13328 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D390231A2507700300C13328 /* CollectionViewController.swift */,
-				D390231825076E3500C13328 /* TableViewController.swift */,
 				D390231625068ECA00C13328 /* ShopPageViewController.swift */,
 				D375B66825065A5E00F511D0 /* PostViewController.swift */,
 				D375B6662505FAA100F511D0 /* MyPageViewController.swift */,
@@ -284,7 +278,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1170;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Taisei Hikawa";
 				TargetAttributes = {
 					D337ABB62502666D000C0D1E = {
@@ -494,14 +488,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D390231B2507700300C13328 /* CollectionViewController.swift in Sources */,
 				D375B66925065A5E00F511D0 /* PostViewController.swift in Sources */,
 				D375B6672505FAA100F511D0 /* MyPageViewController.swift in Sources */,
 				D337ABC12502666D000C0D1E /* SecondViewController.swift in Sources */,
 				D390231425068DCE00C13328 /* UserPageViewController.swift in Sources */,
 				D337ABBF2502666D000C0D1E /* FirstViewController.swift in Sources */,
 				D390231725068ECA00C13328 /* ShopPageViewController.swift in Sources */,
-				D390231925076E3500C13328 /* TableViewController.swift in Sources */,
 				D375B6592503333500F511D0 /* CustomTableViewCell.swift in Sources */,
 				D337ABED25026779000C0D1E /* ThirdViewController.swift in Sources */,
 				D337ABBB2502666D000C0D1E /* AppDelegate.swift in Sources */,
@@ -586,6 +578,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -610,7 +603,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -646,6 +639,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -664,7 +658,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
