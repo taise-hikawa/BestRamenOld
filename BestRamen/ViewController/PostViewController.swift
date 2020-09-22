@@ -1,11 +1,3 @@
-//
-//  PostViewController.swift
-//  BestRamen
-//
-//  Created by Sakurako Shimbori on 2020/09/07.
-//  Copyright © 2020 Taisei Hikawa. All rights reserved.
-//
-
 import UIKit
 import FirebaseStorage
 
@@ -54,18 +46,4 @@ class PostViewController: UIViewController {
     @IBOutlet weak var shopButton: UIButton!
     @IBOutlet weak var userButton: UIButton!
     @IBOutlet weak var postLabel: UILabel!
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

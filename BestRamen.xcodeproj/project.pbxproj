@@ -20,6 +20,8 @@
 		D337ABD425026673000C0D1E /* BestRamenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABD325026673000C0D1E /* BestRamenTests.swift */; };
 		D337ABDF25026673000C0D1E /* BestRamenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABDE25026673000C0D1E /* BestRamenUITests.swift */; };
 		D337ABED25026779000C0D1E /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABEC25026779000C0D1E /* ThirdViewController.swift */; };
+		D3423172251A51E2004E8A0F /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3423170251A51E2004E8A0F /* CustomCollectionViewCell.swift */; };
+		D3423173251A51E2004E8A0F /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3423171251A51E2004E8A0F /* CustomCollectionViewCell.xib */; };
 		D375B6592503333500F511D0 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D375B6572503333500F511D0 /* CustomTableViewCell.swift */; };
 		D375B65A2503333500F511D0 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D375B6582503333500F511D0 /* CustomTableViewCell.xib */; };
 		D375B6622503805D00F511D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D375B6612503805D00F511D0 /* GoogleService-Info.plist */; };
@@ -70,6 +72,8 @@
 		D337ABDE25026673000C0D1E /* BestRamenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestRamenUITests.swift; sourceTree = "<group>"; };
 		D337ABE025026673000C0D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D337ABEC25026779000C0D1E /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		D3423170251A51E2004E8A0F /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		D3423171251A51E2004E8A0F /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		D375B6572503333500F511D0 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		D375B6582503333500F511D0 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		D375B6612503805D00F511D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 				D337ABC525026673000C0D1E /* Assets.xcassets */,
 				D375B6572503333500F511D0 /* CustomTableViewCell.swift */,
 				D375B6582503333500F511D0 /* CustomTableViewCell.xib */,
+				D3423170251A51E2004E8A0F /* CustomCollectionViewCell.swift */,
+				D3423171251A51E2004E8A0F /* CustomCollectionViewCell.xib */,
 				D337ABC725026673000C0D1E /* LaunchScreen.storyboard */,
 				D337ABCA25026673000C0D1E /* Info.plist */,
 				D375B6612503805D00F511D0 /* GoogleService-Info.plist */,
@@ -216,8 +222,8 @@
 				D337ABB32502666D000C0D1E /* Sources */,
 				D337ABB42502666D000C0D1E /* Frameworks */,
 				D337ABB52502666D000C0D1E /* Resources */,
-				79281FC9413D1697DD07194D /* [CP] Embed Pods Frameworks */,
-				59A7E37C080781E3974434D0 /* [CP] Copy Pods Resources */,
+				200A8E6DF13724E6BECF2EB0 /* [CP] Embed Pods Frameworks */,
+				A9F66FE830820A202795F5E2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -258,8 +264,8 @@
 				D337ABD625026673000C0D1E /* Sources */,
 				D337ABD725026673000C0D1E /* Frameworks */,
 				D337ABD825026673000C0D1E /* Resources */,
-				9F1FE3621A54704147ABC4E0 /* [CP] Embed Pods Frameworks */,
-				4D723EE967BF3DE4A0F140EC /* [CP] Copy Pods Resources */,
+				A2A4402EEBC6F1B748038819 /* [CP] Embed Pods Frameworks */,
+				490483782F9A14B771253724 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -323,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D337ABC925026673000C0D1E /* LaunchScreen.storyboard in Resources */,
+				D3423173251A51E2004E8A0F /* CustomCollectionViewCell.xib in Resources */,
 				D337ABC625026673000C0D1E /* Assets.xcassets in Resources */,
 				D375B6622503805D00F511D0 /* GoogleService-Info.plist in Resources */,
 				D375B65A2503333500F511D0 /* CustomTableViewCell.xib in Resources */,
@@ -347,6 +354,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		200A8E6DF13724E6BECF2EB0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3D0607FE816ACD47A6CB186F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -369,7 +393,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4D723EE967BF3DE4A0F140EC /* [CP] Copy Pods Resources */ = {
+		490483782F9A14B771253724 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -384,23 +408,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		59A7E37C080781E3974434D0 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6B14041D5E2EF3A016F0CB6E /* [CP] Check Pods Manifest.lock */ = {
@@ -425,24 +432,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		79281FC9413D1697DD07194D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9F1FE3621A54704147ABC4E0 /* [CP] Embed Pods Frameworks */ = {
+		A2A4402EEBC6F1B748038819 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -457,6 +447,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9F66FE830820A202795F5E2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestRamen/Pods-BestRamen-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E8FDCFCC545B463A4F644BE5 /* [CP] Check Pods Manifest.lock */ = {
@@ -498,6 +505,7 @@
 				D337ABED25026779000C0D1E /* ThirdViewController.swift in Sources */,
 				D337ABBB2502666D000C0D1E /* AppDelegate.swift in Sources */,
 				D337ABBD2502666D000C0D1E /* SceneDelegate.swift in Sources */,
+				D3423172251A51E2004E8A0F /* CustomCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

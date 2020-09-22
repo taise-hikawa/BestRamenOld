@@ -1,11 +1,3 @@
-//
-//  FirstViewController.swift
-//  BestRamen
-//
-//  Created by Sakurako Shimbori on 2020/09/04.
-//  Copyright © 2020 Taisei Hikawa. All rights reserved.
-//
-
 import UIKit
 import Firebase
 
@@ -20,7 +12,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         homeTableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         homeTableView.delegate = self
         homeTableView.dataSource = self

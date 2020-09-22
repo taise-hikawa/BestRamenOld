@@ -36,6 +36,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        collectionView.register(UINib(nibName: "CustomCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
         collectionView.delegate = self
         collectionView.dataSource = self
         userImageView.sd_setImage(with: userImgRef)
@@ -150,6 +151,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
                         if let document2 = document2{
                             self.postsAry[index]["shopName"] = document2.data()?["name"]
                             print(self.postsAry)
+                            self.collectionView.reloadData()
                         }
                     }
                 }
@@ -160,7 +162,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -170,12 +172,17 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return postsAry.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! CustomCollectionViewCell
         cell.backgroundColor = UIColor.red
+        let postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["postId"]!)).jpg")
+        let postimageView = UIImageView()
+        postimageView.sd_setImage(with: postImgRef)
+        let cellSize:CGFloat = (self.view.bounds.width - (space * 2))/3
+        cell.imageView.image = postimageView.image?.resized(toWidth: cellSize)
         return cell
         
     }
@@ -191,5 +198,20 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         let cellSize:CGFloat = (self.view.bounds.width - (space * 2))/3
         // 正方形で返すためにwidth,heightを同じにする
         return CGSize(width: cellSize, height: cellSize)
+    }
+    func buildUrl(url: StorageReference,width: CGFloat,height: CGFloat) -> StorageReference{
+        
+        return url.child("w=\(width)&h=\(height)")
+        
+    }
+    
+}
+extension UIImage{
+    func resized(toWidth width: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
 }

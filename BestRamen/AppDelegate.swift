@@ -1,17 +1,7 @@
-//
-//  AppDelegate.swift
-//  BestRamen
-//
-//  Created by Sakurako Shimbori on 2020/09/04.
-//  Copyright © 2020 Taisei Hikawa. All rights reserved.
-//
-
-// AppDelegate.swift import UIKit import FBSDKCoreKit @UIApplicationMain class AppDelegate:UIResponder, UIApplicationDelegate { func application( _ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? ) -> Bool { ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions ) return true } func application( _ app:UIApplication, open url:URL, options: [UIApplication.OpenURLOptionsKey :Any] = [:] ) -> Bool { ApplicationDelegate.shared.application( app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation] ) } }
-
-    
 import UIKit
 import Firebase
 import FirebaseUI
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
