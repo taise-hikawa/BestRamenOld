@@ -48,6 +48,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 dispatchQueue.async{
                     self.db.collection("shops").document(dictionary["shop"] as! String).getDocument{(document2,error2) in
                         if let document2 = document2{
+                            self.postsAry[index]["shopId"] = document2.documentID
                             self.postsAry[index]["shopName"] = document2.data()?["name"] as? String
                         }
                         dispatchGroup2.leave()
@@ -58,6 +59,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.db.collection("users").document(dictionary["user"] as! String).getDocument{(document3,error3) in
                         if let document3 = document3{
                             self.postsAry[index]["userName"] = document3.data()?["name"] as? String
+                            self.postsAry[index]["profile"] = document3.data()?["profile"] as? String
                             self.postsAry[index]["userDocumentID"] = document3.documentID
                         }
                         dispatchGroup2.leave()
@@ -102,6 +104,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             nextVC.userId = postsAry[row!]["userDocumentID"] as? String
             nextVC.postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[row!]["documentID"]!)).jpg")
             nextVC.userImgRef = self.storage.child("users").child("\(String(describing: postsAry[row!]["userDocumentID"]!)).jpg")
+            nextVC.userProfile = postsAry[row!]["profile"] as? String
+            nextVC.shopId = postsAry[row!]["shopId"] as? String
         }
     }
     

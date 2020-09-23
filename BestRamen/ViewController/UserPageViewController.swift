@@ -4,9 +4,12 @@ import FirebaseFirestore
 
 class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
-    private let space:CGFloat = 1
+    let space:CGFloat = 1
     var userId:String!
+    var userName:String!
     var userImgRef:StorageReference!
+    var userProfile:String!
+    var collectionSelectedNum:Int?
     var followDic:Dictionary<String, Any> = [:]
     var followAry:[Dictionary<String,Any>] = []
     var followerDic:Dictionary<String, Any> = [:]
@@ -39,14 +42,21 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         collectionView.register(UINib(nibName: "CustomCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
         collectionView.delegate = self
         collectionView.dataSource = self
+        followListButton.setTitle("フォロー\n\(String(followNum))", for: .normal)
+        followListButton.titleLabel?.numberOfLines = 2
+        followListButton.titleLabel!.textAlignment = NSTextAlignment.center
+        followerListButton.setTitle("フォロワー\n\(String(followerNum))", for: .normal)
+        followerListButton.titleLabel?.numberOfLines = 2
+        followerListButton.titleLabel!.textAlignment = NSTextAlignment.center
+        tableView.isScrollEnabled = false
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
         userImageView.sd_setImage(with: userImgRef)
-        followListButton.setTitle(String(followNum), for: .normal)
-        followerListButton.setTitle(String(followerNum), for: .normal)
+        profileLabel.text = userProfile
         setFollow()
         setFollower()
         setPosts()
-        tableView.isScrollEnabled = false
-        
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -83,7 +93,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
                     if let document = document{
                         self.followAry[index]["userName"] = document["name"]
                         self.followNum = self.followAry.count
-                        self.followListButton.setTitle(String(self.followNum), for: .normal)
+                        self.followListButton.setTitle("フォロー\n\(String(self.followNum))", for: .normal)
                     }
                 }
             }
@@ -112,7 +122,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
                     if let document = document{
                         self.followerAry[index]["userName"] = document["name"]
                         self.followerNum = self.followerAry.count
-                        self.followerListButton.setTitle(String(self.followerNum), for: .normal)
+                        self.followerListButton.setTitle("フォロワー\n\(String(self.followerNum))", for: .normal)
                     }
                 }
              }
@@ -151,6 +161,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
                     self.db.collection("shops").document(self.postsAry[index]["shop"] as! String).getDocument(){(document2,error3) in
                         if let document2 = document2{
                             self.postsAry[index]["shopName"] = document2.data()?["name"]
+                            self.postsAry[index]["shopId"] = document2.documentID
                             print(self.postsAry)
                             self.collectionView.reloadData()
                         }
@@ -202,13 +213,20 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        collectionSelectedNum = indexPath.row
+        performSegue(withIdentifier: "toPostViewController", sender: nil)
     }
-    
-    func buildUrl(url: StorageReference,width: CGFloat,height: CGFloat) -> StorageReference{
-        
-        return url.child("w=\(width)&h=\(height)")
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toPostViewController" {
+            let nextVC = segue.destination as! PostViewController
+            nextVC.userName = userName
+            nextVC.shopName = postsAry[collectionSelectedNum!]["shopName"] as? String
+            nextVC.postText = postsAry[collectionSelectedNum!]["text"] as? String
+            nextVC.userId = userId
+            nextVC.postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[collectionSelectedNum!]["postId"]!)).jpg")
+            nextVC.userImgRef = userImgRef
+            nextVC.shopId = postsAry[collectionSelectedNum!]["shopId"] as? String
+        }
     }
     
 }

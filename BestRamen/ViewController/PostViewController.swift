@@ -6,9 +6,11 @@ class PostViewController: UIViewController {
     var postImgRef:StorageReference!
     var userImgRef:StorageReference!
     var shopName:String!
+    var shopId:String!
     var userName:String!
     var postText:String!
     var userId:String!
+    var userProfile:String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +39,15 @@ class PostViewController: UIViewController {
             let nextVC = segue.destination as! UserPageViewController
             // 3. １で用意した遷移先の変数に値を渡す
             nextVC.userId = userId
+            nextVC.userName = userName
             nextVC.userImgRef = userImgRef
+            nextVC.userProfile = userProfile
+            
+        }
+        if segue.identifier == "toShopPage"{
+            let nextVC = segue.destination as! ShopPageViewController
+            nextVC.shopName = shopName
+            nextVC.shopId = shopId
             
         }
     }
