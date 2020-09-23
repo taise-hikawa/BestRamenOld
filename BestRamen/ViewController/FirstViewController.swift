@@ -15,63 +15,28 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         homeTableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         homeTableView.delegate = self
         homeTableView.dataSource = self
-        setArray()
+        setPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
     }
-    func setArray(){
-        let dispatchGroup = DispatchGroup()
-        let dispatchGroup2 = DispatchGroup()
-        // 直列キュー / attibutes指定なし
-        let dispatchQueue = DispatchQueue(label: "queue")
-        dispatchGroup.enter()
-        dispatchQueue.sync{
-            self.postsColRef.getDocuments{(querySnapshot, error) in
-                if let querySnapshot = querySnapshot{
-                    for document in querySnapshot.documents{
-                        self.postDic["user"] = document.data()["user"] as? String
-                        self.postDic["shop"] = document.data()["shop"] as? String
-                        self.postDic["text"] = document.data()["text"] as? String
-                        self.postDic["documentID"] = document.documentID
-                        self.postsAry.append(self.postDic)
-                        //                    self.postsAry[index] = self.postDic
-                    }
+    func setPosts(){
+        self.postsColRef.getDocuments{(querySnapshot, error) in
+            if let querySnapshot = querySnapshot{
+                for document in querySnapshot.documents{
+                    self.postDic["userName"] = document.data()["userName"] as? String
+                    self.postDic["userId"] = document.data()["userId"] as? String
+                    self.postDic["shopName"] = document.data()["shopName"] as? String
+                    self.postDic["shopId"] = document.data()["shopId"] as? String
+                    self.postDic["postContent"] = document.data()["postContent"] as? String
+                    self.postDic["postId"] = document.documentID
+                    self.postsAry.append(self.postDic)
+                    self.homeTableView.reloadData()
                 }
-                dispatchGroup.leave()
-            }
-            
-        }
-        dispatchGroup.notify(queue: .main) {
-            for (index,dictionary) in self.postsAry.enumerated(){
-                dispatchGroup2.enter()
-                dispatchQueue.async{
-                    self.db.collection("shops").document(dictionary["shop"] as! String).getDocument{(document2,error2) in
-                        if let document2 = document2{
-                            self.postsAry[index]["shopId"] = document2.documentID
-                            self.postsAry[index]["shopName"] = document2.data()?["name"] as? String
-                        }
-                        dispatchGroup2.leave()
-                    }
-                }
-                dispatchGroup2.enter()
-                dispatchQueue.sync{
-                    self.db.collection("users").document(dictionary["user"] as! String).getDocument{(document3,error3) in
-                        if let document3 = document3{
-                            self.postsAry[index]["userName"] = document3.data()?["name"] as? String
-                            self.postsAry[index]["profile"] = document3.data()?["profile"] as? String
-                            self.postsAry[index]["userDocumentID"] = document3.documentID
-                        }
-                        dispatchGroup2.leave()
-                    }
-                }
-            }
-            dispatchGroup2.notify(queue: .main){
-                self.homeTableView.reloadData()
             }
         }
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return postsAry.count
     }
@@ -79,10 +44,9 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //セルをカスタムセルに
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomTableViewCell
-        let postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["documentID"]!)).jpg")
+        let postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["postId"]!)).jpg")
         cell.postImageView.sd_setImage(with: postImgRef)
-        let userImgRef = self.storage.child("users").child("\(String(describing: postsAry[indexPath.row]["userDocumentID"]!)).jpg")
-        print(userImgRef)
+        let userImgRef = self.storage.child("users").child("\(String(describing: postsAry[indexPath.row]["userId"]!)).jpg")
         cell.userImageView.sd_setImage(with: userImgRef)
         cell.userName.text = postsAry[indexPath.row]["userName"] as? String
         cell.shopName.text = postsAry[indexPath.row]["shopName"] as? String
@@ -99,13 +63,12 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let nextVC = segue.destination as! PostViewController
             let row = self.homeTableView.indexPathForSelectedRow?.row
             nextVC.userName = postsAry[row!]["userName"] as? String
+            nextVC.userId = postsAry[row!]["userId"] as? String
             nextVC.shopName = postsAry[row!]["shopName"] as? String
-            nextVC.postText = postsAry[row!]["text"] as? String
-            nextVC.userId = postsAry[row!]["userDocumentID"] as? String
-            nextVC.postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[row!]["documentID"]!)).jpg")
-            nextVC.userImgRef = self.storage.child("users").child("\(String(describing: postsAry[row!]["userDocumentID"]!)).jpg")
-            nextVC.userProfile = postsAry[row!]["profile"] as? String
             nextVC.shopId = postsAry[row!]["shopId"] as? String
+            nextVC.postContent = postsAry[row!]["postContent"] as? String
+            nextVC.postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[row!]["postId"]!)).jpg")
+            nextVC.userImgRef = self.storage.child("users").child("\(String(describing: postsAry[row!]["userId"]!)).jpg")
         }
     }
     

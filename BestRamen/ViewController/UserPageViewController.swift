@@ -6,14 +6,12 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     let space:CGFloat = 1
     var userId:String!
-    var userName:String!
-    var userImgRef:StorageReference!
-    var userProfile:String!
     var collectionSelectedNum:Int?
-    var followDic:Dictionary<String, Any> = [:]
-    var followAry:[Dictionary<String,Any>] = []
-    var followerDic:Dictionary<String, Any> = [:]
-    var followerAry:[Dictionary<String,Any>] = []
+    var followDic:Dictionary<String, String> = [:]
+    var followAry:[Dictionary<String,String>] = []
+    var followerDic:Dictionary<String, String> = [:]
+    var followerAry:[Dictionary<String,String>] = []
+    var userAry:[Dictionary<String,String>] = []
     let db = Firestore.firestore()
     let storage = Storage.storage().reference(forURL: "gs://bestramen-90259.appspot.com")
     var followNum = 0
@@ -43,135 +41,100 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         collectionView.delegate = self
         collectionView.dataSource = self
         followListButton.setTitle("フォロー\n\(String(followNum))", for: .normal)
+        //ボタンのテキストが改行可能に
         followListButton.titleLabel?.numberOfLines = 2
+        //ボタンのテキスト中央寄せ
         followListButton.titleLabel!.textAlignment = NSTextAlignment.center
         followerListButton.setTitle("フォロワー\n\(String(followerNum))", for: .normal)
         followerListButton.titleLabel?.numberOfLines = 2
         followerListButton.titleLabel!.textAlignment = NSTextAlignment.center
         tableView.isScrollEnabled = false
         
+        self.followListButton.addTarget(self,action: #selector(self.tapFollowListButton(_ :)),for: .touchUpInside)
+        self.followerListButton.addTarget(self,action: #selector(self.tapFollowerListButton(_ :)),for: .touchUpInside)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
+        postDic = [:]
+        postsAry = []
+        followDic = [:]
+        followAry = []
+        followerDic = [:]
+        followerAry = []
+        let userImgRef = storage.child("users").child("\(String(describing: userId!)).jpg")
         userImageView.sd_setImage(with: userImgRef)
-        profileLabel.text = userProfile
         setFollow()
         setFollower()
         setPosts()
+        setUser()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        // Set collectionView height to content size height.
+        //collectionViewの高さを調整
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             collectionViewConstraintHeight.constant = layout.collectionViewContentSize.height
             view.layoutIfNeeded()
-//            view.frame.size.height = layout.collectionViewContentSize.height
         }
-        // Set tableView height to content size height.
+        //tableViewの高さを調整
         tableView.layoutIfNeeded()
         tableViewConstraintHeight.constant = tableView.contentSize.height
-//        view.frame.size.height = tableView.contentSize.height
     }
     func setFollow(){
-        let dispatchGroup = DispatchGroup()
-        let dispatchQueue = DispatchQueue(label: "queue")
-        dispatchGroup.enter()
-        dispatchQueue.sync{
-            self.db.collection("relationships").whereField("follower", isEqualTo: userId!).getDocuments{(querySnapshot, error) in
-                if let querySnapshot = querySnapshot{
-                    for document in querySnapshot.documents{
-                        self.followDic["userDocumentId"] = document["followed"]
-                        self.followAry.append(self.followDic)
-                    }
-                }
-                dispatchGroup.leave()
-            }
-        }
-        dispatchGroup.notify(queue: .main) {
-            for (index,dictionary) in self.followAry.enumerated(){
-                self.db.collection("users").document(dictionary["userDocumentId"] as! String).getDocument(){(document,error2) in
-                    if let document = document{
-                        self.followAry[index]["userName"] = document["name"]
-                        self.followNum = self.followAry.count
-                        self.followListButton.setTitle("フォロー\n\(String(self.followNum))", for: .normal)
-                    }
+        self.db.collection("relationships").whereField("followerId", isEqualTo: userId!).getDocuments{(querySnapshot, error) in
+            if let querySnapshot = querySnapshot{
+                for document in querySnapshot.documents{
+                    self.followDic["userId"] = document["followedId"] as? String
+                    self.followDic["userName"] = document["followedName"] as? String
+                    self.followAry.append(self.followDic)
+                    self.followNum = self.followAry.count
+                    self.followListButton.setTitle("フォロー\n\(String(self.followNum))", for: .normal)
                 }
             }
         }
-        
     }
     
     func setFollower(){
-        let dispatchGroup = DispatchGroup()
-        let dispatchQueue = DispatchQueue(label: "queue")
-        dispatchGroup.enter()
-        dispatchQueue.sync{
-            self.db.collection("relationships").whereField("followed", isEqualTo: userId!).getDocuments{(querySnapshot, error) in
-                if let querySnapshot = querySnapshot{
-                     for document in querySnapshot.documents{
-                         self.followerDic["userDocumentId"] = document["follower"]
-                         self.followerAry.append(self.followerDic)
-                     }
-                 }
-                 dispatchGroup.leave()
-             }
-         }
-         dispatchGroup.notify(queue: .main) {
-             for (index,dictionary) in self.followerAry.enumerated(){
-                self.db.collection("users").document(dictionary["userDocumentId"] as! String).getDocument(){(document,error2) in
-                    if let document = document{
-                        self.followerAry[index]["userName"] = document["name"]
-                        self.followerNum = self.followerAry.count
-                        self.followerListButton.setTitle("フォロワー\n\(String(self.followerNum))", for: .normal)
-                    }
+        self.db.collection("relationships").whereField("followedId", isEqualTo: userId!).getDocuments{(querySnapshot, error) in
+            if let querySnapshot = querySnapshot{
+                for document in querySnapshot.documents{
+                    self.followerDic["userId"] = document["followerId"] as? String
+                    self.followerDic["userName"] = document["followerName"] as? String
+                    self.followerAry.append(self.followerDic)
+                    self.followerNum = self.followerAry.count
+                    self.followerListButton.setTitle("フォロワー\n\(String(self.followerNum))", for: .normal)
                 }
-             }
-         }
-        
+            }
+        }
     }
+    
+    func setUser(){
+        self.db.collection("users").document(userId).getDocument{(document,error) in
+            if let document = document{
+//                document.data()["userName"] as? String
+                self.profileLabel.text = document.data()?["userProfile"] as? String
+            }
+        }
+    }
+    
     func setPosts(){
-        let dispatchGroup = DispatchGroup()
-        let dispatchGroup2 = DispatchGroup()
-        let dispatchQueue = DispatchQueue(label: "queue")
-        dispatchGroup.enter()
-        dispatchQueue.sync{
-            db.collection("posts").whereField("user", isEqualTo: userId!).getDocuments(){(querySnapshot, error) in
-                if let querySnapshot = querySnapshot{
-                    for document in querySnapshot.documents{
-                        self.postDic["postId"] = document.documentID
-                        self.postsAry.append(self.postDic)
-                    }
-                }
-                dispatchGroup.leave()
-            }
-        }
-        dispatchGroup.notify(queue: .main) {
-            for (index,dictionary) in self.postsAry.enumerated(){
-                dispatchGroup2.enter()
-                dispatchQueue.sync{
-                    self.db.collection("posts").document(dictionary["postId"] as! String).getDocument{(document, error2) in
-                        if let document = document{
-                            self.postsAry[index]["postText"] = document.data()?["text"] as? String
-                            self.postsAry[index]["shop"] = document.data()?["shop"] as? String
-                        }
-                        dispatchGroup2.leave()
-                    }
-                }
-                dispatchGroup2.notify(queue: .main){
-                    self.db.collection("shops").document(self.postsAry[index]["shop"] as! String).getDocument(){(document2,error3) in
-                        if let document2 = document2{
-                            self.postsAry[index]["shopName"] = document2.data()?["name"]
-                            self.postsAry[index]["shopId"] = document2.documentID
-                            print(self.postsAry)
-                            self.collectionView.reloadData()
-                        }
-                    }
+        db.collection("posts").whereField("userId", isEqualTo: userId!).getDocuments(){(querySnapshot, error) in
+            if let querySnapshot = querySnapshot{
+                for document in querySnapshot.documents{
+                    self.postDic["userName"] = document.data()["userName"] as? String
+                    self.postDic["userId"] = document.data()["userId"] as? String
+                    self.postDic["shopName"] = document.data()["shopName"] as? String
+                    self.postDic["shopId"] = document.data()["shopId"] as? String
+                    self.postDic["postContent"] = document.data()["postContent"] as? String
+                    self.postDic["postId"] = document.documentID
+                    self.postsAry.append(self.postDic)
+                    self.collectionView.reloadData()
                 }
             }
         }
     }
-
-
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
@@ -216,16 +179,37 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         collectionSelectedNum = indexPath.row
         performSegue(withIdentifier: "toPostViewController", sender: nil)
     }
+    
+    
+    @objc func tapFollowListButton(_ sender: UIButton){
+        userAry = followAry
+        print("tap:\(followAry.count)")
+        print("tap:\(userAry.count)")
+        self.performSegue(withIdentifier: "toFollowListViewController", sender: nil)
+    }
+    @objc func tapFollowerListButton(_ sender: UIButton){
+        
+        userAry = followerAry
+        print("tap:\(followerAry.count)")
+        print("tap:\(userAry.count)")
+        self.performSegue(withIdentifier: "toFollowListViewController", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPostViewController" {
             let nextVC = segue.destination as! PostViewController
-            nextVC.userName = userName
-            nextVC.shopName = postsAry[collectionSelectedNum!]["shopName"] as? String
-            nextVC.postText = postsAry[collectionSelectedNum!]["text"] as? String
+            nextVC.userName = postsAry[collectionSelectedNum!]["userName"] as? String
             nextVC.userId = userId
-            nextVC.postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[collectionSelectedNum!]["postId"]!)).jpg")
-            nextVC.userImgRef = userImgRef
+            nextVC.shopName = postsAry[collectionSelectedNum!]["shopName"] as? String
             nextVC.shopId = postsAry[collectionSelectedNum!]["shopId"] as? String
+            nextVC.postContent = postsAry[collectionSelectedNum!]["postContent"] as? String
+            nextVC.postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[collectionSelectedNum!]["postId"]!)).jpg")
+            nextVC.userImgRef = self.storage.child("users").child("\(String(describing: postsAry[collectionSelectedNum!]["userId"]!)).jpg")
+        }
+        else if segue.identifier == "toFollowListViewController"{
+            let nextVC = segue.destination as! FollowListViewController
+            nextVC.userAry = userAry
+            print("prepare:\(userAry.count)")
         }
     }
     

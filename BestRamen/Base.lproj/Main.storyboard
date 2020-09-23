@@ -254,26 +254,44 @@
                         <outlet property="userImageView" destination="SMG-ur-60X" id="VcN-7j-eYr"/>
                         <outlet property="verticalStackView" destination="1Qy-Bl-D2Y" id="3Gl-fL-imD"/>
                         <segue destination="T4o-j4-i92" kind="show" identifier="toPostViewController" id="8Sv-1k-vPM"/>
+                        <segue destination="Jw3-7N-bUc" kind="show" identifier="toFollowListViewController" id="El3-R0-jrF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpH-UG-DNI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7504" y="-989"/>
         </scene>
-        <!--View Controller-->
+        <!--Follow List View Controller-->
         <scene sceneID="ctr-8E-mOJ">
             <objects>
-                <viewController id="Jw3-7N-bUc" sceneMemberID="viewController">
+                <viewController id="Jw3-7N-bUc" customClass="FollowListViewController" customModule="BestRamen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YOm-sv-TIB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1oR-vb-gs8">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="pyc-3f-cSg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1oR-vb-gs8" firstAttribute="top" secondItem="pyc-3f-cSg" secondAttribute="top" id="DAM-LK-5VK"/>
+                            <constraint firstItem="pyc-3f-cSg" firstAttribute="bottom" secondItem="1oR-vb-gs8" secondAttribute="bottom" id="ITN-nH-V4Q"/>
+                            <constraint firstItem="1oR-vb-gs8" firstAttribute="trailing" secondItem="pyc-3f-cSg" secondAttribute="trailing" id="NOF-Ss-Ha9"/>
+                            <constraint firstItem="1oR-vb-gs8" firstAttribute="leading" secondItem="pyc-3f-cSg" secondAttribute="leading" id="kN1-cN-A6A"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="7Jn-N8-REQ"/>
+                    <connections>
+                        <outlet property="tableView" destination="1oR-vb-gs8" id="0Gu-ZN-NSX"/>
+                        <segue destination="7DX-Pg-IpD" kind="show" identifier="toUserPageViewController" id="ju8-vr-pkI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oca-0D-gB8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8783" y="-972"/>
+            <point key="canvasLocation" x="8782.608695652174" y="-972.32142857142856"/>
         </scene>
         <!--Shop Page View Controller-->
         <scene sceneID="Aur-Vq-2WZ">
@@ -524,7 +542,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="a22-cf-NBx"/>
+        <segue reference="ju8-vr-pkI"/>
+        <segue reference="8Sv-1k-vPM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="hito" width="30" height="30"/>

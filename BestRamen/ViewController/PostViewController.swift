@@ -8,9 +8,8 @@ class PostViewController: UIViewController {
     var shopName:String!
     var shopId:String!
     var userName:String!
-    var postText:String!
+    var postContent:String!
     var userId:String!
-    var userProfile:String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +19,7 @@ class PostViewController: UIViewController {
         postImage.sd_setImage(with: postImgRef)
         userButton.setTitle(userName, for: .normal)
         shopButton.setTitle(shopName, for: .normal)
-        postLabel.text = postText
+        postLabel.text = postContent
         self.shopButton.addTarget(self,action: #selector(self.tapShopButton(_ :)),for: .touchUpInside)
         self.userButton.addTarget(self,action: #selector(self.tapUserButton(_ :)),for: .touchUpInside)
     }
@@ -39,14 +38,10 @@ class PostViewController: UIViewController {
             let nextVC = segue.destination as! UserPageViewController
             // 3. １で用意した遷移先の変数に値を渡す
             nextVC.userId = userId
-            nextVC.userName = userName
-            nextVC.userImgRef = userImgRef
-            nextVC.userProfile = userProfile
             
         }
         if segue.identifier == "toShopPage"{
             let nextVC = segue.destination as! ShopPageViewController
-            nextVC.shopName = shopName
             nextVC.shopId = shopId
             
         }
