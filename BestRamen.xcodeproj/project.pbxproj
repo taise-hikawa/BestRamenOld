@@ -195,14 +195,14 @@
 		D390231525068DF300C13328 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				D337ABBE2502666D000C0D1E /* FirstViewController.swift */,
 				D368C021251B4B7C0062BED0 /* FollowListViewController.swift */,
 				D390231625068ECA00C13328 /* ShopPageViewController.swift */,
 				D375B66825065A5E00F511D0 /* PostViewController.swift */,
 				D375B6662505FAA100F511D0 /* MyPageViewController.swift */,
 				D390231325068DCD00C13328 /* UserPageViewController.swift */,
-				D337ABEC25026779000C0D1E /* ThirdViewController.swift */,
 				D337ABC02502666D000C0D1E /* SecondViewController.swift */,
-				D337ABBE2502666D000C0D1E /* FirstViewController.swift */,
+				D337ABEC25026779000C0D1E /* ThirdViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

@@ -266,7 +266,7 @@
             <objects>
                 <viewController id="Jw3-7N-bUc" customClass="FollowListViewController" customModule="BestRamen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YOm-sv-TIB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1oR-vb-gs8">
@@ -422,7 +422,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="見つける" image="search" id="cPa-gy-q4n"/>
                     <connections>
-                        <outlet property="dispMao" destination="Caj-G0-6bY" id="Q2P-QN-ekO"/>
+                        <outlet property="mapView" destination="Caj-G0-6bY" id="HJP-rN-rN2"/>
                         <outlet property="searchBar" destination="Fo1-gU-hoF" id="hjP-Wb-1w2"/>
                     </connections>
                 </viewController>
@@ -542,7 +542,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ju8-vr-pkI"/>
+        <segue reference="7Np-oz-n2l"/>
         <segue reference="8Sv-1k-vPM"/>
     </inferredMetricsTieBreakers>
     <resources>
