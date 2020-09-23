@@ -45,6 +45,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         setFollow()
         setFollower()
         setPosts()
+        tableView.isScrollEnabled = false
         
     }
     override func viewDidLayoutSubviews() {
@@ -54,12 +55,12 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             collectionViewConstraintHeight.constant = layout.collectionViewContentSize.height
             view.layoutIfNeeded()
-            view.frame.size.height = layout.collectionViewContentSize.height
+//            view.frame.size.height = layout.collectionViewContentSize.height
         }
         // Set tableView height to content size height.
         tableView.layoutIfNeeded()
         tableViewConstraintHeight.constant = tableView.contentSize.height
-        view.frame.size.height = tableView.contentSize.height
+//        view.frame.size.height = tableView.contentSize.height
     }
     func setFollow(){
         let dispatchGroup = DispatchGroup()
@@ -177,7 +178,6 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! CustomCollectionViewCell
-        cell.backgroundColor = UIColor.red
         let postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["postId"]!)).jpg")
         let postimageView = UIImageView()
         postimageView.sd_setImage(with: postImgRef)
@@ -199,6 +199,12 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         // 正方形で返すためにwidth,heightを同じにする
         return CGSize(width: cellSize, height: cellSize)
     }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
+    
     func buildUrl(url: StorageReference,width: CGFloat,height: CGFloat) -> StorageReference{
         
         return url.child("w=\(width)&h=\(height)")
