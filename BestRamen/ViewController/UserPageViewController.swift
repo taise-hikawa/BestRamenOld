@@ -11,6 +11,8 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     var followAry:[Dictionary<String,String>] = []
     var followerDic:Dictionary<String, String> = [:]
     var followerAry:[Dictionary<String,String>] = []
+    var bestShopNameAry:[String] = []
+    var bestShopIdAry:[String] = []
     var userAry:[Dictionary<String,String>] = []
     let db = Firestore.firestore()
     let storage = Storage.storage().reference(forURL: "gs://bestramen-90259.appspot.com")
@@ -61,6 +63,8 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         followAry = []
         followerDic = [:]
         followerAry = []
+        bestShopNameAry = []
+        bestShopIdAry = []
         let userImgRef = storage.child("users").child("\(String(describing: userId!)).jpg")
         userImageView.sd_setImage(with: userImgRef)
         setFollow()
@@ -111,8 +115,10 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     func setUser(){
         self.db.collection("users").document(userId).getDocument{(document,error) in
             if let document = document{
-//                document.data()["userName"] as? String
                 self.profileLabel.text = document.data()?["userProfile"] as? String
+                self.bestShopNameAry = (document.data()?["bestShopName"]as? Array) ?? []
+                self.bestShopIdAry = (document.data()?["bestShopId"] as? Array) ?? []
+                self.tableView.reloadData()
             }
         }
     }
@@ -137,12 +143,12 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return bestShopNameAry.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "shopCell", for: indexPath)
-        cell.backgroundColor = UIColor.blue
+        cell.textLabel?.text = "MyBest\(indexPath.row + 1):" + bestShopNameAry[indexPath.row]
         return cell
     }
     

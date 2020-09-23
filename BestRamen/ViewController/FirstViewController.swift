@@ -72,6 +72,10 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.view.bounds.width
+    }
+    
 
     @IBOutlet weak var homeTableView: UITableView!
     
