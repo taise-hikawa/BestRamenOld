@@ -8,8 +8,8 @@ class ThirdViewController: UIViewController ,FUIAuthDelegate{
     // 認証に使用するプロバイダの選択
     let providers: [FUIAuthProvider] = [
         FUIGoogleAuth(),
-        FUIFacebookAuth(),
-        FUIEmailAuth()
+//        FUIFacebookAuth(),
+//        FUIEmailAuth()
     ]
 
     override func viewDidLoad() {
@@ -18,8 +18,12 @@ class ThirdViewController: UIViewController ,FUIAuthDelegate{
             self.authUI.delegate = self
             self.authUI.providers = providers
             authButton.addTarget(self,action: #selector(self.authButtonTapped(sender:)),for: .touchUpInside)
-
-
+        if Auth.auth().currentUser != nil {
+//            print(Auth.auth().currentUser)
+        } else {
+          // No user is signed in.
+          // ...
+        }
     }
     
     @objc func authButtonTapped(sender : AnyObject) {
@@ -29,14 +33,5 @@ class ThirdViewController: UIViewController ,FUIAuthDelegate{
         self.present(authViewController, animated: true, completion: nil)
     }
 
-    //　認証画面から離れたときに呼ばれる（キャンセルボタン押下含む）
-    public func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?){
-        // 認証に成功した場合
-        if error == nil {
-            self.performSegue(withIdentifier: "myPage", sender: nil)
-        } else {
-        //失敗した場合
-            print("error")
-        }
-    }
+
 }

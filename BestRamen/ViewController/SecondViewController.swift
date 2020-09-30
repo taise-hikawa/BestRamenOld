@@ -1,9 +1,12 @@
 import UIKit
 import MapKit
 import Firebase
+import FloatingPanel
 
-class SecondViewController: UIViewController ,MKMapViewDelegate{
+class SecondViewController: UIViewController ,MKMapViewDelegate,FloatingPanelControllerDelegate{
+
     
+    var floatingPanelController: FloatingPanelController!
     let db = Firestore.firestore()
     var shopsAry:[Dictionary<String,Any>] = []
     
@@ -12,7 +15,14 @@ class SecondViewController: UIViewController ,MKMapViewDelegate{
         setShops()
         mapView.delegate = self
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        // セミモーダルビューを非表示にする
+        if floatingPanelController != nil{
+            floatingPanelController.removePanelFromParent(animated: true)
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         
     }
@@ -25,8 +35,9 @@ class SecondViewController: UIViewController ,MKMapViewDelegate{
         dispatchQueue.async {
             self.db.collection("shops").getDocuments{(querySnapshot,error) in
                 if let querySnapshot =  querySnapshot {
-                    for document in querySnapshot.documents{
+                    for (num,document) in querySnapshot.documents.enumerated(){
                         self.shopsAry.append(document.data())
+                        self.shopsAry[num]["shopId"] = document.documentID
                         print(self.shopsAry)
                     }
                 }
@@ -42,47 +53,68 @@ class SecondViewController: UIViewController ,MKMapViewDelegate{
         for shop in shopsAry{
             let latitude = (shop["shopGeocode"] as? GeoPoint)?.latitude
             let longitude = (shop["shopGeocode"] as? GeoPoint)?.longitude
-            print(type(of: latitude))
             let place = CLLocationCoordinate2D(latitude: latitude ?? 0, longitude: longitude ?? 0)
-            let pin: MKPointAnnotation = MKPointAnnotation()
+            let pin: MyPointAnnotation = MyPointAnnotation()
             pin.coordinate = place
-            //            pin.
+            pin.shopName = shop["shopName"] as? String
+            pin.shopId = shop["shopId"] as? String
+            pin.shopAdress = shop["shopAdress"] as? String
+            print(pin)
             mapView.addAnnotation(pin)
         }
         
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        //        if (annotation is MKUserLocation) {
-        //            // ユーザの現在地の青丸マークは置き換えない
-        //            return nil
-        //        } else {}
-        // CustomAnnotationの場合に画像を配置
         // MKPinAnnotationViewを宣言
         let annoView = MKPinAnnotationView()
         // MKPinAnnotationViewのannotationにMKAnnotationのAnnotationを追加
         annoView.annotation = annotation
         // ピンの画像を変更
         annoView.image = UIImage(named: "ramenIcon")?.resized(toWidth: self.view.bounds.width/15)
-//        // 吹き出しを使用
-//        annoView.canShowCallout = true
-//        // 吹き出しにinfoボタンを表示
-//        annoView.rightCalloutAccessoryView = UIButton(type: UIButton.ButtonType.detailDisclosure)
-        
         return annoView
-        //        if annotationView == nil {
-//            annotationView = MKAnnotationView.init(annotation: annotation, reuseIdentifier: identifier)
-//        }
-//        annotationView?.image = UIImage.init(named: "a") // 任意の画像名
-//        annotationView?.annotation = annotation
-//        annotationView!.canShowCallout = true  // タップで吹き出しを表示
-//        return annotationView
     }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if floatingPanelController != nil{
+            floatingPanelController.removePanelFromParent(animated: true)
+        }
+        let annotation = view.annotation as? MyPointAnnotation
+        // セミモーダルビューとなるViewControllerを生成し、contentViewControllerとしてセットする
+        let semiModalViewController = self.storyboard?.instantiateViewController(withIdentifier: "fpc") as? SemiModalViewController
+        semiModalViewController?.shopName = annotation?.shopName
+        semiModalViewController?.shopAdress = annotation?.shopAdress
+        semiModalViewController?.shopId = annotation?.shopId
+        floatingPanelController = FloatingPanelController()
+        semiModalViewController?.floatingPanelController = floatingPanelController
+        floatingPanelController.set(contentViewController: semiModalViewController)
+        floatingPanelController.delegate = self
+        // セミモーダルビューを表示する
+        floatingPanelController.addPanel(toParent: self, belowView: nil, animated: false)
+        //選択を解除する
+        for annotaion in mapView.selectedAnnotations {
+            mapView.deselectAnnotation(annotaion, animated: false)
+        }
+    }
+    // カスタマイズしたレイアウトに変更
+    func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
+        return CustomFloatingPanelLayout()
+    }
+    //tipの位置になったらモーダルを終了
+    func floatingPanelDidEndDragging(_ vc: FloatingPanelController, withVelocity velocity: CGPoint, targetPosition: FloatingPanelPosition) {
+        if targetPosition == .tip{
+            vc.removePanelFromParent(animated: true)
+        }
+    }
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchBar: UISearchBar!
     
 
-    
-
 }
 
+class MyPointAnnotation : MKPointAnnotation {
+    var shopName: String?
+    var shopId:String?
+    var shopAdress:String?
+}

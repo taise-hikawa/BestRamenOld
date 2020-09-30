@@ -20,8 +20,10 @@
 		D337ABD425026673000C0D1E /* BestRamenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABD325026673000C0D1E /* BestRamenTests.swift */; };
 		D337ABDF25026673000C0D1E /* BestRamenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABDE25026673000C0D1E /* BestRamenUITests.swift */; };
 		D337ABED25026779000C0D1E /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABEC25026779000C0D1E /* ThirdViewController.swift */; };
+		D33D66C62521B3BA00A1A28D /* SemiModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D66C52521B3BA00A1A28D /* SemiModalViewController.swift */; };
 		D3423172251A51E2004E8A0F /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3423170251A51E2004E8A0F /* CustomCollectionViewCell.swift */; };
 		D3423173251A51E2004E8A0F /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3423171251A51E2004E8A0F /* CustomCollectionViewCell.xib */; };
+		D359AB902521BC88001C3213 /* CustomFloatingPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D359AB8F2521BC87001C3213 /* CustomFloatingPanelLayout.swift */; };
 		D368C01C251B4A500062BED0 /* FollowListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D368C01A251B4A4F0062BED0 /* FollowListTableViewCell.swift */; };
 		D368C01D251B4A500062BED0 /* FollowListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D368C01B251B4A4F0062BED0 /* FollowListTableViewCell.xib */; };
 		D368C022251B4B7C0062BED0 /* FollowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D368C021251B4B7C0062BED0 /* FollowListViewController.swift */; };
@@ -75,8 +77,10 @@
 		D337ABDE25026673000C0D1E /* BestRamenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestRamenUITests.swift; sourceTree = "<group>"; };
 		D337ABE025026673000C0D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D337ABEC25026779000C0D1E /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		D33D66C52521B3BA00A1A28D /* SemiModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SemiModalViewController.swift; path = BestRamen/SemiModalViewController.swift; sourceTree = SOURCE_ROOT; };
 		D3423170251A51E2004E8A0F /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		D3423171251A51E2004E8A0F /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
+		D359AB8F2521BC87001C3213 /* CustomFloatingPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFloatingPanelLayout.swift; sourceTree = "<group>"; };
 		D368C01A251B4A4F0062BED0 /* FollowListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListTableViewCell.swift; sourceTree = "<group>"; };
 		D368C01B251B4A4F0062BED0 /* FollowListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowListTableViewCell.xib; sourceTree = "<group>"; };
 		D368C021251B4B7C0062BED0 /* FollowListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FollowListViewController.swift; path = BestRamen/FollowListViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -157,16 +161,12 @@
 			isa = PBXGroup;
 			children = (
 				D390231525068DF300C13328 /* ViewController */,
+				D337ABC22502666D000C0D1E /* Main.storyboard */,
+				D359AB8F2521BC87001C3213 /* CustomFloatingPanelLayout.swift */,
 				D337ABBA2502666D000C0D1E /* AppDelegate.swift */,
 				D337ABBC2502666D000C0D1E /* SceneDelegate.swift */,
-				D337ABC22502666D000C0D1E /* Main.storyboard */,
-				D368C01A251B4A4F0062BED0 /* FollowListTableViewCell.swift */,
-				D368C01B251B4A4F0062BED0 /* FollowListTableViewCell.xib */,
+				D359AB972521BCBB001C3213 /* customCell */,
 				D337ABC525026673000C0D1E /* Assets.xcassets */,
-				D375B6572503333500F511D0 /* CustomTableViewCell.swift */,
-				D375B6582503333500F511D0 /* CustomTableViewCell.xib */,
-				D3423170251A51E2004E8A0F /* CustomCollectionViewCell.swift */,
-				D3423171251A51E2004E8A0F /* CustomCollectionViewCell.xib */,
 				D337ABC725026673000C0D1E /* LaunchScreen.storyboard */,
 				D337ABCA25026673000C0D1E /* Info.plist */,
 				D375B6612503805D00F511D0 /* GoogleService-Info.plist */,
@@ -192,6 +192,19 @@
 			path = BestRamenUITests;
 			sourceTree = "<group>";
 		};
+		D359AB972521BCBB001C3213 /* customCell */ = {
+			isa = PBXGroup;
+			children = (
+				D368C01A251B4A4F0062BED0 /* FollowListTableViewCell.swift */,
+				D368C01B251B4A4F0062BED0 /* FollowListTableViewCell.xib */,
+				D375B6572503333500F511D0 /* CustomTableViewCell.swift */,
+				D375B6582503333500F511D0 /* CustomTableViewCell.xib */,
+				D3423170251A51E2004E8A0F /* CustomCollectionViewCell.swift */,
+				D3423171251A51E2004E8A0F /* CustomCollectionViewCell.xib */,
+			);
+			path = customCell;
+			sourceTree = "<group>";
+		};
 		D390231525068DF300C13328 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +215,7 @@
 				D375B6662505FAA100F511D0 /* MyPageViewController.swift */,
 				D390231325068DCD00C13328 /* UserPageViewController.swift */,
 				D337ABC02502666D000C0D1E /* SecondViewController.swift */,
+				D33D66C52521B3BA00A1A28D /* SemiModalViewController.swift */,
 				D337ABEC25026779000C0D1E /* ThirdViewController.swift */,
 			);
 			path = ViewController;
@@ -514,7 +528,9 @@
 				D375B6592503333500F511D0 /* CustomTableViewCell.swift in Sources */,
 				D337ABED25026779000C0D1E /* ThirdViewController.swift in Sources */,
 				D337ABBB2502666D000C0D1E /* AppDelegate.swift in Sources */,
+				D33D66C62521B3BA00A1A28D /* SemiModalViewController.swift in Sources */,
 				D337ABBD2502666D000C0D1E /* SceneDelegate.swift in Sources */,
+				D359AB902521BC88001C3213 /* CustomFloatingPanelLayout.swift in Sources */,
 				D368C01C251B4A500062BED0 /* FollowListTableViewCell.swift in Sources */,
 				D3423172251A51E2004E8A0F /* CustomCollectionViewCell.swift in Sources */,
 				D368C022251B4B7C0062BED0 /* FollowListViewController.swift in Sources */,
@@ -701,6 +717,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hikawaproj.BestRamen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -719,6 +736,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hikawaproj.BestRamen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -732,7 +750,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BestRamenTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -754,7 +772,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BestRamenTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

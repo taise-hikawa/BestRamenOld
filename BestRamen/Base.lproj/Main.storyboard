@@ -266,7 +266,7 @@
             <objects>
                 <viewController id="Jw3-7N-bUc" customClass="FollowListViewController" customModule="BestRamen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YOm-sv-TIB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1oR-vb-gs8">
@@ -376,9 +376,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDo-Vt-zcm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7040.579710144928" y="70.982142857142847"/>
+            <point key="canvasLocation" x="8860.8695652173919" y="70.982142857142847"/>
         </scene>
-        <!--見つける-->
+        <!--Second View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="BestRamen" customModuleProvider="target" sceneMemberID="viewController">
@@ -387,7 +387,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="検索(エリア/店名)" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="FaM-1d-lgV">
-                                <rect key="frame" x="0.0" y="44" width="414" height="34"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="4S7-Yy-sxl"/>
                                 </constraints>
@@ -395,10 +395,10 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             </textField>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Caj-G0-6bY">
-                                <rect key="frame" x="0.0" y="78" width="414" height="735"/>
+                                <rect key="frame" x="0.0" y="122" width="414" height="691"/>
                             </mapView>
                             <searchBar contentMode="redraw" placeholder="検索(エリア/店名)" translatesAutoresizingMaskIntoConstraints="NO" id="Fo1-gU-hoF">
-                                <rect key="frame" x="0.0" y="44" width="414" height="34"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="f50-t4-cYU"/>
                                 </constraints>
@@ -420,7 +420,7 @@
                             <constraint firstItem="Caj-G0-6bY" firstAttribute="top" secondItem="FaM-1d-lgV" secondAttribute="bottom" id="ua1-ZZ-tf9"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="見つける" image="search" id="cPa-gy-q4n"/>
+                    <navigationItem key="navigationItem" id="3XW-Rh-w90"/>
                     <connections>
                         <outlet property="mapView" destination="Caj-G0-6bY" id="HJP-rN-rN2"/>
                         <outlet property="searchBar" destination="Fo1-gU-hoF" id="hjP-Wb-1w2"/>
@@ -428,7 +428,67 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="554" y="713"/>
+            <point key="canvasLocation" x="1463.768115942029" y="712.5"/>
+        </scene>
+        <!--Semi Modal View Controller-->
+        <scene sceneID="OEj-vT-ffa">
+            <objects>
+                <viewController storyboardIdentifier="fpc" id="LcM-PL-Ynl" customClass="SemiModalViewController" customModule="BestRamen" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hmC-3h-1D0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8co-Kt-g2e">
+                                <rect key="frame" x="0.0" y="44" width="71" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CuD-u7-6ae">
+                                <rect key="frame" x="0.0" y="80" width="48" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWv-w4-Ouk">
+                                <rect key="frame" x="368" y="44" width="46" height="30"/>
+                                <state key="normal" title="閉じる">
+                                    <color key="titleColor" systemColor="systemPinkColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCf-gg-ccE">
+                                <rect key="frame" x="0.0" y="104" width="177" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="詳細を見る">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CZK-P7-FFI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CZK-P7-FFI" firstAttribute="trailing" secondItem="eWv-w4-Ouk" secondAttribute="trailing" id="30m-vw-NrD"/>
+                            <constraint firstItem="hCf-gg-ccE" firstAttribute="leading" secondItem="CZK-P7-FFI" secondAttribute="leading" id="9HU-Ei-udM"/>
+                            <constraint firstItem="CuD-u7-6ae" firstAttribute="leading" secondItem="CZK-P7-FFI" secondAttribute="leading" id="Rl8-Lj-eHI"/>
+                            <constraint firstItem="8co-Kt-g2e" firstAttribute="leading" secondItem="CZK-P7-FFI" secondAttribute="leading" id="dmN-8u-CN1"/>
+                            <constraint firstItem="CuD-u7-6ae" firstAttribute="top" secondItem="8co-Kt-g2e" secondAttribute="bottom" id="hOw-u9-5ui"/>
+                            <constraint firstItem="8co-Kt-g2e" firstAttribute="top" secondItem="CZK-P7-FFI" secondAttribute="top" id="nRa-Iv-JGM"/>
+                            <constraint firstItem="hCf-gg-ccE" firstAttribute="top" secondItem="CuD-u7-6ae" secondAttribute="bottom" id="od9-C1-y4R"/>
+                            <constraint firstItem="eWv-w4-Ouk" firstAttribute="top" secondItem="CZK-P7-FFI" secondAttribute="top" id="wOB-aB-8FO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Wsf-uh-ZuD"/>
+                    <connections>
+                        <outlet property="closeButton" destination="eWv-w4-Ouk" id="z2z-0I-XXU"/>
+                        <outlet property="detailButton" destination="hCf-gg-ccE" id="hiT-RU-YBv"/>
+                        <outlet property="shopAdressLabel" destination="CuD-u7-6ae" id="ITe-EF-htj"/>
+                        <outlet property="shopNameLabel" destination="8co-Kt-g2e" id="K0o-JB-mZk"/>
+                        <segue destination="c6Q-18-WP5" kind="show" identifier="toShopPageViewController" id="WSO-d6-2kn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kkj-Ki-jV9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3281.1594202898555" y="712.5"/>
         </scene>
         <!--My Page View Controller-->
         <scene sceneID="5ka-Ko-Jyt">
@@ -493,7 +553,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="3D3-YY-Byc" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="Fos-8i-YOO" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="TDj-He-xUg" kind="relationship" relationship="viewControllers" id="if6-PF-Oia"/>
                     </connections>
                 </tabBarController>
@@ -540,17 +600,43 @@
             </objects>
             <point key="canvasLocation" x="553.62318840579712" y="-771.42857142857144"/>
         </scene>
+        <!--見つける-->
+        <scene sceneID="agB-df-Wt7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fos-8i-YOO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="見つける" image="search" id="cPa-gy-q4n"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PwP-5V-JmI">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="bBD-LA-5OF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hzc-iY-REW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="553.62318840579712" y="712.5"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7Np-oz-n2l"/>
-        <segue reference="8Sv-1k-vPM"/>
+        <segue reference="WSO-d6-2kn"/>
+        <segue reference="ju8-vr-pkI"/>
+        <segue reference="a22-cf-NBx"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="hito" width="30" height="30"/>
         <image name="home" width="30" height="30"/>
         <image name="search" width="30" height="30"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
