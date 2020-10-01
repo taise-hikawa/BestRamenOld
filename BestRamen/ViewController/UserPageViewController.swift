@@ -1,26 +1,29 @@
 import UIKit
 import FirebaseStorage
 import FirebaseFirestore
+import GoogleSignIn
+import Firebase
 
 class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     let space:CGFloat = 1
     var userId:String!
-    var collectionSelectedNum:Int?
-    var followDic:Dictionary<String, String> = [:]
+    //タブバーから表示されたかsegueから表示されたかを保持
+    var fromSegue:Bool = false
+    
     var followAry:[Dictionary<String,String>] = []
-    var followerDic:Dictionary<String, String> = [:]
     var followerAry:[Dictionary<String,String>] = []
     var bestShopNameAry:[String] = []
     var bestShopIdAry:[String] = []
     var userAry:[Dictionary<String,String>] = []
-    let db = Firestore.firestore()
-    let storage = Storage.storage().reference(forURL: "gs://bestramen-90259.appspot.com")
-    var followNum = 0
-    var followerNum = 0
-    var postDic:Dictionary<String, Any> = [:]
     var postsAry:[Dictionary<String,Any>] = []
     
+    let db = Firestore.firestore()
+    let storage = Storage.storage().reference(forURL: "gs://bestramen-90259.appspot.com")
+    var handle: AuthStateDidChangeListenerHandle!
+    var logOutButton: UIBarButtonItem!
+    var editButton: UIBarButtonItem!
+    var googleSignInButton = GIDSignInButton()
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var horizontalStackView: UIStackView!
@@ -29,6 +32,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     @IBOutlet weak var followerListButton: UIButton!
     @IBOutlet weak var followListButton: UIButton!
     @IBOutlet weak var profileLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -37,40 +41,126 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        GIDSignIn.sharedInstance()?.presentingViewController = self
         tableView.delegate = self
         tableView.dataSource = self
         collectionView.register(UINib(nibName: "CustomCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
         collectionView.delegate = self
         collectionView.dataSource = self
-        followListButton.setTitle("フォロー\n\(String(followNum))", for: .normal)
+        followListButton.setTitle("フォロー\n0", for: .normal)
         //ボタンのテキストが改行可能に
         followListButton.titleLabel?.numberOfLines = 2
         //ボタンのテキスト中央寄せ
         followListButton.titleLabel!.textAlignment = NSTextAlignment.center
-        followerListButton.setTitle("フォロワー\n\(String(followerNum))", for: .normal)
+        followerListButton.setTitle("フォロワー\n0", for: .normal)
         followerListButton.titleLabel?.numberOfLines = 2
         followerListButton.titleLabel!.textAlignment = NSTextAlignment.center
         tableView.isScrollEnabled = false
         
         self.followListButton.addTarget(self,action: #selector(self.tapFollowListButton(_ :)),for: .touchUpInside)
         self.followerListButton.addTarget(self,action: #selector(self.tapFollowerListButton(_ :)),for: .touchUpInside)
+        logOutButton = UIBarButtonItem(title: "ログアウト", style: .done, target: self, action: #selector(logOutButtonTapped(_:)))
+        self.navigationItem.leftBarButtonItem = logOutButton
+        editButton = UIBarButtonItem(title: "編集", style: .done, target: self, action: #selector(editButtonTapped(_:)))
+        self.navigationItem.rightBarButtonItem = editButton
+        googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(googleSignInButton)
+        googleSignInButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        googleSignInButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        self.googleSignInButton.isHidden = true
+        googleSignInButton.isEnabled = false
+        self.logOutButton.isEnabled = false
+        self.logOutButton.tintColor = UIColor.clear
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        postDic = [:]
-        postsAry = []
-        followDic = [:]
-        followAry = []
-        followerDic = [:]
-        followerAry = []
-        bestShopNameAry = []
-        bestShopIdAry = []
-        let userImgRef = storage.child("users").child("\(String(describing: userId!)).jpg")
-        userImageView.sd_setImage(with: userImgRef)
-        setFollow()
-        setFollower()
-        setPosts()
-        setUser()
+        //タブバーから表示されたかsegueから表示されたかで分岐
+        if fromSegue{
+            //segueから
+            //userIdとログインしているユーザー(currentUser)のuidが一致するかで分岐
+            if userId == Auth.auth().currentUser?.uid{
+                //ログインユーザーのページの場合
+                self.verticalStackView.isHidden = false
+                self.followButton.isHidden = true
+                self.profileLabel.isHidden = false
+                self.followListButton.isHidden = false
+                self.followerListButton.isHidden = false
+                self.userId = "H1xgXJjo1RaIlwRM8Pda"
+                self.postsAry = []
+                self.followAry = []
+                self.followerAry = []
+                self.bestShopNameAry = []
+                self.bestShopIdAry = []
+                let userImgRef = self.storage.child("users").child("\(String(describing: self.userId!)).jpg")
+                self.userImageView.sd_setImage(with: userImgRef)
+                self.setFollow()
+                self.setFollower()
+                self.setPosts()
+                self.setUser()
+                self.logOutButton.isEnabled = true
+                self.logOutButton.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+                
+            }else{
+                //その他のユーザーのページの場合
+                self.followButton.isHidden = false
+                self.postsAry = []
+                self.followAry = []
+                self.followerAry = []
+                self.bestShopNameAry = []
+                self.bestShopIdAry = []
+                let userImgRef = self.storage.child("users").child("\(String(describing: self.userId!)).jpg")
+                self.userImageView.sd_setImage(with: userImgRef)
+                self.setFollow()
+                self.setFollower()
+                self.setPosts()
+                self.setUser()
+            }
+        }else{
+            //タブバーから
+            //ログイン状態で分岐
+                handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+                    if user != nil {
+                        //ログインの状態
+                        self.verticalStackView.isHidden = false
+                        self.followButton.isHidden = true
+                        self.profileLabel.isHidden = false
+                        self.followListButton.isHidden = false
+                        self.followerListButton.isHidden = false
+                        self.googleSignInButton.isHidden = true
+                        self.googleSignInButton.isEnabled = false
+                        self.userId = "H1xgXJjo1RaIlwRM8Pda"
+                        self.postsAry = []
+                        self.followAry = []
+                        self.followerAry = []
+                        self.bestShopNameAry = []
+                        self.bestShopIdAry = []
+                        let userImgRef = self.storage.child("users").child("\(String(describing: self.userId!)).jpg")
+                        self.userImageView.sd_setImage(with: userImgRef)
+                        self.setFollow()
+                        self.setFollower()
+                        self.setPosts()
+                        self.setUser()
+                        self.logOutButton.isEnabled = true
+                        self.logOutButton.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+                    } else {
+                        //ログアウトの状態
+                        print("nouser")
+                        self.verticalStackView.isHidden = true
+                        self.followButton.isHidden = true
+                        self.profileLabel.isHidden = true
+                        self.followListButton.isHidden = true
+                        self.followerListButton.isHidden = true
+                        self.googleSignInButton.isHidden = false
+                        self.googleSignInButton.isEnabled = true
+                        self.nameLabel.text = "ログインされていません"
+                        self.userImageView.image = nil
+                        self.userImageView.backgroundColor = UIColor.gray
+                        self.logOutButton.isEnabled = false
+                        self.logOutButton.tintColor = UIColor.clear
+                    }
+            }
+        }
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -86,13 +176,20 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     func setFollow(){
         self.db.collection("relationships").whereField("followerId", isEqualTo: userId!).getDocuments{(querySnapshot, error) in
-            if let querySnapshot = querySnapshot{
-                for document in querySnapshot.documents{
-                    self.followDic["userId"] = document["followedId"] as? String
-                    self.followDic["userName"] = document["followedName"] as? String
-                    self.followAry.append(self.followDic)
-                    self.followNum = self.followAry.count
-                    self.followListButton.setTitle("フォロー\n\(String(self.followNum))", for: .normal)
+            if let error = error{
+                print(error)
+            } else{
+                if querySnapshot!.documents.isEmpty{
+                    self.followListButton.isEnabled = false
+                }else{
+                    for document in querySnapshot!.documents{
+                        var followDic:Dictionary<String, String> = [:]
+                        followDic["userId"] = document["followedId"] as? String
+                        followDic["userName"] = document["followedName"] as? String
+                        self.followAry.append(followDic)
+                        self.followListButton.setTitle("フォロー\n\(String(self.followAry.count))", for: .normal)
+                    }
+                    
                 }
             }
         }
@@ -100,17 +197,25 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func setFollower(){
         self.db.collection("relationships").whereField("followedId", isEqualTo: userId!).getDocuments{(querySnapshot, error) in
-            if let querySnapshot = querySnapshot{
-                for document in querySnapshot.documents{
-                    self.followerDic["userId"] = document["followerId"] as? String
-                    self.followerDic["userName"] = document["followerName"] as? String
-                    self.followerAry.append(self.followerDic)
-                    self.followerNum = self.followerAry.count
-                    self.followerListButton.setTitle("フォロワー\n\(String(self.followerNum))", for: .normal)
+            if let error = error{
+                print(error)
+            } else{
+                if querySnapshot!.documents.isEmpty{
+                    self.followerListButton.isEnabled = false
+                }else{
+                    for document in querySnapshot!.documents{
+                        var followerDic:Dictionary<String, String> = [:]
+                        followerDic["userId"] = document["followerId"] as? String
+                        followerDic["userName"] = document["followerName"] as? String
+                        self.followerAry.append(followerDic)
+                        self.followerListButton.setTitle("フォロワー\n\(String(self.followerAry.count))", for: .normal)
+                    }
                 }
+                
             }
         }
     }
+
     
     func setUser(){
         self.db.collection("users").document(userId).getDocument{(document,error) in
@@ -119,6 +224,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 self.bestShopNameAry = (document.data()?["bestShopName"]as? Array) ?? []
                 self.bestShopIdAry = (document.data()?["bestShopId"] as? Array) ?? []
                 self.tableView.reloadData()
+                self.nameLabel.text = document.data()?["userName"] as? String
             }
         }
     }
@@ -127,13 +233,14 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         db.collection("posts").whereField("userId", isEqualTo: userId!).getDocuments(){(querySnapshot, error) in
             if let querySnapshot = querySnapshot{
                 for document in querySnapshot.documents{
-                    self.postDic["userName"] = document.data()["userName"] as? String
-                    self.postDic["userId"] = document.data()["userId"] as? String
-                    self.postDic["shopName"] = document.data()["shopName"] as? String
-                    self.postDic["shopId"] = document.data()["shopId"] as? String
-                    self.postDic["postContent"] = document.data()["postContent"] as? String
-                    self.postDic["postId"] = document.documentID
-                    self.postsAry.append(self.postDic)
+                    var postDic:Dictionary<String, Any> = [:]
+                    postDic["userName"] = document.data()["userName"] as? String
+                    postDic["userId"] = document.data()["userId"] as? String
+                    postDic["shopName"] = document.data()["shopName"] as? String
+                    postDic["shopId"] = document.data()["shopId"] as? String
+                    postDic["postContent"] = document.data()["postContent"] as? String
+                    postDic["postId"] = document.documentID
+                    self.postsAry.append(postDic)
                     self.collectionView.reloadData()
                 }
             }
@@ -180,6 +287,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         return CGSize(width: cellSize, height: cellSize)
     }
     
+    var collectionSelectedNum:Int?
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
         collectionSelectedNum = indexPath.row
@@ -217,6 +325,16 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
             nextVC.userAry = userAry
             print("prepare:\(userAry.count)")
         }
+    }
+    @objc func logOutButtonTapped(_ sender: UIBarButtonItem) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
+    @objc func editButtonTapped(_ sender: UIBarButtonItem) {
     }
     
 }

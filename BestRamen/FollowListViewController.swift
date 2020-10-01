@@ -43,6 +43,7 @@ class FollowListViewController: UIViewController,UITableViewDelegate,UITableView
             let nextVC = segue.destination as! UserPageViewController
             let row = self.tableView.indexPathForSelectedRow?.row
             nextVC.userId = userAry[row!]["userId"]
+            nextVC.fromSegue = true
         }
     }
     

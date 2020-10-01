@@ -1,37 +1,51 @@
 import UIKit
-import FirebaseUI
+import GoogleSignIn
+import FirebaseFirestore
+import Firebase
 
-class ThirdViewController: UIViewController ,FUIAuthDelegate{
-    @IBOutlet weak var authButton: UIButton!
+class ThirdViewController: UIViewController{
+    var handle: AuthStateDidChangeListenerHandle!
+    let db = Firestore.firestore()
     
-    var authUI: FUIAuth { get { return FUIAuth.defaultAuthUI()!}}
-    // 認証に使用するプロバイダの選択
-    let providers: [FUIAuthProvider] = [
-        FUIGoogleAuth(),
-//        FUIFacebookAuth(),
-//        FUIEmailAuth()
-    ]
-
+    @IBOutlet weak var googleSignInButton: GIDSignInButton!
+    @IBOutlet weak var logOutButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-            // authUIのデリゲート
-            self.authUI.delegate = self
-            self.authUI.providers = providers
-            authButton.addTarget(self,action: #selector(self.authButtonTapped(sender:)),for: .touchUpInside)
-        if Auth.auth().currentUser != nil {
-//            print(Auth.auth().currentUser)
-        } else {
-          // No user is signed in.
-          // ...
-        }
+//        GIDSignIn.sharedInstance()?.presentingViewController = self
+//                GIDSignIn.sharedInstance().signIn()
+//                logOutButton.addTarget(self, action: #selector(self.tapLogOutButton(_:)), for: .touchUpInside)
+//        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+//                    if user != nil {
+//                        //ログインの状態
+//                        print(Auth.auth().currentUser!)
+//                        print(user?.uid ?? "nodata")
+//                        self.logOutButton.isHidden = false
+//                        self.googleSignInButton.isHidden = true
+//                        self.db.collection("users").document(user!.uid).getDocument{(document,error) in
+//                            if let document = document{
+//                                self.userNameLabel.text = document.data()!["name"] as? String
+//                            }else{
+//                                print(error!)
+//                            }
+//                        }
+//                    } else {
+//                        //ログアウトの状態
+//                        print("nouser")
+//                        self.logOutButton.isHidden = true
+//                        self.googleSignInButton.isHidden = false
+//                    }
+//                }
+
     }
     
-    @objc func authButtonTapped(sender : AnyObject) {
-        // FirebaseUIのViewの取得
-        let authViewController = self.authUI.authViewController()
-        // FirebaseUIのViewの表示
-        self.present(authViewController, animated: true, completion: nil)
-    }
+    @objc func tapLogOutButton(_ sender: UIButton){
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
+        }
 
 
 }

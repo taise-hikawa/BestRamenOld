@@ -38,6 +38,7 @@ class PostViewController: UIViewController {
             let nextVC = segue.destination as! UserPageViewController
             // 3. １で用意した遷移先の変数に値を渡す
             nextVC.userId = userId
+            nextVC.fromSegue = true
             
         }
         if segue.identifier == "toShopPage"{
