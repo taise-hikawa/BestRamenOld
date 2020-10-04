@@ -2,6 +2,7 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import FloatingPanel
+import Firebase
 protocol BestChooseViewControllerDelegate{
     func bestChooseDidFinished(shopName: String,shopId: String,rank: Int)
 }
@@ -276,6 +277,12 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
                     print("Error writing document: \(err)")
                 } else {
                     print("Document successfully written!")
+                    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                    print(Auth.auth().currentUser?.displayName)
+                    changeRequest?.displayName = self.userNameField.text
+                    changeRequest?.commitChanges { (error) in
+                      // ...
+                    }
                 }
             }
         }
