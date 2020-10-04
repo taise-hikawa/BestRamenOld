@@ -27,22 +27,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GIDSignInDelegate{
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                        accessToken: authentication.accessToken)
         Auth.auth().signIn(with: credential) { (authResult, error) in
-            if let error = error {
-                print("authentication error \(error.localizedDescription)")
-            }else{
-                print("ログイン成功")
-                let db = Firestore.firestore()
-                db.collection("users").document((authResult?.user.uid)!).setData([
-                    "name": "無名",
+            if let authResult = authResult {
+                //最初のログインか判定
+                let isFirstLogin = authResult.additionalUserInfo!.isNewUser 
+                if isFirstLogin{
+                    //最初のログインの処理
+                    let db = Firestore.firestore()
+                    db.collection("users").document((authResult.user.uid)).setData([
+                        "userName":authResult.user.displayName ?? "名無し"
+                        
                     ]) { error in
                         if let error = error {
                             print(error)
-//                            return
+                            return
                         }
                         // 成功したときの処理
-                    print(db.collection("users").document(user.userID).documentID)
                     }
-                
+                    //デフォルト画像を設定
+                    let storageref = Storage.storage().reference(forURL: "gs://bestramen-90259.appspot.com").child("users").child("\((authResult.user.uid)).jpg")
+                    //画像
+                    let image = UIImage(named: "default")
+                    //imageをNSDataに変換
+                    let data = image!.jpegData(compressionQuality: 1.0)
+                    //メタデータを設定
+                    let metaData = StorageMetadata()
+                    metaData.contentType = "image/jpeg"
+                    //Storageに保存
+                    storageref.putData(data!, metadata: metaData) { (data, error) in
+                        if error != nil {
+                            return
+                        }
+                    }
+                }else{
+                    //最初のログインでない時の処理
+                    
+                }
             }
         }
     }

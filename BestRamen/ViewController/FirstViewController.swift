@@ -3,7 +3,6 @@ import Firebase
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     let db = Firestore.firestore()
-    let postsColRef = Firestore.firestore().collection("posts")
     let storage = Storage.storage().reference(forURL: "gs://bestramen-90259.appspot.com")
     var postDic:Dictionary<String, Any> = [:]
     var postsAry:[Dictionary<String,Any>] = []
@@ -21,7 +20,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewWillAppear(_ animated: Bool) {
     }
     func setPosts(){
-        self.postsColRef.getDocuments{(querySnapshot, error) in
+        db.collection("posts").getDocuments{(querySnapshot, error) in
             if let querySnapshot = querySnapshot{
                 for document in querySnapshot.documents{
                     self.postDic["userName"] = document.data()["userName"] as? String
@@ -44,10 +43,24 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //セルをカスタムセルに
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomTableViewCell
-        let postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["postId"]!)).jpg")
-        cell.postImageView.sd_setImage(with: postImgRef)
-        let userImgRef = self.storage.child("users").child("\(String(describing: postsAry[indexPath.row]["userId"]!)).jpg")
-        cell.userImageView.sd_setImage(with: userImgRef)
+        storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["postId"]!)).jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+            if error != nil {
+                return
+            }
+            if let imageData = data {
+                let postImg = UIImage(data: imageData)
+                cell.postImageView.image = postImg
+            }
+        }
+        storage.child("users").child("\(String(describing: postsAry[indexPath.row]["userId"]!)).jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+            if error != nil {
+                return
+            }
+            if let imageData = data {
+                let userImg = UIImage(data: imageData)
+                cell.userImageView.image = userImg
+            }
+        }
         cell.userName.text = postsAry[indexPath.row]["userName"] as? String
         cell.shopName.text = postsAry[indexPath.row]["shopName"] as? String
         return cell
@@ -67,8 +80,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             nextVC.shopName = postsAry[row!]["shopName"] as? String
             nextVC.shopId = postsAry[row!]["shopId"] as? String
             nextVC.postContent = postsAry[row!]["postContent"] as? String
-            nextVC.postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[row!]["postId"]!)).jpg")
-            nextVC.userImgRef = self.storage.child("users").child("\(String(describing: postsAry[row!]["userId"]!)).jpg")
+            nextVC.postId = postsAry[row!]["postId"] as? String
         }
     }
     

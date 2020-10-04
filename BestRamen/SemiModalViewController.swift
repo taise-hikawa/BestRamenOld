@@ -23,13 +23,11 @@ class SemiModalViewController: UIViewController {
         shopAdressLabel.text = shopAdress
     }
     @objc func tapCloseButton(_ sender: UIButton){
-        print(floatingPanelController!)
         floatingPanelController.removePanelFromParent(animated: true)
         
         
     }
     @objc func tapDetailButton(_ sender: UIButton){
-        print("a")
         self.performSegue(withIdentifier: "toShopPageViewController", sender: nil)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -20,7 +20,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     let db = Firestore.firestore()
     let storage = Storage.storage().reference(forURL: "gs://bestramen-90259.appspot.com")
-    var handle: AuthStateDidChangeListenerHandle!
+    var handle: AuthStateDidChangeListenerHandle?
     var logOutButton: UIBarButtonItem!
     var editButton: UIBarButtonItem!
     var googleSignInButton = GIDSignInButton()
@@ -71,6 +71,10 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         googleSignInButton.isEnabled = false
         self.logOutButton.isEnabled = false
         self.logOutButton.tintColor = UIColor.clear
+        self.editButton.isEnabled = false
+        self.editButton.tintColor = UIColor.clear
+        
+        
         
         
     }
@@ -87,30 +91,36 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 self.followListButton.isHidden = false
                 self.followerListButton.isHidden = false
                 self.userId = "H1xgXJjo1RaIlwRM8Pda"
-                self.postsAry = []
-                self.followAry = []
-                self.followerAry = []
-                self.bestShopNameAry = []
-                self.bestShopIdAry = []
-                let userImgRef = self.storage.child("users").child("\(String(describing: self.userId!)).jpg")
-                self.userImageView.sd_setImage(with: userImgRef)
+                self.storage.child("users").child("\(self.userId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+                    if error != nil {
+                        return
+                    }
+                    if let imageData = data {
+                        let userImg = UIImage(data: imageData)
+                        self.userImageView.image = userImg
+                    }
+                }
                 self.setFollow()
                 self.setFollower()
                 self.setPosts()
                 self.setUser()
                 self.logOutButton.isEnabled = true
                 self.logOutButton.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+                self.editButton.isEnabled = true
+                self.editButton.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
                 
             }else{
                 //その他のユーザーのページの場合
                 self.followButton.isHidden = false
-                self.postsAry = []
-                self.followAry = []
-                self.followerAry = []
-                self.bestShopNameAry = []
-                self.bestShopIdAry = []
-                let userImgRef = self.storage.child("users").child("\(String(describing: self.userId!)).jpg")
-                self.userImageView.sd_setImage(with: userImgRef)
+                storage.child("users").child("\(userId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+                    if error != nil {
+                        return
+                    }
+                    if let imageData = data {
+                        let userImg = UIImage(data: imageData)
+                        self.userImageView.image = userImg
+                    }
+                }
                 self.setFollow()
                 self.setFollower()
                 self.setPosts()
@@ -129,23 +139,26 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
                         self.followerListButton.isHidden = false
                         self.googleSignInButton.isHidden = true
                         self.googleSignInButton.isEnabled = false
-                        self.userId = "H1xgXJjo1RaIlwRM8Pda"
-                        self.postsAry = []
-                        self.followAry = []
-                        self.followerAry = []
-                        self.bestShopNameAry = []
-                        self.bestShopIdAry = []
-                        let userImgRef = self.storage.child("users").child("\(String(describing: self.userId!)).jpg")
-                        self.userImageView.sd_setImage(with: userImgRef)
+                        self.userId = auth.currentUser?.uid
+                        self.storage.child("users").child("\(self.userId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+                            if error != nil {
+                                return
+                            }
+                            if let imageData = data {
+                                let userImg = UIImage(data: imageData)
+                                self.userImageView.image = userImg
+                            }
+                        }
                         self.setFollow()
                         self.setFollower()
                         self.setPosts()
                         self.setUser()
                         self.logOutButton.isEnabled = true
                         self.logOutButton.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+                        self.editButton.isEnabled = true
+                        self.editButton.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
                     } else {
                         //ログアウトの状態
-                        print("nouser")
                         self.verticalStackView.isHidden = true
                         self.followButton.isHidden = true
                         self.profileLabel.isHidden = true
@@ -158,24 +171,22 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
                         self.userImageView.backgroundColor = UIColor.gray
                         self.logOutButton.isEnabled = false
                         self.logOutButton.tintColor = UIColor.clear
+                        self.editButton.isEnabled = false
+                        self.editButton.tintColor = UIColor.clear
                     }
             }
         }
-    }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         
-        //collectionViewの高さを調整
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            collectionViewConstraintHeight.constant = layout.collectionViewContentSize.height
-            view.layoutIfNeeded()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        if let handle = handle{
+            Auth.auth().removeStateDidChangeListener(handle)
         }
-        //tableViewの高さを調整
-        tableView.layoutIfNeeded()
-        tableViewConstraintHeight.constant = tableView.contentSize.height
     }
     func setFollow(){
         self.db.collection("relationships").whereField("followerId", isEqualTo: userId!).getDocuments{(querySnapshot, error) in
+            self.followAry = []
             if let error = error{
                 print(error)
             } else{
@@ -197,6 +208,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func setFollower(){
         self.db.collection("relationships").whereField("followedId", isEqualTo: userId!).getDocuments{(querySnapshot, error) in
+            self.followerAry = []
             if let error = error{
                 print(error)
             } else{
@@ -219,11 +231,15 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func setUser(){
         self.db.collection("users").document(userId).getDocument{(document,error) in
+            self.bestShopNameAry = []
+            self.bestShopIdAry = []
             if let document = document{
                 self.profileLabel.text = document.data()?["userProfile"] as? String
                 self.bestShopNameAry = (document.data()?["bestShopName"]as? Array) ?? []
                 self.bestShopIdAry = (document.data()?["bestShopId"] as? Array) ?? []
                 self.tableView.reloadData()
+                self.tableView.layoutIfNeeded()
+                self.tableViewConstraintHeight.constant = self.tableView.contentSize.height
                 self.nameLabel.text = document.data()?["userName"] as? String
             }
         }
@@ -231,6 +247,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func setPosts(){
         db.collection("posts").whereField("userId", isEqualTo: userId!).getDocuments(){(querySnapshot, error) in
+            self.postsAry = []
             if let querySnapshot = querySnapshot{
                 for document in querySnapshot.documents{
                     var postDic:Dictionary<String, Any> = [:]
@@ -242,6 +259,10 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
                     postDic["postId"] = document.documentID
                     self.postsAry.append(postDic)
                     self.collectionView.reloadData()
+                    if let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                        self.collectionViewConstraintHeight.constant = layout.collectionViewContentSize.height
+                        self.view.layoutIfNeeded()
+                    }
                 }
             }
         }
@@ -255,7 +276,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "shopCell", for: indexPath)
-        cell.textLabel?.text = "MyBest\(indexPath.row + 1):" + bestShopNameAry[indexPath.row]
+        cell.textLabel?.text = "MyBest\(indexPath.row + 1): " + bestShopNameAry[indexPath.row]
         return cell
     }
     
@@ -265,11 +286,16 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! CustomCollectionViewCell
-        let postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["postId"]!)).jpg")
-        let postimageView = UIImageView()
-        postimageView.sd_setImage(with: postImgRef)
-        let cellSize:CGFloat = (self.view.bounds.width - (space * 2))/3
-        cell.imageView.image = postimageView.image?.resized(toWidth: cellSize)
+        storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["postId"]!)).jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+            if error != nil {
+                return
+            }
+            if let imageData = data {
+                let postImage = UIImage(data: imageData)!
+                let cellSize:CGFloat = (self.view.bounds.width - (self.space * 2))/3
+                cell.imageView.image = postImage.resized(toWidth: cellSize)
+            }
+        }
         return cell
         
     }
@@ -297,15 +323,10 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     @objc func tapFollowListButton(_ sender: UIButton){
         userAry = followAry
-        print("tap:\(followAry.count)")
-        print("tap:\(userAry.count)")
         self.performSegue(withIdentifier: "toFollowListViewController", sender: nil)
     }
     @objc func tapFollowerListButton(_ sender: UIButton){
-        
         userAry = followerAry
-        print("tap:\(followerAry.count)")
-        print("tap:\(userAry.count)")
         self.performSegue(withIdentifier: "toFollowListViewController", sender: nil)
     }
     
@@ -317,13 +338,18 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
             nextVC.shopName = postsAry[collectionSelectedNum!]["shopName"] as? String
             nextVC.shopId = postsAry[collectionSelectedNum!]["shopId"] as? String
             nextVC.postContent = postsAry[collectionSelectedNum!]["postContent"] as? String
-            nextVC.postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[collectionSelectedNum!]["postId"]!)).jpg")
-            nextVC.userImgRef = self.storage.child("users").child("\(String(describing: postsAry[collectionSelectedNum!]["userId"]!)).jpg")
+            nextVC.postId = postsAry[collectionSelectedNum!]["postId"] as? String
         }
         else if segue.identifier == "toFollowListViewController"{
             let nextVC = segue.destination as! FollowListViewController
             nextVC.userAry = userAry
-            print("prepare:\(userAry.count)")
+        }else if segue.identifier == "toEditView"{
+            let nextVC = segue.destination as! EditViewController
+            nextVC.userId = userId
+            nextVC.userName = nameLabel.text
+            nextVC.userProfile = profileLabel.text
+            nextVC.bestShopNameAry = bestShopNameAry
+            nextVC.bestShopIdAry = bestShopIdAry
         }
     }
     @objc func logOutButtonTapped(_ sender: UIBarButtonItem) {
@@ -335,6 +361,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         }
     }
     @objc func editButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "toEditView", sender: nil)
     }
     
 }

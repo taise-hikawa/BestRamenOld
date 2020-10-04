@@ -38,7 +38,6 @@ class SecondViewController: UIViewController ,MKMapViewDelegate,FloatingPanelCon
                     for (num,document) in querySnapshot.documents.enumerated(){
                         self.shopsAry.append(document.data())
                         self.shopsAry[num]["shopId"] = document.documentID
-                        print(self.shopsAry)
                     }
                 }
                 dispatchGroup.leave()
@@ -59,7 +58,6 @@ class SecondViewController: UIViewController ,MKMapViewDelegate,FloatingPanelCon
             pin.shopName = shop["shopName"] as? String
             pin.shopId = shop["shopId"] as? String
             pin.shopAdress = shop["shopAdress"] as? String
-            print(pin)
             mapView.addAnnotation(pin)
         }
         

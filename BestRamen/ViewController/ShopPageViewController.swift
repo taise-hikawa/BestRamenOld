@@ -58,11 +58,16 @@ class ShopPageViewController: UIViewController ,UICollectionViewDelegate,UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! CustomCollectionViewCell
-        let postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["postId"]!)).jpg")
-        let postimageView = UIImageView()
-        postimageView.sd_setImage(with: postImgRef)
-        let cellSize:CGFloat = (self.view.bounds.width - (space * 2))/3
-        cell.imageView.image = postimageView.image?.resized(toWidth: cellSize)
+        storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["postId"]!)).jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+            if error != nil {
+                return
+            }
+            if let imageData = data {
+                let postImage = UIImage(data: imageData)!
+                let cellSize:CGFloat = (self.view.bounds.width - (self.space * 2))/3
+                cell.imageView.image = postImage.resized(toWidth: cellSize)
+            }
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -92,8 +97,7 @@ class ShopPageViewController: UIViewController ,UICollectionViewDelegate,UIColle
             nextVC.shopId = shopId
             nextVC.shopName = postsAry[collectionSelectedNum!]["shopName"] as? String
             nextVC.postContent = postsAry[collectionSelectedNum!]["postContetn"] as? String
-            nextVC.postImgRef = self.storage.child("posts").child("\(String(describing: postsAry[collectionSelectedNum!]["postId"]!)).jpg")
-            nextVC.userImgRef = self.storage.child("users").child("\(String(describing: postsAry[collectionSelectedNum!]["userId"]!)).jpg")
+            nextVC.postId = postsAry[collectionSelectedNum!]["postId"] as? String
         }
     }
 }

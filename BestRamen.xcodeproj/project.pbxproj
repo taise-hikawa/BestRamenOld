@@ -19,7 +19,6 @@
 		D337ABC925026673000C0D1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D337ABC725026673000C0D1E /* LaunchScreen.storyboard */; };
 		D337ABD425026673000C0D1E /* BestRamenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABD325026673000C0D1E /* BestRamenTests.swift */; };
 		D337ABDF25026673000C0D1E /* BestRamenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABDE25026673000C0D1E /* BestRamenUITests.swift */; };
-		D337ABED25026779000C0D1E /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABEC25026779000C0D1E /* ThirdViewController.swift */; };
 		D33D66C62521B3BA00A1A28D /* SemiModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D66C52521B3BA00A1A28D /* SemiModalViewController.swift */; };
 		D3423172251A51E2004E8A0F /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3423170251A51E2004E8A0F /* CustomCollectionViewCell.swift */; };
 		D3423173251A51E2004E8A0F /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3423171251A51E2004E8A0F /* CustomCollectionViewCell.xib */; };
@@ -34,6 +33,10 @@
 		D390231425068DCE00C13328 /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390231325068DCD00C13328 /* UserPageViewController.swift */; };
 		D390231725068ECA00C13328 /* ShopPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390231625068ECA00C13328 /* ShopPageViewController.swift */; };
 		D3A11AB42524F0F9008F62AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3A11AB32524F0F9008F62AD /* GoogleService-Info.plist */; };
+		D3B218C825259BA30025BC35 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B218C725259BA30025BC35 /* EditViewController.swift */; };
+		D3B218D025264C1F0025BC35 /* BestChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B218CF25264C1F0025BC35 /* BestChooseViewController.swift */; };
+		D3B218E3252657130025BC35 /* SecondCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B218E1252657130025BC35 /* SecondCustomTableViewCell.swift */; };
+		D3B218E4252657130025BC35 /* SecondCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +78,6 @@
 		D337ABDA25026673000C0D1E /* BestRamenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BestRamenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D337ABDE25026673000C0D1E /* BestRamenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestRamenUITests.swift; sourceTree = "<group>"; };
 		D337ABE025026673000C0D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D337ABEC25026779000C0D1E /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		D33D66C52521B3BA00A1A28D /* SemiModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SemiModalViewController.swift; path = BestRamen/SemiModalViewController.swift; sourceTree = SOURCE_ROOT; };
 		D3423170251A51E2004E8A0F /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		D3423171251A51E2004E8A0F /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -89,6 +91,10 @@
 		D390231325068DCD00C13328 /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
 		D390231625068ECA00C13328 /* ShopPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopPageViewController.swift; sourceTree = "<group>"; };
 		D3A11AB32524F0F9008F62AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Documents/firebase/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D3B218C725259BA30025BC35 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditViewController.swift; path = BestRamen/EditViewController.swift; sourceTree = SOURCE_ROOT; };
+		D3B218CF25264C1F0025BC35 /* BestChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BestChooseViewController.swift; path = BestRamen/BestChooseViewController.swift; sourceTree = SOURCE_ROOT; };
+		D3B218E1252657130025BC35 /* SecondCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondCustomTableViewCell.swift; sourceTree = "<group>"; };
+		D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondCustomTableViewCell.xib; sourceTree = "<group>"; };
 		D71A9EB647E223C30BA7B460 /* Pods_BestRamen_BestRamenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestRamen_BestRamenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F99D159FFB28B6DA450CBB9F /* Pods-BestRamen-BestRamenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen-BestRamenUITests.release.xcconfig"; path = "Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FF7B60530FE760DC023F5510 /* Pods-BestRamen-BestRamenUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen-BestRamenUITests.debug.xcconfig"; path = "Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -197,6 +203,8 @@
 				D368C01B251B4A4F0062BED0 /* FollowListTableViewCell.xib */,
 				D375B6572503333500F511D0 /* CustomTableViewCell.swift */,
 				D375B6582503333500F511D0 /* CustomTableViewCell.xib */,
+				D3B218E1252657130025BC35 /* SecondCustomTableViewCell.swift */,
+				D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */,
 				D3423170251A51E2004E8A0F /* CustomCollectionViewCell.swift */,
 				D3423171251A51E2004E8A0F /* CustomCollectionViewCell.xib */,
 			);
@@ -210,10 +218,11 @@
 				D368C021251B4B7C0062BED0 /* FollowListViewController.swift */,
 				D390231625068ECA00C13328 /* ShopPageViewController.swift */,
 				D375B66825065A5E00F511D0 /* PostViewController.swift */,
-				D390231325068DCD00C13328 /* UserPageViewController.swift */,
 				D337ABC02502666D000C0D1E /* SecondViewController.swift */,
 				D33D66C52521B3BA00A1A28D /* SemiModalViewController.swift */,
-				D337ABEC25026779000C0D1E /* ThirdViewController.swift */,
+				D390231325068DCD00C13328 /* UserPageViewController.swift */,
+				D3B218C725259BA30025BC35 /* EditViewController.swift */,
+				D3B218CF25264C1F0025BC35 /* BestChooseViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -348,6 +357,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3B218E4252657130025BC35 /* SecondCustomTableViewCell.xib in Resources */,
 				D337ABC925026673000C0D1E /* LaunchScreen.storyboard in Resources */,
 				D368C01D251B4A500062BED0 /* FollowListTableViewCell.xib in Resources */,
 				D3423173251A51E2004E8A0F /* CustomCollectionViewCell.xib in Resources */,
@@ -520,9 +530,11 @@
 				D337ABC12502666D000C0D1E /* SecondViewController.swift in Sources */,
 				D390231425068DCE00C13328 /* UserPageViewController.swift in Sources */,
 				D337ABBF2502666D000C0D1E /* FirstViewController.swift in Sources */,
+				D3B218E3252657130025BC35 /* SecondCustomTableViewCell.swift in Sources */,
 				D390231725068ECA00C13328 /* ShopPageViewController.swift in Sources */,
+				D3B218C825259BA30025BC35 /* EditViewController.swift in Sources */,
 				D375B6592503333500F511D0 /* CustomTableViewCell.swift in Sources */,
-				D337ABED25026779000C0D1E /* ThirdViewController.swift in Sources */,
+				D3B218D025264C1F0025BC35 /* BestChooseViewController.swift in Sources */,
 				D337ABBB2502666D000C0D1E /* AppDelegate.swift in Sources */,
 				D33D66C62521B3BA00A1A28D /* SemiModalViewController.swift in Sources */,
 				D337ABBD2502666D000C0D1E /* SceneDelegate.swift in Sources */,
