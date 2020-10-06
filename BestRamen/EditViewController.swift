@@ -3,11 +3,11 @@ import FirebaseStorage
 import FirebaseFirestore
 import FloatingPanel
 import Firebase
-protocol BestChooseViewControllerDelegate{
-    func bestChooseDidFinished(shopName: String,shopId: String,rank: Int)
+protocol RamenChooseViewControllerDelegate{
+    func ramenChooseDidFinished(shopName: String,shopId: String,rank: Int)
 }
 
-class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate,FloatingPanelControllerDelegate ,BestChooseViewControllerDelegate,UITextFieldDelegate {
+class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate,FloatingPanelControllerDelegate ,RamenChooseViewControllerDelegate,UITextFieldDelegate {
     
     var userName:String!
     var userProfile:String!
@@ -241,14 +241,14 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
         toBestChoose(rank: 3)
     }
     func toBestChoose(rank: Int){
-        let bestChooseViewController = self.storyboard?.instantiateViewController(withIdentifier: "fpc2") as? BestChooseViewController
+        let ramenChooseViewController = self.storyboard?.instantiateViewController(withIdentifier: "fpc2") as? RamenChooseViewController
         if floatingPanelController != nil{
             floatingPanelController.removePanelFromParent(animated: true)
         }
         floatingPanelController = FloatingPanelController()
-        bestChooseViewController?.delegate = self
-        bestChooseViewController?.rank = rank
-        floatingPanelController.set(contentViewController: bestChooseViewController)
+        ramenChooseViewController?.delegate = self
+        ramenChooseViewController?.rank = rank
+        floatingPanelController.set(contentViewController: ramenChooseViewController)
         floatingPanelController.delegate = self
         // セミモーダルビューを表示する
         floatingPanelController.addPanel(toParent: self, belowView: nil, animated: false)
@@ -278,7 +278,6 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
                 } else {
                     print("Document successfully written!")
                     let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                    print(Auth.auth().currentUser?.displayName)
                     changeRequest?.displayName = self.userNameField.text
                     changeRequest?.commitChanges { (error) in
                       // ...
@@ -364,7 +363,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
         dismiss(animated: true, completion: nil)
     }
     
-    func bestChooseDidFinished(shopName: String, shopId: String, rank: Int) {
+    func ramenChooseDidFinished(shopName: String, shopId: String, rank: Int) {
         if bestShopNameAry.count == rank-1{
             bestShopNameAry.append(shopName)
             bestShopIdAry.append(shopId)

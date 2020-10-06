@@ -123,7 +123,7 @@
             <objects>
                 <viewController id="7DX-Pg-IpD" customClass="UserPageViewController" customModule="BestRamen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JmF-Fj-RdZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RN0-qF-iaV">
@@ -285,6 +285,7 @@
                         <segue destination="Jw3-7N-bUc" kind="show" identifier="toFollowListViewController" id="El3-R0-jrF"/>
                         <segue destination="VC8-Uh-fKf" kind="show" identifier="toEditView" id="BE6-jL-IR9"/>
                         <segue destination="c6Q-18-WP5" kind="show" identifier="toShopPageView" id="G6T-W4-VLI"/>
+                        <segue destination="i23-di-ZaW" kind="show" identifier="toMakePostView" id="qSI-KZ-sZn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpH-UG-DNI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -679,10 +680,10 @@
             </objects>
             <point key="canvasLocation" x="3697.1014492753625" y="701.78571428571422"/>
         </scene>
-        <!--Best Choose View Controller-->
+        <!--Ramen Choose View Controller-->
         <scene sceneID="zPZ-GM-aWa">
             <objects>
-                <viewController storyboardIdentifier="fpc2" id="ZLA-i5-sY5" customClass="BestChooseViewController" customModule="BestRamen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="fpc2" id="ZLA-i5-sY5" customClass="RamenChooseViewController" customModule="BestRamen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IFD-1G-f3S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -756,22 +757,58 @@
             </objects>
             <point key="canvasLocation" x="2000" y="1459"/>
         </scene>
-        <!--View Controller-->
+        <!--Make Post View Controller-->
         <scene sceneID="njU-lu-gl3">
             <objects>
-                <viewController id="i23-di-ZaW" sceneMemberID="viewController">
+                <viewController id="i23-di-ZaW" customClass="MakePostViewController" customModule="BestRamen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jml-Is-MGe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8oR-iI-J15">
-                                <rect key="frame" x="87" y="228" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8oR-iI-J15">
+                                <rect key="frame" x="5" y="5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="76t-MB-31V"/>
+                                    <constraint firstAttribute="width" constant="100" id="y1a-nt-tOg"/>
+                                </constraints>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="キャプションを書く" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CVF-Zl-b8z">
+                                <rect key="frame" x="5" y="110" width="404" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="3sM-oQ-RXc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="fieldEditingChange:" destination="i23-di-ZaW" eventType="editingChanged" id="P3j-jE-Wn4"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2TO-Vc-5v2">
+                                <rect key="frame" x="110" y="5" width="299" height="100"/>
+                                <state key="normal" title="お店を選んでください"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4yk-Bl-L2g"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CVF-Zl-b8z" firstAttribute="top" secondItem="8oR-iI-J15" secondAttribute="bottom" constant="5" id="07h-qL-N3i"/>
+                            <constraint firstItem="CVF-Zl-b8z" firstAttribute="leading" secondItem="4yk-Bl-L2g" secondAttribute="leading" constant="5" id="4or-kK-OoT"/>
+                            <constraint firstItem="2TO-Vc-5v2" firstAttribute="top" secondItem="4yk-Bl-L2g" secondAttribute="top" constant="5" id="61X-Ba-l8S"/>
+                            <constraint firstItem="4yk-Bl-L2g" firstAttribute="bottom" secondItem="CVF-Zl-b8z" secondAttribute="bottom" id="EfW-Kq-Gbh"/>
+                            <constraint firstItem="2TO-Vc-5v2" firstAttribute="height" secondItem="8oR-iI-J15" secondAttribute="height" id="Q7p-rK-138"/>
+                            <constraint firstItem="8oR-iI-J15" firstAttribute="top" secondItem="4yk-Bl-L2g" secondAttribute="top" constant="5" id="ZJH-vs-OVx"/>
+                            <constraint firstItem="4yk-Bl-L2g" firstAttribute="trailing" secondItem="CVF-Zl-b8z" secondAttribute="trailing" constant="5" id="fv2-0q-EEg"/>
+                            <constraint firstItem="8oR-iI-J15" firstAttribute="leading" secondItem="4yk-Bl-L2g" secondAttribute="leading" constant="5" id="xat-GL-PGV"/>
+                            <constraint firstItem="4yk-Bl-L2g" firstAttribute="trailing" secondItem="2TO-Vc-5v2" secondAttribute="trailing" constant="5" id="xqt-02-cIb"/>
+                            <constraint firstItem="2TO-Vc-5v2" firstAttribute="leading" secondItem="8oR-iI-J15" secondAttribute="trailing" constant="5" id="ybt-P1-mkb"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Xbf-yp-11w"/>
+                    <connections>
+                        <outlet property="postContentField" destination="CVF-Zl-b8z" id="72R-jI-Y6B"/>
+                        <outlet property="postImage" destination="8oR-iI-J15" id="sDd-gf-xQx"/>
+                        <outlet property="shopChooseButton" destination="2TO-Vc-5v2" id="2LJ-kC-hxa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EtB-gM-dMc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -780,7 +817,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarControllerID" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>

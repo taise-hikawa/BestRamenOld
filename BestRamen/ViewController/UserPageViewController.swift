@@ -3,8 +3,9 @@ import FirebaseStorage
 import FirebaseFirestore
 import GoogleSignIn
 import Firebase
+import RSKImageCropper
 
-class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout ,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout ,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate {
     
     
     let space:CGFloat = 1
@@ -392,6 +393,10 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
             let nextVC = segue.destination as! ShopPageViewController
             let row = self.tableView.indexPathForSelectedRow?.row
             nextVC.shopId = bestShopIdAry[row!]
+        }else if segue.identifier == "toMakePostView"{
+            let nextVC = segue.destination as! MakePostViewController
+            //次の画面のインスタンスに取得した画像を渡す
+            nextVC.captureImage = captureImage
         }
     }
     @objc func logOutButtonTapped(_ sender: UIBarButtonItem) {
@@ -481,14 +486,38 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         //選択肢を画面に表示
         present(alertController, animated: true, completion: nil)
     }
-    //撮影が終わった後呼ばれるdelegateメソッド
+    //次の画面遷移する時に渡す画像を格納する場所
+    var captureImage : UIImage?
+    var imageCropVC:RSKImageCropViewController!
+    //撮影が終わった時に呼ばれるdelegateメソッド
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        //撮影した画像をuserImageViewに設定
-//        userImageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-//        //saveButtonを使用可能にする
-//        changeFlag["userImage"] = true
-        //モーダルビューを閉じる
+        dismiss(animated: true, completion: {
+            //(2)撮影した画像を配置したpictureImageに渡す
+            self.captureImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+            self.imageCropVC = RSKImageCropViewController(image: self.captureImage!, cropMode: .square)
+            self.imageCropVC.moveAndScaleLabel.text = "切り取り範囲を選択"
+            self.imageCropVC.cancelButton.setTitle("キャンセル", for: .normal)
+            self.imageCropVC.chooseButton.setTitle("完了", for: .normal)
+            self.imageCropVC.delegate = self
+            self.present(self.imageCropVC, animated: true)
+        })
+        
+    }
+    
+    
+    //キャンセルを押した時の処理
+    func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
         dismiss(animated: true, completion: nil)
+    }
+    //完了を押した後の処理
+    func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect, rotationAngle: CGFloat) {
+        //モーダルビューを閉じる
+        dismiss(animated: true, completion: {
+            self.captureImage = croppedImage
+            //エフェクト画面に遷移
+            self.performSegue(withIdentifier: "toMakePostView", sender: nil)
+            
+        })
     }
     
 }

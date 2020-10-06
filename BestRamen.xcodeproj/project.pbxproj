@@ -10,6 +10,7 @@
 		1F3E5E9D55194CFD41328933 /* Pods_BestRamenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F0A0DCFABC27C8761CC9DA3 /* Pods_BestRamenTests.framework */; };
 		41D05DD015DE809F4BB57AA8 /* Pods_BestRamen_BestRamenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71A9EB647E223C30BA7B460 /* Pods_BestRamen_BestRamenUITests.framework */; };
 		5F20AF0B0E5A97AADC5D749E /* Pods_BestRamen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EECC8174A5AD6FAF351469 /* Pods_BestRamen.framework */; };
+		D32C4A39252A5FBD0092F5F4 /* MakePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32C4A38252A5FBD0092F5F4 /* MakePostViewController.swift */; };
 		D337ABBB2502666D000C0D1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBA2502666D000C0D1E /* AppDelegate.swift */; };
 		D337ABBD2502666D000C0D1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBC2502666D000C0D1E /* SceneDelegate.swift */; };
 		D337ABBF2502666D000C0D1E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBE2502666D000C0D1E /* FirstViewController.swift */; };
@@ -34,7 +35,7 @@
 		D390231725068ECA00C13328 /* ShopPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390231625068ECA00C13328 /* ShopPageViewController.swift */; };
 		D3A11AB42524F0F9008F62AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3A11AB32524F0F9008F62AD /* GoogleService-Info.plist */; };
 		D3B218C825259BA30025BC35 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B218C725259BA30025BC35 /* EditViewController.swift */; };
-		D3B218D025264C1F0025BC35 /* BestChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B218CF25264C1F0025BC35 /* BestChooseViewController.swift */; };
+		D3B218D025264C1F0025BC35 /* RamenChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B218CF25264C1F0025BC35 /* RamenChooseViewController.swift */; };
 		D3B218E3252657130025BC35 /* SecondCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B218E1252657130025BC35 /* SecondCustomTableViewCell.swift */; };
 		D3B218E4252657130025BC35 /* SecondCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		6F79E6D4A5555EE0BD153B2E /* Pods-BestRamen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen.release.xcconfig"; path = "Target Support Files/Pods-BestRamen/Pods-BestRamen.release.xcconfig"; sourceTree = "<group>"; };
 		77EECC8174A5AD6FAF351469 /* Pods_BestRamen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestRamen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F0A0DCFABC27C8761CC9DA3 /* Pods_BestRamenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestRamenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D32C4A38252A5FBD0092F5F4 /* MakePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostViewController.swift; sourceTree = "<group>"; };
 		D337ABB72502666D000C0D1E /* BestRamen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestRamen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D337ABBA2502666D000C0D1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D337ABBC2502666D000C0D1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,7 +94,7 @@
 		D390231625068ECA00C13328 /* ShopPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopPageViewController.swift; sourceTree = "<group>"; };
 		D3A11AB32524F0F9008F62AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Documents/firebase/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D3B218C725259BA30025BC35 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditViewController.swift; path = BestRamen/EditViewController.swift; sourceTree = SOURCE_ROOT; };
-		D3B218CF25264C1F0025BC35 /* BestChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BestChooseViewController.swift; path = BestRamen/BestChooseViewController.swift; sourceTree = SOURCE_ROOT; };
+		D3B218CF25264C1F0025BC35 /* RamenChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RamenChooseViewController.swift; path = BestRamen/RamenChooseViewController.swift; sourceTree = SOURCE_ROOT; };
 		D3B218E1252657130025BC35 /* SecondCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondCustomTableViewCell.swift; sourceTree = "<group>"; };
 		D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondCustomTableViewCell.xib; sourceTree = "<group>"; };
 		D71A9EB647E223C30BA7B460 /* Pods_BestRamen_BestRamenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestRamen_BestRamenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -221,8 +223,9 @@
 				D337ABC02502666D000C0D1E /* SecondViewController.swift */,
 				D33D66C52521B3BA00A1A28D /* SemiModalViewController.swift */,
 				D390231325068DCD00C13328 /* UserPageViewController.swift */,
+				D32C4A38252A5FBD0092F5F4 /* MakePostViewController.swift */,
 				D3B218C725259BA30025BC35 /* EditViewController.swift */,
-				D3B218CF25264C1F0025BC35 /* BestChooseViewController.swift */,
+				D3B218CF25264C1F0025BC35 /* RamenChooseViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -534,7 +537,8 @@
 				D390231725068ECA00C13328 /* ShopPageViewController.swift in Sources */,
 				D3B218C825259BA30025BC35 /* EditViewController.swift in Sources */,
 				D375B6592503333500F511D0 /* CustomTableViewCell.swift in Sources */,
-				D3B218D025264C1F0025BC35 /* BestChooseViewController.swift in Sources */,
+				D32C4A39252A5FBD0092F5F4 /* MakePostViewController.swift in Sources */,
+				D3B218D025264C1F0025BC35 /* RamenChooseViewController.swift in Sources */,
 				D337ABBB2502666D000C0D1E /* AppDelegate.swift in Sources */,
 				D33D66C62521B3BA00A1A28D /* SemiModalViewController.swift in Sources */,
 				D337ABBD2502666D000C0D1E /* SceneDelegate.swift in Sources */,

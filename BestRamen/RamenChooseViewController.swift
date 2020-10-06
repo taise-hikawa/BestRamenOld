@@ -1,11 +1,11 @@
 import UIKit
 import FirebaseFirestore
 import FloatingPanel
-class BestChooseViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
+class RamenChooseViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
     
     let db = Firestore.firestore()
     var shopsAry:Array<Dictionary<String, String>> = []
-    var delegate: BestChooseViewControllerDelegate!
+    var delegate: RamenChooseViewControllerDelegate!
     var rank:Int!
     
     @IBOutlet weak var tableView: UITableView!
@@ -30,8 +30,9 @@ class BestChooseViewController: UIViewController,UITableViewDelegate,UITableView
     }
     //セルの選択時に呼び出し
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
         
-        self.delegate.bestChooseDidFinished(shopName: shopsAry[indexPath.row]["shopName"]!, shopId: shopsAry[indexPath.row]["shopId"]!, rank: rank)
+    self.delegate.ramenChooseDidFinished(shopName: shopsAry[indexPath.row]["shopName"]!, shopId: shopsAry[indexPath.row]["shopId"]!, rank: rank ?? 0)
         
     }
     func setShops(){
