@@ -120,10 +120,14 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
             }
         }
     }
+    // カスタマイズしたレイアウトに変更
+    func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout {
+        return CustomFloatingPanelLayout()
+    }
     //tipの位置になったらモーダルを終了
-    private func floatingPanelDidEndDragging(_ vc: FloatingPanelController, withVelocity velocity: CGPoint, targetState: FloatingPanelState) {
-        if targetState == .tip{
-            vc.removePanelFromParent(animated: true)
+    func floatingPanelDidMove(_ fpc: FloatingPanelController) {
+        if fpc.state == FloatingPanelState.tip{
+            fpc.removePanelFromParent(animated: true, completion: nil)
         }
     }
 }

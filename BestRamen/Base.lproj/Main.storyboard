@@ -336,11 +336,11 @@
             <objects>
                 <viewController id="c6Q-18-WP5" customClass="ShopPageViewController" customModule="BestRamen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rn8-tn-pbe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3d8-Ds-w3T">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mbg-aS-K8e">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="45.5"/>
@@ -477,42 +477,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8co-Kt-g2e">
-                                <rect key="frame" x="0.0" y="44" width="71" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <rect key="frame" x="5" y="54" width="59" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CuD-u7-6ae">
-                                <rect key="frame" x="0.0" y="80" width="48" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <rect key="frame" x="5" y="89" width="44" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWv-w4-Ouk">
-                                <rect key="frame" x="368" y="44" width="46" height="30"/>
+                                <rect key="frame" x="363" y="54" width="46" height="30"/>
                                 <state key="normal" title="閉じる">
                                     <color key="titleColor" systemColor="systemPinkColor"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCf-gg-ccE">
-                                <rect key="frame" x="0.0" y="104" width="177" height="54"/>
+                                <rect key="frame" x="5" y="130.5" width="404" height="54"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="詳細を見る">
-                                    <color key="titleColor" systemColor="labelColor"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CZK-P7-FFI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="CZK-P7-FFI" firstAttribute="trailing" secondItem="eWv-w4-Ouk" secondAttribute="trailing" id="30m-vw-NrD"/>
-                            <constraint firstItem="hCf-gg-ccE" firstAttribute="leading" secondItem="CZK-P7-FFI" secondAttribute="leading" id="9HU-Ei-udM"/>
-                            <constraint firstItem="CuD-u7-6ae" firstAttribute="leading" secondItem="CZK-P7-FFI" secondAttribute="leading" id="Rl8-Lj-eHI"/>
-                            <constraint firstItem="8co-Kt-g2e" firstAttribute="leading" secondItem="CZK-P7-FFI" secondAttribute="leading" id="dmN-8u-CN1"/>
-                            <constraint firstItem="CuD-u7-6ae" firstAttribute="top" secondItem="8co-Kt-g2e" secondAttribute="bottom" id="hOw-u9-5ui"/>
-                            <constraint firstItem="8co-Kt-g2e" firstAttribute="top" secondItem="CZK-P7-FFI" secondAttribute="top" id="nRa-Iv-JGM"/>
-                            <constraint firstItem="hCf-gg-ccE" firstAttribute="top" secondItem="CuD-u7-6ae" secondAttribute="bottom" id="od9-C1-y4R"/>
-                            <constraint firstItem="eWv-w4-Ouk" firstAttribute="top" secondItem="CZK-P7-FFI" secondAttribute="top" id="wOB-aB-8FO"/>
+                            <constraint firstItem="CZK-P7-FFI" firstAttribute="trailing" secondItem="hCf-gg-ccE" secondAttribute="trailing" constant="5" id="2S6-9D-6Rv"/>
+                            <constraint firstItem="CZK-P7-FFI" firstAttribute="trailing" secondItem="eWv-w4-Ouk" secondAttribute="trailing" constant="5" id="30m-vw-NrD"/>
+                            <constraint firstItem="hCf-gg-ccE" firstAttribute="leading" secondItem="CZK-P7-FFI" secondAttribute="leading" constant="5" id="9HU-Ei-udM"/>
+                            <constraint firstItem="CuD-u7-6ae" firstAttribute="leading" secondItem="CZK-P7-FFI" secondAttribute="leading" constant="5" id="Rl8-Lj-eHI"/>
+                            <constraint firstItem="8co-Kt-g2e" firstAttribute="leading" secondItem="CZK-P7-FFI" secondAttribute="leading" constant="5" id="dmN-8u-CN1"/>
+                            <constraint firstItem="CuD-u7-6ae" firstAttribute="top" secondItem="8co-Kt-g2e" secondAttribute="bottom" constant="5" id="hOw-u9-5ui"/>
+                            <constraint firstItem="8co-Kt-g2e" firstAttribute="top" secondItem="CZK-P7-FFI" secondAttribute="top" constant="10" id="nRa-Iv-JGM"/>
+                            <constraint firstItem="hCf-gg-ccE" firstAttribute="top" secondItem="CuD-u7-6ae" secondAttribute="bottom" constant="20" id="od9-C1-y4R"/>
+                            <constraint firstItem="eWv-w4-Ouk" firstAttribute="top" secondItem="CZK-P7-FFI" secondAttribute="top" constant="10" id="wOB-aB-8FO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Wsf-uh-ZuD"/>
@@ -899,7 +901,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ZsA-sF-vxx"/>
+        <segue reference="WSO-d6-2kn"/>
         <segue reference="7Np-oz-n2l"/>
         <segue reference="rBW-kZ-A0u"/>
     </inferredMetricsTieBreakers>
@@ -908,9 +910,6 @@
         <image name="hito" width="30" height="30"/>
         <image name="home" width="30" height="30"/>
         <image name="search" width="30" height="30"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
