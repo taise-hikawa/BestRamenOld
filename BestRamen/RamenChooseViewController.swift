@@ -14,6 +14,8 @@ class RamenChooseViewController: UIViewController,UITableViewDelegate,UITableVie
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SecondCustomTableViewCell", bundle: nil), forCellReuseIdentifier: "SecondCustomCell")
+        //空の行の線を消す
+        tableView.tableFooterView = UIView()
         setShops()
     }
     //セルの行数を設定

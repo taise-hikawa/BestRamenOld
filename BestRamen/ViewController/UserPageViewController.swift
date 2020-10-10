@@ -71,6 +71,8 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         GIDSignIn.sharedInstance()?.presentingViewController = self
         tableView.delegate = self
         tableView.dataSource = self
+        //空の行の線を消す
+        tableView.tableFooterView = UIView()
         collectionView.register(UINib(nibName: "CustomCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -452,6 +454,8 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     @objc func postButtonTapped(_ sender: UIBarButtonItem) {
         //カメラがフォトライブラリーどちらから画像を取得するか選択
         let alertController = UIAlertController(title: "確認", message: "選択してください", preferredStyle: .actionSheet)
+        //バグ"width == - 16 の Auto Layout 警告"が出るのを回避
+        alertController.pruneNegativeWidthConstraints()
         //カメラが利用可能かチェック
         if UIImagePickerController.isSourceTypeAvailable(.camera){
             //カメラを起動するための選択肢を定義
@@ -528,5 +532,19 @@ extension UIImage{
         defer { UIGraphicsEndImageContext() }
         draw(in: CGRect(origin: .zero, size: canvasSize))
         return UIGraphicsGetImageFromCurrentImageContext()
+    }
+}
+//バグ"width == - 16 の Auto Layout 警告"が出るのを回避
+extension UIAlertController {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    func pruneNegativeWidthConstraints() {
+        for subView in self.view.subviews {
+            for constraint in subView.constraints where constraint.debugDescription.contains("width == - 16") {
+                subView.removeConstraint(constraint)
+            }
+        }
     }
 }

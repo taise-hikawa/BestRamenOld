@@ -53,6 +53,7 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
         if floatingPanelController != nil{
             floatingPanelController.removePanelFromParent(animated: true)
         }
+        
     }
     
     @objc func shopChooseButtonTapped(_ sender:UIButton){
@@ -65,7 +66,7 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
         floatingPanelController.set(contentViewController: ramenChooseViewController)
         floatingPanelController.delegate = self
         // セミモーダルビューを表示する
-        floatingPanelController.addPanel(toParent: self, belowView: nil, animated: false)
+        floatingPanelController.addPanel(toParent: self)
         
     }
     func ramenChooseDidFinished(shopName: String, shopId: String, rank: Int) {
@@ -89,7 +90,8 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
             "userName": currentUser.displayName!,
             "shopId": shopId!,
             "shopName":shopName!,
-            "postContent":postContentField.text!
+            "postContent":postContentField.text!,
+            "createdAt": FieldValue.serverTimestamp()
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -119,8 +121,8 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
         }
     }
     //tipの位置になったらモーダルを終了
-    func floatingPanelDidEndDragging(_ vc: FloatingPanelController, withVelocity velocity: CGPoint, targetPosition: FloatingPanelPosition) {
-        if targetPosition == .tip{
+    private func floatingPanelDidEndDragging(_ vc: FloatingPanelController, withVelocity velocity: CGPoint, targetState: FloatingPanelState) {
+        if targetState == .tip{
             vc.removePanelFromParent(animated: true)
         }
     }

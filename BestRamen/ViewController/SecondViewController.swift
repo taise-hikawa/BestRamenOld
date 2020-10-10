@@ -88,19 +88,19 @@ class SecondViewController: UIViewController ,MKMapViewDelegate,FloatingPanelCon
         floatingPanelController.set(contentViewController: semiModalViewController)
         floatingPanelController.delegate = self
         // セミモーダルビューを表示する
-        floatingPanelController.addPanel(toParent: self, belowView: nil, animated: false)
+        floatingPanelController.addPanel(toParent: self)
         //選択を解除する
         for annotaion in mapView.selectedAnnotations {
             mapView.deselectAnnotation(annotaion, animated: false)
         }
     }
     // カスタマイズしたレイアウトに変更
-    func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
+    func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout {
         return CustomFloatingPanelLayout()
     }
     //tipの位置になったらモーダルを終了
-    func floatingPanelDidEndDragging(_ vc: FloatingPanelController, withVelocity velocity: CGPoint, targetPosition: FloatingPanelPosition) {
-        if targetPosition == .tip{
+    private func floatingPanelDidEndDragging(_ vc: FloatingPanelController, withVelocity velocity: CGPoint, targetState: FloatingPanelState) {
+        if targetState == .tip{
             vc.removePanelFromParent(animated: true)
         }
     }

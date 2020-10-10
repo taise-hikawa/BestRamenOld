@@ -14,7 +14,9 @@ class FollowListTableViewCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+//        self.contentView.heightAnchor.constraint(equalTo: <#T##NSLayoutDimension#>, multiplier: <#T##CGFloat#>)
+        userImageView.heightAnchor.constraint(equalTo: self.contentView.heightAnchor).isActive = true
+        userImageView.widthAnchor.constraint(equalTo: self.contentView.heightAnchor).isActive = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

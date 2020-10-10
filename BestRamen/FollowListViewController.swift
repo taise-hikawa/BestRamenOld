@@ -20,6 +20,8 @@ class FollowListViewController: UIViewController,UITableViewDelegate,UITableView
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "FollowListTableViewCell", bundle: nil), forCellReuseIdentifier: "followListCell")
+        //空の行の線を消す
+        tableView.tableFooterView = UIView()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,6 +46,10 @@ class FollowListViewController: UIViewController,UITableViewDelegate,UITableView
         performSegue(withIdentifier: "toUserPageViewController", sender: nil)
 
     }
+    //cellの高さを設定
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return CGFloat(50)
+        }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUserPageViewController" {
             let nextVC = segue.destination as! UserPageViewController

@@ -251,7 +251,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
         floatingPanelController.set(contentViewController: ramenChooseViewController)
         floatingPanelController.delegate = self
         // セミモーダルビューを表示する
-        floatingPanelController.addPanel(toParent: self, belowView: nil, animated: false)
+        floatingPanelController.addPanel(toParent: self)
     }
     @objc func tapSaveButton(_ sender: Any){
         let mydb = Firestore.firestore().collection("users").document(userId)
@@ -376,7 +376,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
         
     }
     //tipの位置になったらモーダルを終了
-    func floatingPanelDidEndDragging(_ vc: FloatingPanelController, withVelocity velocity: CGPoint, targetPosition: FloatingPanelPosition) {
+    private func floatingPanelDidEndDragging(_ vc: FloatingPanelController, withVelocity velocity: CGPoint, targetPosition: FloatingPanelState) {
         if targetPosition == .tip{
             vc.removePanelFromParent(animated: true)
         }

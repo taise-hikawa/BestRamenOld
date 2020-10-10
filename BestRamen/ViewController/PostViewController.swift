@@ -20,6 +20,8 @@ class PostViewController: UIViewController {
         userButton.setTitle(userName, for: .normal)
         shopButton.setTitle(shopName, for: .normal)
         postLabel.text = postContent
+//        postImage.adjustsImageSizeForAccessibilityContentSizeCategory = false
+        postImage.contentMode = .scaleAspectFill
         self.shopButton.addTarget(self,action: #selector(self.tapShopButton(_ :)),for: .touchUpInside)
         self.userButton.addTarget(self,action: #selector(self.tapUserButton(_ :)),for: .touchUpInside)
         storage.child("users").child("\(userId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in

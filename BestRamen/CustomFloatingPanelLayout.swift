@@ -2,24 +2,13 @@ import Foundation
 import FloatingPanel
 
 class CustomFloatingPanelLayout: FloatingPanelLayout {
-    // カスタマイズした高さ
-       func insetFor(position: FloatingPanelPosition) -> CGFloat? {
-           switch position {
-           case .full: return 16.0
-           case .half: return 216.0
-           case .tip: return 44.0
-           default: return nil
-           }
-       }
-    
-   
-   // 初期位置
-   var initialPosition: FloatingPanelPosition {
-       return .half
-   }
- 
-   // サポートする位置
-   var supportedPositions: Set<FloatingPanelPosition> {
-    return [.half,.tip]
-   }
+    let position: FloatingPanelPosition = .bottom
+    let initialState: FloatingPanelState = .tip
+    var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
+        return [
+            .full: FloatingPanelLayoutAnchor(absoluteInset: 16.0, edge: .top, referenceGuide: .safeArea),
+            .tip: FloatingPanelLayoutAnchor(absoluteInset: 69.0, edge: .bottom, referenceGuide: .safeArea),
+        ]
+    }
+
 }
