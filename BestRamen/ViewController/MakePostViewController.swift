@@ -106,7 +106,7 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
             "userName": currentUser.displayName!,
             "shopId": shopId!,
             "shopName":shopName!,
-            "postContent":postContentTextView.text!,
+            "postContent":(postContentTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines))!,
             "createdAt": FieldValue.serverTimestamp()
         ]) { err in
             if let err = err {
@@ -148,7 +148,6 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
     }
     private var activeTextView: UITextView? = nil
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        print("textViewShouldBeginEditing")
         activeTextView = textView
         return true
     }
@@ -185,8 +184,6 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
         let txtLimit = (activeTextView?.frame.origin.y)! + (activeTextView?.frame.height)! + 8.0
         let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
         let moveY = txtLimit - kbdLimit
-//        print(txtLimit,kbdLimit,moveY,myBoundSize.height)
-//        print(keyboardScreenEndFrame.size.height,textframeParent.origin.y,textframeParent.height)
         let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
         if moveY >= 0{
             UIView.animate(withDuration: duration!, animations: { () in

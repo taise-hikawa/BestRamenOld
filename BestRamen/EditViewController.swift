@@ -7,7 +7,7 @@ protocol RamenChooseViewControllerDelegate{
     func ramenChooseDidFinished(shopName: String,shopId: String,rank: Int)
 }
 
-class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate,FloatingPanelControllerDelegate ,RamenChooseViewControllerDelegate,UITextFieldDelegate {
+class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate,FloatingPanelControllerDelegate ,RamenChooseViewControllerDelegate,UITextFieldDelegate,UITextViewDelegate{
     
     var userName:String!
     var userProfile:String!
@@ -99,7 +99,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
     @IBOutlet weak var bestTwoLabel: UILabel!
     @IBOutlet weak var bestThreeLabel: UILabel!
     @IBOutlet weak var userNameField: UITextField!
-    @IBOutlet weak var userProfileField: UITextField!
+    @IBOutlet weak var textView: AddDonePlaceholderTextView!
     @IBOutlet weak var editOneButton: UIButton!
     @IBOutlet weak var editTwoButton: UIButton!
     @IBOutlet weak var editThreeButton: UIButton!
@@ -107,10 +107,9 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
     override func viewDidLoad() {
         super.viewDidLoad()
         userNameField.text = userName
-        userNameField.placeholder = "1~10文字"
-        userProfileField.text = userProfile
+        textView.text = userProfile
         userNameField.delegate = self
-        userProfileField.delegate = self
+        textView.delegate = self
         storage.child("users").child("\(userId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
             if error != nil {
                 return
@@ -180,10 +179,16 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
             print("error")
         }
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        self.configureObserver()
+        
+    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+        // Notificationを画面が消えるときに削除
+        self.removeObserver()
         // セミモーダルビューを非表示にする
         if floatingPanelController != nil{
             floatingPanelController.removePanelFromParent(animated: true)
@@ -193,34 +198,49 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    //textFieldに入力が行われる直前に呼ばれる。
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        //スペースの入力を無効
+        if string.contains(" ")||string.contains("　"){
+            return false
+        }
         // textField内の文字数
         let textFieldNumber = textField.text?.count ?? 0
         // 入力された文字数
         let stringNumber = string.count
         // 文字数最大値を定義
-        var maxLength: Int = 0
-        
-        switch (textField.tag) {
-        case 1: // 名前のtextField
-            maxLength = 10
-            changeFlag["userName"] = true
-        case 2: // 自己紹介のtextField
-            maxLength = 80
-            changeFlag["userProfile"] = true
-        default:
-            break
-        }
+        let maxLength = 10
         return textFieldNumber + stringNumber <= maxLength
     }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+
+        // textField内の文字数
+        let textViewNumber = textView.text?.count ?? 0
+        // 入力された文字数
+        let textNumber = text.count
+        // 文字数最大値を定義
+        let maxLength = 100
+        return textViewNumber + textNumber <= maxLength
+    }
+    //textFieldの変化ごとに呼ばれる。空か判定しchangeFlagを変化
     @IBAction func usrNameFieldEditingChanged(_ sender: Any) {
         
-        if userNameField.text == "" {
+        if userNameField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == true {
             changeFlag["userName"] = false
+        }else{
+            changeFlag["userName"] = true
         }
         
     }
-    
+    //textViewの変化ごとに呼ばれる。空か判定しchangeFlagを変化
+    func textViewDidChange(_ textView: UITextView) {
+           let text = textView.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+           if text?.isEmpty == true{
+            changeFlag["userProfile"] = false
+           }else{
+            changeFlag["userProfile"] = true
+           }
+       }
     // キーボードを閉じる（returnキーを押下時）
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // キーボードを閉じる
@@ -229,7 +249,12 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
     }
     // キーボードを閉じる（UITextField以外の部分を押下時）
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
+        if (textView.isFirstResponder) {
+            textView.resignFirstResponder()
+        }
+        if(userNameField.isFirstResponder){
+            userNameField.resignFirstResponder()
+        }
     }
     @objc func tapEditOneButton(_ sender: Any){
         toBestChoose(rank: 1)
@@ -286,7 +311,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
             }
         }
         if changeFlag["userProfile"] == true{
-            mydb.setData(["userProfile":userProfileField.text ?? ""],merge: true){ err in
+            mydb.setData(["userProfile":textView.text ?? ""],merge: true){ err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
@@ -385,5 +410,79 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
             fpc.removePanelFromParent(animated: true, completion: nil)
         }
     }
-
+    
+    private var activeTextField: UITextField? = nil
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print("textFieldShouldBeginEditing")
+        activeTextField = textField
+        return true
+    }
+    private var activeTextView: UITextView? = nil
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        print("textViewShouldBeginEditing")
+        activeTextView = textView
+        return true
+    }
+    
+    
+    // Notificationを設定
+    func configureObserver() {
+        
+        let notification = NotificationCenter.default
+        notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    // Notificationを削除
+    func removeObserver() {
+        
+        let notification = NotificationCenter.default
+        notification.removeObserver(self)
+    }
+    // キーボードが現れた時に、画面全体をずらす。
+    @objc func keyboardWillShow(notification: Notification?) {
+        print("show")
+        guard let userInfo = notification?.userInfo,
+              let keyboard = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+        let keyboardScreenEndFrame = keyboard.cgRectValue
+        let myBoundSize: CGSize = UIScreen.main.bounds.size
+        //FirstResponderによって分岐
+        var textframeParent:CGRect!
+        if (textView.isFirstResponder) {
+            // textViewの座標を全体座標に変換
+            textframeParent = activeTextView?.frame
+        }
+        if(userNameField.isFirstResponder){
+            // textFieldの座標を全体座標に変換
+            textframeParent = activeTextField?.frame
+        }
+        
+        let txtLimit = textframeParent.origin.y + textframeParent.height + 8.0
+        let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
+        
+        let moveY = txtLimit - kbdLimit
+        let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+        if moveY >= 0{
+            UIView.animate(withDuration: duration!, animations: { () in
+                let transform = CGAffineTransform(translationX: 0, y: -(moveY))
+                self.view.transform = transform
+                
+            })
+        }
+    }
+    
+    // キーボードが消えたときに、画面を戻す
+    @objc func keyboardWillHide(notification: Notification?) {
+        print("hide")
+        let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Double
+        UIView.animate(withDuration: duration!, animations: { () in
+            
+            self.view.transform = CGAffineTransform.identity
+        })
+    }
+    
 }
+
+
