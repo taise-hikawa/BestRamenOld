@@ -10,7 +10,8 @@ import UIKit
 import FloatingPanel
 import Firebase
 
-class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,RamenChooseViewControllerDelegate{
+class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,RamenChooseViewControllerDelegate,UITextViewDelegate{
+    
     
     
     
@@ -35,7 +36,12 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
 
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var shopChooseButton: UIButton!
-    @IBOutlet weak var postContentField: UITextField!
+    @IBOutlet weak var postContentTextView: UITextView!{
+        didSet{
+            postContentTextView.delegate = self
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         currentUser = Auth.auth().currentUser
@@ -46,6 +52,11 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
         postButton.isEnabled = false
         self.navigationItem.rightBarButtonItem = postButton
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.configureObserver()
+
+    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
@@ -53,10 +64,14 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
         if floatingPanelController != nil{
             floatingPanelController.removePanelFromParent(animated: true)
         }
+        self.removeObserver() // Notificationを画面が消えるときに削除
         
     }
     
     @objc func shopChooseButtonTapped(_ sender:UIButton){
+        if (postContentTextView.isFirstResponder) {
+            postContentTextView.resignFirstResponder()
+        }
         let ramenChooseViewController = self.storyboard?.instantiateViewController(withIdentifier: "fpc2") as? RamenChooseViewController
         if floatingPanelController != nil{
             floatingPanelController.removePanelFromParent(animated: true)
@@ -76,13 +91,14 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
         postFlag["shop"] = true
         floatingPanelController.removePanelFromParent(animated: true)
     }
-    @IBAction func fieldEditingChange(_ sender: Any) {
-        if postContentField.text == ""{
-            postFlag["content"] = false
-        }else{
-            postFlag["content"] = true
+    func textViewDidChange(_ textView: UITextView) {
+            let text = textView.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            if text?.isEmpty == true{
+                postFlag["content"] = false
+            }else{
+                postFlag["content"] = true
+            }
         }
-    }
     @objc func postButtonTapped(_ sender:UIButton){
         var ref: DocumentReference?
         ref = db.collection("posts").addDocument(data: [
@@ -90,7 +106,7 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
             "userName": currentUser.displayName!,
             "shopId": shopId!,
             "shopName":shopName!,
-            "postContent":postContentField.text!,
+            "postContent":postContentTextView.text!,
             "createdAt": FieldValue.serverTimestamp()
         ]) { err in
             if let err = err {
@@ -130,4 +146,65 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
             fpc.removePanelFromParent(animated: true, completion: nil)
         }
     }
+    private var activeTextView: UITextView? = nil
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        print("textViewShouldBeginEditing")
+        activeTextView = textView
+        return true
+    }
+    // Notificationを設定
+    func configureObserver() {
+        
+        let notification = NotificationCenter.default
+        notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if (postContentTextView.isFirstResponder) {
+            postContentTextView.resignFirstResponder()
+        }
+    }
+    // Notificationを削除
+    func removeObserver() {
+        
+        let notification = NotificationCenter.default
+        notification.removeObserver(self)
+    }
+    // キーボードが現れた時に、画面全体をずらす。
+    @objc func keyboardWillShow(notification: Notification?) {
+        print("show")
+        guard let userInfo = notification?.userInfo,
+              let keyboard = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+        let keyboardScreenEndFrame = keyboard.cgRectValue
+        let myBoundSize: CGSize = UIScreen.main.bounds.size
+        // textViewの座標を全体座標に変換
+//        let textframeParent = activeTextView!.convert(activeTextView!.frame, to: self.view)
+        let txtLimit = (activeTextView?.frame.origin.y)! + (activeTextView?.frame.height)! + 8.0
+        let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
+        let moveY = txtLimit - kbdLimit
+//        print(txtLimit,kbdLimit,moveY,myBoundSize.height)
+//        print(keyboardScreenEndFrame.size.height,textframeParent.origin.y,textframeParent.height)
+        let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+        if moveY >= 0{
+            UIView.animate(withDuration: duration!, animations: { () in
+                let transform = CGAffineTransform(translationX: 0, y: -(moveY))
+                self.view.transform = transform
+                
+            })
+        }
+    }
+    
+    // キーボードが消えたときに、画面を戻す
+    @objc func keyboardWillHide(notification: Notification?) {
+        print("hide")
+        let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Double
+        UIView.animate(withDuration: duration!, animations: { () in
+            
+            self.view.transform = CGAffineTransform.identity
+        })
+    }
+    
 }

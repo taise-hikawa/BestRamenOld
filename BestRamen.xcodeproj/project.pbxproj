@@ -11,6 +11,8 @@
 		41D05DD015DE809F4BB57AA8 /* Pods_BestRamen_BestRamenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71A9EB647E223C30BA7B460 /* Pods_BestRamen_BestRamenUITests.framework */; };
 		5F20AF0B0E5A97AADC5D749E /* Pods_BestRamen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EECC8174A5AD6FAF351469 /* Pods_BestRamen.framework */; };
 		D32C4A39252A5FBD0092F5F4 /* MakePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32C4A38252A5FBD0092F5F4 /* MakePostViewController.swift */; };
+		D32DF62325346C7400F34A62 /* AddDonePlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32DF62225346C7400F34A62 /* AddDonePlaceholderTextView.swift */; };
+		D32DF62825346CF500F34A62 /* AddDoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32DF62725346CF500F34A62 /* AddDoneTextField.swift */; };
 		D337ABBB2502666D000C0D1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBA2502666D000C0D1E /* AppDelegate.swift */; };
 		D337ABBD2502666D000C0D1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBC2502666D000C0D1E /* SceneDelegate.swift */; };
 		D337ABBF2502666D000C0D1E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBE2502666D000C0D1E /* FirstViewController.swift */; };
@@ -64,6 +66,8 @@
 		77EECC8174A5AD6FAF351469 /* Pods_BestRamen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestRamen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F0A0DCFABC27C8761CC9DA3 /* Pods_BestRamenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestRamenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D32C4A38252A5FBD0092F5F4 /* MakePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostViewController.swift; sourceTree = "<group>"; };
+		D32DF62225346C7400F34A62 /* AddDonePlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddDonePlaceholderTextView.swift; path = ViewController/AddDonePlaceholderTextView.swift; sourceTree = "<group>"; };
+		D32DF62725346CF500F34A62 /* AddDoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoneTextField.swift; sourceTree = "<group>"; };
 		D337ABB72502666D000C0D1E /* BestRamen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestRamen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D337ABBA2502666D000C0D1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D337ABBC2502666D000C0D1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +168,8 @@
 		D337ABB92502666D000C0D1E /* BestRamen */ = {
 			isa = PBXGroup;
 			children = (
+				D32DF62725346CF500F34A62 /* AddDoneTextField.swift */,
+				D32DF62225346C7400F34A62 /* AddDonePlaceholderTextView.swift */,
 				D390231525068DF300C13328 /* ViewController */,
 				D337ABC22502666D000C0D1E /* Main.storyboard */,
 				D359AB8F2521BC87001C3213 /* CustomFloatingPanelLayout.swift */,
@@ -531,6 +537,7 @@
 				D337ABBF2502666D000C0D1E /* FirstViewController.swift in Sources */,
 				D3B218E3252657130025BC35 /* SecondCustomTableViewCell.swift in Sources */,
 				D390231725068ECA00C13328 /* ShopPageViewController.swift in Sources */,
+				D32DF62825346CF500F34A62 /* AddDoneTextField.swift in Sources */,
 				D3B218C825259BA30025BC35 /* EditViewController.swift in Sources */,
 				D375B6592503333500F511D0 /* CustomTableViewCell.swift in Sources */,
 				D32C4A39252A5FBD0092F5F4 /* MakePostViewController.swift in Sources */,
@@ -541,6 +548,7 @@
 				D359AB902521BC88001C3213 /* CustomFloatingPanelLayout.swift in Sources */,
 				D368C01C251B4A500062BED0 /* FollowListTableViewCell.swift in Sources */,
 				D3423172251A51E2004E8A0F /* CustomCollectionViewCell.swift in Sources */,
+				D32DF62325346C7400F34A62 /* AddDonePlaceholderTextView.swift in Sources */,
 				D368C022251B4B7C0062BED0 /* FollowListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
