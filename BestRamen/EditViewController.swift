@@ -212,6 +212,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
         let maxLength = 10
         return textFieldNumber + stringNumber <= maxLength
     }
+    //textViewに入力が行われる直前に呼ばれる。
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
 
         // textField内の文字数
@@ -232,15 +233,11 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
         }
         
     }
-    //textViewの変化ごとに呼ばれる。空か判定しchangeFlagを変化
+    //textViewの変化ごとに呼ばれる。
     func textViewDidChange(_ textView: UITextView) {
-           let text = textView.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-           if text?.isEmpty == true{
-            changeFlag["userProfile"] = false
-           }else{
-            changeFlag["userProfile"] = true
-           }
-       }
+        changeFlag["userProfile"] = true
+        
+    }
     // キーボードを閉じる（returnキーを押下時）
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // キーボードを閉じる

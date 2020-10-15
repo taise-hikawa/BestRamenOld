@@ -29,8 +29,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //空の行の線を消す
         homeTableView.tableFooterView = UIView()
         
-        
-        
         setPosts()
     }
     

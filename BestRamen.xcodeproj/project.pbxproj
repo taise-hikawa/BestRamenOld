@@ -13,6 +13,7 @@
 		D32C4A39252A5FBD0092F5F4 /* MakePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32C4A38252A5FBD0092F5F4 /* MakePostViewController.swift */; };
 		D32DF62325346C7400F34A62 /* AddDonePlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32DF62225346C7400F34A62 /* AddDonePlaceholderTextView.swift */; };
 		D32DF62825346CF500F34A62 /* AddDoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32DF62725346CF500F34A62 /* AddDoneTextField.swift */; };
+		D32DF6502535F43900F34A62 /* AddDoneSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32DF64F2535F43900F34A62 /* AddDoneSearchBar.swift */; };
 		D337ABBB2502666D000C0D1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBA2502666D000C0D1E /* AppDelegate.swift */; };
 		D337ABBD2502666D000C0D1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBC2502666D000C0D1E /* SceneDelegate.swift */; };
 		D337ABBF2502666D000C0D1E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBE2502666D000C0D1E /* FirstViewController.swift */; };
@@ -39,6 +40,7 @@
 		D3B218D025264C1F0025BC35 /* RamenChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B218CF25264C1F0025BC35 /* RamenChooseViewController.swift */; };
 		D3B218E3252657130025BC35 /* SecondCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B218E1252657130025BC35 /* SecondCustomTableViewCell.swift */; };
 		D3B218E4252657130025BC35 /* SecondCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */; };
+		D3F17FAE2535F9210048715D /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F17FAD2535F9210048715D /* CustomNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,7 @@
 		D32C4A38252A5FBD0092F5F4 /* MakePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostViewController.swift; sourceTree = "<group>"; };
 		D32DF62225346C7400F34A62 /* AddDonePlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddDonePlaceholderTextView.swift; path = ViewController/AddDonePlaceholderTextView.swift; sourceTree = "<group>"; };
 		D32DF62725346CF500F34A62 /* AddDoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoneTextField.swift; sourceTree = "<group>"; };
+		D32DF64F2535F43900F34A62 /* AddDoneSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoneSearchBar.swift; sourceTree = SOURCE_ROOT; };
 		D337ABB72502666D000C0D1E /* BestRamen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestRamen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D337ABBA2502666D000C0D1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D337ABBC2502666D000C0D1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +103,7 @@
 		D3B218CF25264C1F0025BC35 /* RamenChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RamenChooseViewController.swift; path = BestRamen/RamenChooseViewController.swift; sourceTree = SOURCE_ROOT; };
 		D3B218E1252657130025BC35 /* SecondCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondCustomTableViewCell.swift; sourceTree = "<group>"; };
 		D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondCustomTableViewCell.xib; sourceTree = "<group>"; };
+		D3F17FAD2535F9210048715D /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		D71A9EB647E223C30BA7B460 /* Pods_BestRamen_BestRamenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestRamen_BestRamenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F99D159FFB28B6DA450CBB9F /* Pods-BestRamen-BestRamenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen-BestRamenUITests.release.xcconfig"; path = "Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FF7B60530FE760DC023F5510 /* Pods-BestRamen-BestRamenUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen-BestRamenUITests.debug.xcconfig"; path = "Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 		D337ABB92502666D000C0D1E /* BestRamen */ = {
 			isa = PBXGroup;
 			children = (
+				D32DF64F2535F43900F34A62 /* AddDoneSearchBar.swift */,
 				D32DF62725346CF500F34A62 /* AddDoneTextField.swift */,
 				D32DF62225346C7400F34A62 /* AddDonePlaceholderTextView.swift */,
 				D390231525068DF300C13328 /* ViewController */,
@@ -177,6 +182,7 @@
 				D337ABBC2502666D000C0D1E /* SceneDelegate.swift */,
 				D359AB972521BCBB001C3213 /* customCell */,
 				D337ABC525026673000C0D1E /* Assets.xcassets */,
+				D3F17FAD2535F9210048715D /* CustomNavigationController.swift */,
 				D337ABC725026673000C0D1E /* LaunchScreen.storyboard */,
 				D337ABCA25026673000C0D1E /* Info.plist */,
 				D3A11AB32524F0F9008F62AD /* GoogleService-Info.plist */,
@@ -537,6 +543,7 @@
 				D337ABBF2502666D000C0D1E /* FirstViewController.swift in Sources */,
 				D3B218E3252657130025BC35 /* SecondCustomTableViewCell.swift in Sources */,
 				D390231725068ECA00C13328 /* ShopPageViewController.swift in Sources */,
+				D3F17FAE2535F9210048715D /* CustomNavigationController.swift in Sources */,
 				D32DF62825346CF500F34A62 /* AddDoneTextField.swift in Sources */,
 				D3B218C825259BA30025BC35 /* EditViewController.swift in Sources */,
 				D375B6592503333500F511D0 /* CustomTableViewCell.swift in Sources */,
@@ -550,6 +557,7 @@
 				D3423172251A51E2004E8A0F /* CustomCollectionViewCell.swift in Sources */,
 				D32DF62325346C7400F34A62 /* AddDonePlaceholderTextView.swift in Sources */,
 				D368C022251B4B7C0062BED0 /* FollowListViewController.swift in Sources */,
+				D32DF6502535F43900F34A62 /* AddDoneSearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,7 +5,6 @@ import FloatingPanel
 
 class SecondViewController: UIViewController ,MKMapViewDelegate,FloatingPanelControllerDelegate{
 
-    
     var floatingPanelController: FloatingPanelController!
     let db = Firestore.firestore()
     var shopsAry:[Dictionary<String,Any>] = []
@@ -26,7 +25,12 @@ class SecondViewController: UIViewController ,MKMapViewDelegate,FloatingPanelCon
     override func viewWillAppear(_ animated: Bool) {
         
     }
-    
+    // キーボードを閉じる（search以外の部分を押下時）
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if (searchBar.isFirstResponder) {
+            searchBar.resignFirstResponder()
+        }
+    }
     func setShops(){
         // 非同期のグループ作成
         let dispatchGroup = DispatchGroup()

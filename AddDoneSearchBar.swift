@@ -1,7 +1,7 @@
-import UIKit
 import Foundation
+import UIKit
 
-class AddDoneTextField: UITextField {
+class AddDoneSearchBar: UISearchBar {
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -29,3 +29,4 @@ class AddDoneTextField: UITextField {
         self.resignFirstResponder()
     }
 }
+

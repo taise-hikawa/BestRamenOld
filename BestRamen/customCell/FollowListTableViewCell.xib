@@ -37,6 +37,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.97100278250000005" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="userImageView" destination="xth-D8-E25" id="ZG8-RY-3mx"/>
                 <outlet property="userNameLabel" destination="HWJ-Wt-MpT" id="vw1-UT-y4T"/>

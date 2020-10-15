@@ -16,6 +16,8 @@ class SemiModalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         detailButton.addTarget(self, action: #selector(self.tapDetailButton(_:)), for: .touchUpInside)
+        detailButton.layer.cornerRadius = 8.0
+        detailButton.layer.masksToBounds = true
         closeButton.addTarget(self, action: #selector(self.tapCloseButton(_:)), for: .touchUpInside)
     }
     override func viewWillAppear(_ animated: Bool) {

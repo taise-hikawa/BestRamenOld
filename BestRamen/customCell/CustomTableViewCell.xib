@@ -61,6 +61,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.97100278250000005" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="postImageView" destination="Jl5-hr-57h" id="MCZ-g4-n53"/>
                 <outlet property="shopName" destination="k3f-sH-XIl" id="c9O-9w-j2B"/>

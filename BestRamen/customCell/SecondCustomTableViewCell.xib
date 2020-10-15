@@ -40,6 +40,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.97100278250000005" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="shopAdressLabel" destination="lqQ-4m-wyF" id="nBR-9x-si2"/>
                 <outlet property="shopNameLabel" destination="Exn-kc-Bl0" id="rCV-73-Ylw"/>

@@ -67,7 +67,7 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
         self.removeObserver() // Notificationを画面が消えるときに削除
         
     }
-    
+    //ラーメン店舗選択ボタン押下時の処理
     @objc func shopChooseButtonTapped(_ sender:UIButton){
         if (postContentTextView.isFirstResponder) {
             postContentTextView.resignFirstResponder()
@@ -84,6 +84,7 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
         floatingPanelController.addPanel(toParent: self)
         
     }
+    //モーダル終了後ラーメン店舗情報を受け渡す
     func ramenChooseDidFinished(shopName: String, shopId: String, rank: Int) {
         self.shopId = shopId
         self.shopName = shopName
@@ -91,14 +92,33 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
         postFlag["shop"] = true
         floatingPanelController.removePanelFromParent(animated: true)
     }
+    //textViewが変更されたときに呼ばれる
     func textViewDidChange(_ textView: UITextView) {
-            let text = textView.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-            if text?.isEmpty == true{
-                postFlag["content"] = false
-            }else{
-                postFlag["content"] = true
-            }
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == true{
+            postFlag["content"] = false
+        }else{
+            postFlag["content"] = true
         }
+        
+    }
+    //textViewに入力が行われる直前に呼ばれる。
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+
+        // textField内の文字数
+        let textViewNumber = textView.text?.count ?? 0
+        // 入力された文字数
+        let textNumber = text.count
+        // 文字数最大値を定義
+        let maxLength = 200
+        return textViewNumber + textNumber <= maxLength
+    }
+    // キーボードを閉じる（UITextField以外の部分を押下時）
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if (postContentTextView.isFirstResponder) {
+            postContentTextView.resignFirstResponder()
+        }
+    }
+    //投稿ボタン押下時の処理
     @objc func postButtonTapped(_ sender:UIButton){
         var ref: DocumentReference?
         ref = db.collection("posts").addDocument(data: [
@@ -158,12 +178,7 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
         notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        if (postContentTextView.isFirstResponder) {
-            postContentTextView.resignFirstResponder()
-        }
-    }
+
     // Notificationを削除
     func removeObserver() {
         

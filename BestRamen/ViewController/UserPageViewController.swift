@@ -17,10 +17,18 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
             if followFlag{
                 //フォロー中
                 followButton.setTitle("フォロー中", for: .normal)
+                followButton.backgroundColor = UIColor.white
+                followButton.setTitleColor(UIColor.black, for: .normal)
+                followButton.layer.borderColor = UIColor.gray.cgColor
+                followButton.layer.borderWidth = 1.0
                 
             }else{
                 //フォローしていない
                 followButton.setTitle("フォローする", for: .normal)
+                followButton.backgroundColor = UIColor.orange
+                followButton.setTitleColor(UIColor.white, for: .normal)
+                followButton.layer.borderColor = UIColor.gray.cgColor
+                followButton.layer.borderWidth = 0
             }
         }
     }
@@ -56,6 +64,8 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableViewConstraintHeight: NSLayoutConstraint!
     @IBOutlet weak var collectionViewConstraintHeight: NSLayoutConstraint!
+
+    @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,12 +86,12 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         collectionView.register(UINib(nibName: "CustomCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
         collectionView.delegate = self
         collectionView.dataSource = self
-        followListButton.setTitle("フォロー\n0", for: .normal)
+        followListButton.setTitle("0\nフォロー", for: .normal)
         //ボタンのテキストが改行可能に
         followListButton.titleLabel?.numberOfLines = 2
         //ボタンのテキスト中央寄せ
         followListButton.titleLabel!.textAlignment = NSTextAlignment.center
-        followerListButton.setTitle("フォロワー\n0", for: .normal)
+        followerListButton.setTitle("0\nフォロワー", for: .normal)
         followerListButton.titleLabel?.numberOfLines = 2
         followerListButton.titleLabel!.textAlignment = NSTextAlignment.center
         tableView.isScrollEnabled = false
@@ -92,22 +102,24 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.navigationItem.leftBarButtonItem = logOutButton
         editButton = UIBarButtonItem(title: "編集", style: .done, target: self, action: #selector(editButtonTapped(_:)))
         self.navigationItem.rightBarButtonItem = editButton
+        logOutButton.isEnabled = false
+        logOutButton.tintColor = UIColor.clear
+        editButton.isEnabled = false
+        editButton.tintColor = UIColor.clear
+        
         googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(googleSignInButton)
         googleSignInButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         googleSignInButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         self.googleSignInButton.isHidden = true
         googleSignInButton.isEnabled = false
-        logOutButton.isEnabled = false
-        logOutButton.tintColor = UIColor.clear
-        editButton.isEnabled = false
-        editButton.tintColor = UIColor.clear
+        
         followButton.addTarget(self, action: #selector(self.followButtonTapped(_:)), for: .touchUpInside)
+        followButton.layer.cornerRadius = 8.0
+        followButton.layer.masksToBounds = true
         alertController = UIAlertController(title: "ログインが必要です", message: nil, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
-        
-        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -136,20 +148,20 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
             if userId == currentUser?.uid{
                 //ログインユーザーのページの場合
                 self.followButton.isHidden = true
+                stackViewTopConstraint.priority = UILayoutPriority(rawValue: 1000)
             }else{
                 //その他のユーザーのページの場合
                 self.followButton.isHidden = false
+                stackViewTopConstraint.priority = UILayoutPriority(rawValue: 750)
                 if currentUser != nil{
                     self.db.collection("relationships").whereField("followedId", isEqualTo: userId!).whereField("followerId", isEqualTo:currentUser!.uid ).getDocuments{(queryDocumentSnapshot,error) in
                         if let queryDocumentSnapshot = queryDocumentSnapshot,queryDocumentSnapshot.documents.count != 0 {
-                            print("フォローしている")
                             self.followFlag = true
                             for document in queryDocumentSnapshot.documents{
                                 self.relationId = document.documentID
                                 
                             }
                         }else{
-                            print("フォローしてない")
                             self.followFlag = false
                         }
                     }
@@ -164,6 +176,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
                         //ログインの状態
                         self.verticalStackView.isHidden = false
                         self.followButton.isHidden = true
+                        self.stackViewTopConstraint.priority = UILayoutPriority(rawValue: 1000)
                         self.profileLabel.isHidden = false
                         self.followListButton.isHidden = false
                         self.followerListButton.isHidden = false
@@ -184,9 +197,9 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
                         self.setPosts()
                         self.setUser()
                         self.logOutButton.isEnabled = true
-                        self.logOutButton.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+                        self.logOutButton.tintColor = .white
                         self.editButton.isEnabled = true
-                        self.editButton.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+                        self.editButton.tintColor = .white
                         self.postButton.isHidden = false
                         self.followButton.isEnabled = false
                         
@@ -201,7 +214,6 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
                         self.googleSignInButton.isEnabled = true
                         self.nameLabel.text = "ログインされていません"
                         self.userImageView.image = nil
-                        self.userImageView.backgroundColor = UIColor.gray
                         self.logOutButton.isEnabled = false
                         self.logOutButton.tintColor = UIColor.clear
                         self.editButton.isEnabled = false
@@ -227,14 +239,14 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
             } else{
                 if querySnapshot!.documents.isEmpty{
                     self.followListButton.isEnabled = false
-                    self.followListButton.setTitle("フォロー\n0", for: .normal)
+                    self.followListButton.setTitle("0\nフォロー", for: .normal)
                 }else{
                     for document in querySnapshot!.documents{
                         var followDic:Dictionary<String, String> = [:]
                         followDic["userId"] = document["followedId"] as? String
                         followDic["userName"] = document["followedName"] as? String
                         self.followAry.append(followDic)
-                        self.followListButton.setTitle("フォロー\n\(String(self.followAry.count))", for: .normal)
+                        self.followListButton.setTitle("\(String(self.followAry.count))\nフォロー", for: .normal)
                         self.followListButton.isEnabled = true
                     }
                     
@@ -251,14 +263,14 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
             } else{
                 if querySnapshot!.documents.isEmpty{
                     self.followerListButton.isEnabled = false
-                    self.followerListButton.setTitle("フォロワー\n0", for: .normal)
+                    self.followerListButton.setTitle("0\nフォロワー", for: .normal)
                 }else{
                     for document in querySnapshot!.documents{
                         var followerDic:Dictionary<String, String> = [:]
                         followerDic["userId"] = document["followerId"] as? String
                         followerDic["userName"] = document["followerName"] as? String
                         self.followerAry.append(followerDic)
-                        self.followerListButton.setTitle("フォロワー\n\(String(self.followerAry.count))", for: .normal)
+                        self.followerListButton.setTitle("\(String(self.followerAry.count))\nフォロワー", for: .normal)
                         self.followerListButton.isEnabled = true
                     }
                 }
@@ -308,23 +320,25 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     
-    
+    //cellの数を設定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bestShopNameAry.count
     }
-    
+    //cellの内容を設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "shopCell", for: indexPath)
         cell.textLabel?.text = "MyBest\(indexPath.row + 1): " + bestShopNameAry[indexPath.row]
         return cell
     }
+    //cellが選択された時
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "toShopPageView", sender: nil)
     }
+    //cellの数を設定
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return postsAry.count
     }
-    
+    //cellの内容を設定
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! CustomCollectionViewCell
         storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["postId"]!)).jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
@@ -347,13 +361,14 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return space
     }
+    //collectionViewのcellのサイズ
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // 横方向のスペース調整
         let cellSize:CGFloat = (self.view.bounds.width - (space * 2))/3
         // 正方形で返すためにwidth,heightを同じにする
         return CGSize(width: cellSize, height: cellSize)
     }
-    
+    //cell押下時の処理
     var collectionSelectedNum:Int?
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
@@ -361,16 +376,17 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         performSegue(withIdentifier: "toPostViewController", sender: nil)
     }
     
-    
+    //フォローボタン押下時の処理
     @objc func tapFollowListButton(_ sender: UIButton){
         userAry = followAry
         self.performSegue(withIdentifier: "toFollowListViewController", sender: nil)
     }
+    //フォロワーボタン押下時の処理
     @objc func tapFollowerListButton(_ sender: UIButton){
         userAry = followerAry
         self.performSegue(withIdentifier: "toFollowListViewController", sender: nil)
     }
-    
+    //segueによる画面遷移時の値受け渡し
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPostViewController" {
             let nextVC = segue.destination as! PostViewController
@@ -401,6 +417,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
             nextVC.captureImage = captureImage
         }
     }
+    //ログアウトボタン押下時の処理
     @objc func logOutButtonTapped(_ sender: UIBarButtonItem) {
         let firebaseAuth = Auth.auth()
         do {
@@ -409,9 +426,11 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
             print ("Error signing out: %@", signOutError)
         }
     }
+    //編集ボタン押下時の処理
     @objc func editButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "toEditView", sender: nil)
     }
+    //フォローボタン押下時の処理
     @objc func followButtonTapped(_ sender: UIBarButtonItem) {
         if followFlag{
             db.collection("relationships").document(relationId).delete() { err in
@@ -451,6 +470,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
             }
         }
     }
+    //投稿ボタン押下時の処理
     @objc func postButtonTapped(_ sender: UIBarButtonItem) {
         //カメラがフォトライブラリーどちらから画像を取得するか選択
         let alertController = UIAlertController(title: "確認", message: "選択してください", preferredStyle: .actionSheet)
