@@ -35,9 +35,9 @@ class CustomTableViewCell: UITableViewCell {
         postImageView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/aspect).isActive = true
         postImageView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         postImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        postImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+//        postImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         postImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
-        postImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
+//        postImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         
     }
 
@@ -46,14 +46,19 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var shopName: UILabel!
     
+    //セルの再表示処理
     override func prepareForReuse() {
         super.prepareForReuse()
+        //再表示の際にconstraintが残っているため初期化する
+        self.removeConstraints(self.constraints)
+        postImageView.removeConstraints(postImageView.constraints)
   
     }
+    //Storyboardまたはnibファイルからロードされた直後に呼ばれる
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    //選択状態と通常状態の状態アニメーション処理
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

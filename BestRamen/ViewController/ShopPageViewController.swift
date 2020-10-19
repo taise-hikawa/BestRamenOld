@@ -35,7 +35,7 @@ class ShopPageViewController: UIViewController ,UICollectionViewDelegate,UIColle
     }
     
     func setPosts(){
-        db.collection("posts").whereField("shopId", isEqualTo: shopId!).getDocuments(){(querySnapshot, error) in
+        db.collection("posts").whereField("shopId", isEqualTo: shopId!).order(by: "createdAt", descending: true).getDocuments(){(querySnapshot, error) in
             if let querySnapshot = querySnapshot{
                 for document in querySnapshot.documents{
                     self.postDic["userName"] = document.data()["userName"] as? String
@@ -44,11 +44,15 @@ class ShopPageViewController: UIViewController ,UICollectionViewDelegate,UIColle
                     self.postDic["postContent"] = document.data()["postContent"] as? String
                     self.postDic["postId"] = document.documentID
                     self.postsAry.append(self.postDic)
-                    self.collectionView.reloadData()
+                }
+                self.collectionView.reloadData()
+                if let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                    self.collectionViewConstraintHeight.constant = layout.collectionViewContentSize.height
+                    self.view.layoutIfNeeded()
+                    
                 }
                 
             }
-            
         }
     }
     
@@ -58,16 +62,24 @@ class ShopPageViewController: UIViewController ,UICollectionViewDelegate,UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! CustomCollectionViewCell
-        storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["postId"]!)).jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
-            if error != nil {
-                return
-            }
-            if let imageData = data {
-                let postImage = UIImage(data: imageData)!
-                let cellSize:CGFloat = (self.view.bounds.width - (self.space * 2))/3
-                cell.imageView.image = postImage.resized(toWidth: cellSize)
-            }
-        }
+        //firebaseの容量を超えたのでコメントアウト
+//        storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["postId"]!)).jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+//            if error = error {
+//                print(error)
+//                return
+//            }
+//            if let imageData = data {
+//                let postImage = UIImage(data: imageData)!
+//                let cellSize:CGFloat = (self.view.bounds.width - (self.space * 2))/3
+//                cell.imageView.image = postImage.resized(toWidth: cellSize)
+//            }
+//        }
+        //firebasenの使用容量を超えたのでデフォルト画像を表示
+        let postImage = UIImage(named: postsAry[indexPath.row]["postId"]! as! String) ?? UIImage(named: "a")
+        let cellSize:CGFloat = (self.view.bounds.width - (self.space * 2))/3
+        cell.imageView.image = postImage!.resized(toWidth: cellSize)
+        cell.imageView.contentMode = .scaleAspectFill
+        cell.clipsToBounds = true
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -96,7 +108,7 @@ class ShopPageViewController: UIViewController ,UICollectionViewDelegate,UIColle
             nextVC.userName = postsAry[collectionSelectedNum!]["userName"] as? String
             nextVC.shopId = shopId
             nextVC.shopName = postsAry[collectionSelectedNum!]["shopName"] as? String
-            nextVC.postContent = postsAry[collectionSelectedNum!]["postContetn"] as? String
+            nextVC.postContent = postsAry[collectionSelectedNum!]["postContent"] as? String
             nextVC.postId = postsAry[collectionSelectedNum!]["postId"] as? String
         }
     }

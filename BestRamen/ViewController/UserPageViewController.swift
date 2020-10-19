@@ -49,8 +49,9 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     var currentUser:User!
     var relationId:String!
     var alertController:UIAlertController!
+    let postButton = UIButton()
     
-    @IBOutlet weak var postButton: UIButton!
+//    @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var horizontalStackView: UIStackView!
     @IBOutlet weak var verticalStackView: UIStackView!
@@ -70,9 +71,19 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         //投稿ボタンの設定
+        
+        postButton.setImage(UIImage(named: "camera"), for: .normal)
+        postButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(postButton)
+        postButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.3).isActive = true
+        postButton.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.3).isActive = true
+        postButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: (self.view.frame.size.width * 0.08)-(self.tabBarController?.tabBar.frame.size.height)!).isActive = true
+        postButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: (self.view.frame.size.width * 0.08)).isActive = true
+
         self.view.bringSubviewToFront(postButton)
         postButton.backgroundColor = UIColor.orange
-        postButton.layer.cornerRadius = 50.0
+        postButton.layer.cornerRadius = self.view.frame.size.width * 0.15
+        print(postButton.frame.size.width/2)
         postButton.contentMode = .scaleAspectFit
         postButton.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         postButton.addTarget(self, action: #selector(self.postButtonTapped(_:)), for: UIControl.Event.touchUpInside)
@@ -131,15 +142,17 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.profileLabel.isHidden = false
             self.followListButton.isHidden = false
             self.followerListButton.isHidden = false
-            self.storage.child("users").child("\(self.userId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
-                if error != nil {
-                    return
-                }
-                if let imageData = data {
-                    let userImg = UIImage(data: imageData)
-                    self.userImageView.image = userImg
-                }
-            }
+            //firestoreの使用量が超えたのでコメントアウト
+//            self.storage.child("users").child("\(self.userId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+//                if error != nil {
+//                    return
+//                }
+//                if let imageData = data {
+//                    let userImg = UIImage(data: imageData)
+//                    self.userImageView.image = userImg
+//                }
+//            }
+            self.userImageView.image = UIImage(named: userId)
             self.setFollow()
             self.setFollower()
             self.setPosts()
@@ -171,7 +184,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         }else{
             //タブバーから
             //ログイン状態で分岐
-                handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+            handle = Auth.auth().addStateDidChangeListener { [self] (auth, user) in
                     if user != nil {
                         //ログインの状態
                         self.verticalStackView.isHidden = false
@@ -183,15 +196,20 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
                         self.googleSignInButton.isHidden = true
                         self.googleSignInButton.isEnabled = false
                         self.userId = auth.currentUser?.uid
-                        self.storage.child("users").child("\(self.userId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
-                            if error != nil {
-                                return
-                            }
-                            if let imageData = data {
-                                let userImg = UIImage(data: imageData)
-                                self.userImageView.image = userImg
-                            }
-                        }
+                        //firebaseの使用容量を超えたのでコメントアウト
+//                        self.storage.child("users").child("\(self.userId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+//                            if let error = error {
+//                                print(error)
+//
+//                                return
+//                            }
+//                            if let imageData = data {
+//                                let userImg = UIImage(data: imageData)
+//                                self.userImageView.image = userImg
+//                            }
+//                        }
+                        
+                        self.userImageView.image = UIImage(named: self.userId)
                         self.setFollow()
                         self.setFollower()
                         self.setPosts()
@@ -297,22 +315,27 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func setPosts(){
-        db.collection("posts").whereField("userId", isEqualTo: userId!).getDocuments(){(querySnapshot, error) in
+        db.collection("posts").whereField("userId", isEqualTo: userId!).order(by: "createdAt", descending: true).getDocuments(){(querySnapshot, error) in
             self.postsAry = []
             if let querySnapshot = querySnapshot{
-                for document in querySnapshot.documents{
-                    var postDic:Dictionary<String, Any> = [:]
-                    postDic["userName"] = document.data()["userName"] as? String
-                    postDic["userId"] = document.data()["userId"] as? String
-                    postDic["shopName"] = document.data()["shopName"] as? String
-                    postDic["shopId"] = document.data()["shopId"] as? String
-                    postDic["postContent"] = document.data()["postContent"] as? String
-                    postDic["postId"] = document.documentID
-                    self.postsAry.append(postDic)
+                if querySnapshot.documents.count == 0{
                     self.collectionView.reloadData()
-                    if let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-                        self.collectionViewConstraintHeight.constant = layout.collectionViewContentSize.height
-                        self.view.layoutIfNeeded()
+                    
+                }else{
+                    for document in querySnapshot.documents{
+                        var postDic:Dictionary<String, Any> = [:]
+                        postDic["userName"] = document.data()["userName"] as? String
+                        postDic["userId"] = document.data()["userId"] as? String
+                        postDic["shopName"] = document.data()["shopName"] as? String
+                        postDic["shopId"] = document.data()["shopId"] as? String
+                        postDic["postContent"] = document.data()["postContent"] as? String
+                        postDic["postId"] = document.documentID
+                        self.postsAry.append(postDic)
+                        self.collectionView.reloadData()
+                        if let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                            self.collectionViewConstraintHeight.constant = layout.collectionViewContentSize.height
+                            self.view.layoutIfNeeded()
+                        }
                     }
                 }
             }
@@ -341,16 +364,22 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     //cellの内容を設定
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! CustomCollectionViewCell
-        storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["postId"]!)).jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
-            if error != nil {
-                return
-            }
-            if let imageData = data {
-                let postImage = UIImage(data: imageData)!
-                let cellSize:CGFloat = (self.view.bounds.width - (self.space * 2))/3
-                cell.imageView.image = postImage.resized(toWidth: cellSize)
-            }
-        }
+        //firebaseの使用容量を超えたのでコメントアウト
+//        storage.child("posts").child("\(String(describing: postsAry[indexPath.row]["postId"]!)).jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+//            if error != nil {
+//                return
+//            }
+//            if let imageData = data {
+//                let postImage = UIImage(data: imageData)!
+//                let cellSize:CGFloat = (self.view.bounds.width - (self.space * 2))/3
+//                cell.imageView.image = postImage.resized(toWidth: cellSize)
+//            }
+//        }
+        let postImage = UIImage(named: postsAry[indexPath.row]["postId"]! as! String) ?? UIImage(named: "a")
+        let cellSize:CGFloat = (self.view.bounds.width - (self.space * 2))/3
+        cell.imageView.image = postImage!.resized(toWidth: cellSize)
+        cell.imageView.contentMode = .scaleAspectFill
+        cell.clipsToBounds = true
         return cell
         
     }

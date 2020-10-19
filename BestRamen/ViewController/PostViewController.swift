@@ -23,31 +23,34 @@ class PostViewController: UIViewController {
         postImage.contentMode = .scaleAspectFill
         self.shopButton.addTarget(self,action: #selector(self.tapShopButton(_ :)),for: .touchUpInside)
         self.userButton.addTarget(self,action: #selector(self.tapUserButton(_ :)),for: .touchUpInside)
-        storage.child("users").child("\(userId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
-            if error != nil {
-                return
-            }
-            if let imageData = data {
-                let userImg = UIImage(data: imageData)
-                self.userImage.image = userImg
-            }
-        }
-        storage.child("posts").child("\(postId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
-            if error != nil {
-                return
-            }
-            if let imageData = data {
-                let postImg = UIImage(data: imageData)
-                self.postImage.image = postImg
-            }
-        }
-        deleteButton = UIBarButtonItem(title: "編集", style: .done, target: self, action: #selector(deleteButtonTapped(_:)))
+        //firebaseの使用容量を超えたのでコメントアウト
+//        storage.child("users").child("\(userId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+//            if error != nil {
+//                return
+//            }
+//            if let imageData = data {
+//                let userImg = UIImage(data: imageData)
+//                self.userImage.image = userImg
+//            }
+//        }
+        self.userImage.image = UIImage(named: userId) ?? UIImage(named: "default")
+//        storage.child("posts").child("\(postId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+//            if error != nil {
+//                return
+//            }
+//            if let imageData = data {
+//                let postImg = UIImage(data: imageData)
+//                self.postImage.image = postImg
+//            }
+//        }
+        self.postImage.image = UIImage(named: postId) ?? UIImage(named: "a")
+        deleteButton = UIBarButtonItem(title: "削除", style: .done, target: self, action: #selector(deleteButtonTapped(_:)))
         self.navigationItem.rightBarButtonItem = deleteButton
         deleteButton.isEnabled = false
         deleteButton.tintColor = UIColor.clear
         if userId == currentUser?.uid{
             deleteButton.isEnabled = true
-            deleteButton.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+            deleteButton.tintColor = .white
         }
     }
     
@@ -59,29 +62,42 @@ class PostViewController: UIViewController {
     }
     //投稿を削除する
     @objc func deleteButtonTapped(_ sender: UIButton){
-        //Firestoreのドキュメントを削除
-        db.collection("posts").document(postId).delete() { err in
-            if let err = err {
-                print("Error removing document: \(err)")
-            } else {
-                print("Document successfully removed!")
+        deleteButton.isEnabled = false
+        let dispatchGroup = DispatchGroup()
+        let dispatchQueue = DispatchQueue(label: "queue", attributes: .concurrent)
+        dispatchGroup.enter()
+        dispatchQueue.async(group: dispatchGroup) {
+            print(1,"start")
+            //Firestoreのドキュメントを削除
+            self.db.collection("posts").document(self.postId).delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                }
+                dispatchGroup.leave()
             }
         }
-        //Storageの画像ファイルを削除
-        storage.child("posts").child("\(postId ?? "").jpg").delete { error in
-            if let error = error {
-                // Uh-oh, an error occurred!
-                print("Error removing file: \(error)")
-            } else {
-                // File deleted successfully
-                print("File successfully removed!")
-            }
+//        dispatchQueue.async(group: dispatchGroup) {
+//            //Storageの画像ファイルを削除
+//            self.storage.child("posts").child("\(self.postId ?? "").jpg").delete { error in
+//                if let error = error {
+//                    // Uh-oh, an error occurred!
+//                    print("Error removing file: \(error)")
+//                } else {
+//                    // File deleted successfully
+//                    print("File successfully removed!")
+//                }
+//                dispatchGroup.leave()
+//            }
+//        }
+        dispatchGroup.notify(queue: .main) {
+            //現在のタブはtabNavigatinoControllerのトップへ
+            self.navigationController?.popToRootViewController(animated: true)
+            //画面を一番右のtab(マイページ)へ遷移
+            let UINavigationController = self.tabBarController?.viewControllers?[2]
+            self.tabBarController?.selectedViewController = UINavigationController
         }
-        //現在のタブはtabNavigatinoControllerのトップへ
-        self.navigationController?.popToRootViewController(animated: true)
-        //画面を一番右のtab(マイページ)へ遷移
-        let UINavigationController = self.tabBarController?.viewControllers?[2]
-        self.tabBarController?.selectedViewController = UINavigationController
         
     }
     

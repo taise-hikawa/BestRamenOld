@@ -31,15 +31,18 @@ class FollowListViewController: UIViewController,UITableViewDelegate,UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "followListCell", for: indexPath) as! FollowListTableViewCell
         cell.userNameLabel.text = userAry[indexPath.row]["userName"]
-        self.storage.child("users").child("\(String(describing: userAry[indexPath.row]["userId"]!)).jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
-            if error != nil {
-                return
-            }
-            if let imageData = data {
-                let userImg = UIImage(data: imageData)
-                cell.userImageView.image = userImg
-            }
-        }
+        //firebaseの容量が超えたのでコメントアウト
+//        self.storage.child("users").child("\(String(describing: userAry[indexPath.row]["userId"]!)).jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+//            if error != nil {
+//                return
+//            }
+//            if let imageData = data {
+//                let userImg = UIImage(data: imageData)
+//                cell.userImageView.image = userImg
+//            }
+//        }
+        //firebaseの容量が超えたのでデフォルトの画像を表示
+        cell.userImageView.image = UIImage(named: userAry[indexPath.row]["userId"] ?? "")
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){

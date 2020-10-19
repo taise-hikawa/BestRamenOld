@@ -120,41 +120,62 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
     }
     //投稿ボタン押下時の処理
     @objc func postButtonTapped(_ sender:UIButton){
+        postButton.isEnabled = false
+        let dispatchGroup = DispatchGroup()
+        let dispatchQueue = DispatchQueue(label: "queue", attributes: .concurrent)
         var ref: DocumentReference?
-        ref = db.collection("posts").addDocument(data: [
-            "userId": currentUser.uid,
-            "userName": currentUser.displayName!,
-            "shopId": shopId!,
-            "shopName":shopName!,
-            "postContent":(postContentTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines))!,
-            "createdAt": FieldValue.serverTimestamp()
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document successfully added!")
-                
-                let storageref = Storage.storage().reference(forURL: "gs://bestramen-90259.appspot.com").child("posts").child("\(ref?.documentID ?? "").jpg")
-                //画像
-                let image = self.captureImage
-                //imageをNSDataに変換
-                let data = image!.jpegData(compressionQuality: 1.0)
-                //メタデータを設定
-                let metaData = StorageMetadata()
-                metaData.contentType = "image/jpeg"
-                //Storageに保存
-                storageref.putData(data!, metadata: metaData) { (data, error) in
-                    if error != nil {
-                        return
-                    }
+        dispatchGroup.enter()
+        dispatchQueue.async(group: dispatchGroup) {
+            ref = self.db.collection("posts").addDocument(data: [
+                "userId": self.currentUser.uid,
+                "userName": self.currentUser.displayName!,
+                "shopId": self.shopId!,
+                "shopName":self.shopName!,
+                "postContent":(self.postContentTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines))!,
+                "createdAt": FieldValue.serverTimestamp()
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document successfully added!")
+                    dispatchGroup.leave()
                 }
-                //現在のタブはtabNavigatinoControllerのトップへ
-                self.navigationController?.popToRootViewController(animated: true)
-                //画面を一番左のtabへ遷移
-                let UINavigationController = self.tabBarController?.viewControllers?[0]
-                self.tabBarController?.selectedViewController = UINavigationController
             }
+//            let storageref = Storage.storage().reference(forURL: "gs://bestramen-90259.appspot.com").child("posts").child("\(ref?.documentID ?? "").jpg")
+//            //画像
+//            let image = self.captureImage
+//            //imageをNSDataに変換
+//            var data = image!.jpegData(compressionQuality: 1.0)
+//            while Double(NSData(data: data!).count) > 10000000{
+//                data = image!.jpegData(compressionQuality: 0.5)
+//            }
+//            //メタデータを設定
+//            let metaData = StorageMetadata()
+//            metaData.contentType = "image/jpeg"
+//            dispatchGroup.enter()
+//            dispatchQueue.async(group: dispatchGroup) {
+//                print(2,"start")
+//                //Storageに保存
+//                storageref.putData(data!, metadata: metaData) { (data, error) in
+//                    if let error = error {
+//                        print("Error adding file: \(error)")
+//                        return
+//                    }else{
+//                        print("File successfully added!")
+//                        print(2,"end")
+//                        dispatchGroup.leave()
+//                    }
+//                }
+//            }
+            dispatchGroup.notify(queue: .main) {
+            //現在のタブはtabNavigatinoControllerのトップへ
+            self.navigationController?.popToRootViewController(animated: true)
+            //画面を一番左のtabへ遷移
+            let UINavigationController = self.tabBarController?.viewControllers?[0]
+            self.tabBarController?.selectedViewController = UINavigationController
         }
+        }
+        
     }
     // カスタマイズしたレイアウトに変更
     func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout {
