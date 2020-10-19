@@ -1,6 +1,6 @@
 # BestRamen
 
-![homegif](https://i.imgur.com/EBGjcbG.gifv "homegif")
+![homegif](https://i.imgur.com/EBGjcbG.gif "homegif")
 ## 製品概要
 BestRamen
 ラーメン口コミアプリ
