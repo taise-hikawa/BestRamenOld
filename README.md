@@ -70,6 +70,17 @@ gem 3.0.3
 cocoapods 1.10.0
 Xcode 12.0.1
 
+```bash
+git clone https://github.com/taise-hikawa/BestRamen.git
+pod "Firebase/Firestore"
+pod "Firebase/Storage"
+pod "Firebase/Auth"
+pod "FloatingPanel"
+pod "RSKImageCropper"
+pod 'GoogleSignIn'
+pod install
+```
+
 ### 未実装箇所
 * Map画面で店舗を検索する機能は未実施。現在検索フィールドのみ存在。
 
