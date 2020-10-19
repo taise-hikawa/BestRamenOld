@@ -1,5 +1,6 @@
 # BestRamen
-![home](https://imgur.com/6fiaqFw.png "home")
+
+![homegif](https://i.imgur.com/EBGjcbG.gifv "homegif")
 ## 製品概要
 BestRamen
 ラーメン口コミアプリ
@@ -65,5 +66,5 @@ Xcode 12.0.1
 
 動画->[https://www.youtube.com/watch?v=JU4YCqh2cOA](https://www.youtube.com/watch?v=JU4YCqh2cOA)
 
-
+![home](https://imgur.com/6fiaqFw.png "home")
 ### README作成中
