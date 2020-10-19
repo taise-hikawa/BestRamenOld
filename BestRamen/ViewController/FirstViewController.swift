@@ -5,8 +5,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let db = Firestore.firestore()
     let storage = Storage.storage().reference(forURL: "gs://bestramen-90259.appspot.com")
     var postsAry:[Dictionary<String,Any>] = []
-    //    var postImg = UIImage()
-    //    var userImg = UIImage()
     var postImgDic:Dictionary<String,UIImage> = [:]
     var userImgDic:Dictionary<String,UIImage> = [:]
     var userCount:Int = 0
