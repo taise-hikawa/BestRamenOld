@@ -1,5 +1,5 @@
 # BestRamen
-![home](https://imgur.com/6fiaqFw "home")
+![home](https://imgur.com/6fiaqFw.png "home")
 ## 製品概要
 BestRamen
 ラーメン口コミアプリ
