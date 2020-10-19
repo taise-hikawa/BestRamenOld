@@ -64,7 +64,23 @@ Xcode 12.0.1
 ### 未実装箇所
 * Map画面で店舗を検索する機能は未実施。現在検索フィールドのみ存在。
 
-動画->[https://www.youtube.com/watch?v=JU4YCqh2cOA](https://www.youtube.com/watch?v=JU4YCqh2cOA)
+### デモンストレーション動画
+[https://www.youtube.com/watch?v=JU4YCqh2cOA](https://www.youtube.com/watch?v=JU4YCqh2cOA)
 
+### スクリーンショット
 ![home](https://imgur.com/6fiaqFw.png "home")
+![mypage](https://i.imgur.com/NSIPtsJ.png "mypage")
+![map](https://i.imgur.com/GYzWoFV.png "map")
+![maptapped](https://i.imgur.com/DEbs8bR.png "post")
+![posttapped](https://i.imgur.com/6HVv73h.png "posttapped")
+![resize](https://i.imgur.com/6UwS2f6.png "resize")
+![posting](https://i.imgur.com/HfHmNNa.png "posting")
+![posted](https://i.imgur.com/7wtQ5Q1.png "posted")
+![edit](https://i.imgur.com/adjiD1M.png "edit")
+![userpage](https://i.imgur.com/FVLdLuS.png "userpage")
+![shop](https://i.imgur.com/kzSOeFm.png "shop")
+![followlist](https://i.imgur.com/4D4L9AS.png "followlist")
+![logout](https://i.imgur.com/ZeufTuC.png "logout")
+
+
 ### README作成中
