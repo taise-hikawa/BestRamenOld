@@ -72,7 +72,8 @@ Xcode 12.0.1
 ![mypage](https://i.imgur.com/NSIPtsJ.png "mypage")
 ![map](https://i.imgur.com/GYzWoFV.png "map")
 ![maptapped](https://i.imgur.com/DEbs8bR.png "post")
-![posttapped](https://i.imgur.com/6HVv73h.png "posttapped")
+<img src="https://i.imgur.com/6HVv73h.png" width="340">
+![posttapped]( "posttapped")
 ![resize](https://i.imgur.com/6UwS2f6.png "resize")
 ![posting](https://i.imgur.com/HfHmNNa.png "posting")
 ![posted](https://i.imgur.com/7wtQ5Q1.png "posted")
