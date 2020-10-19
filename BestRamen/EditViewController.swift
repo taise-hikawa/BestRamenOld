@@ -110,15 +110,18 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate,UINa
         textView.text = userProfile
         userNameField.delegate = self
         textView.delegate = self
-        storage.child("users").child("\(userId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
-            if error != nil {
-                return
-            }
-            if let imageData = data {
-                let userImg = UIImage(data: imageData)
-                self.userImageView.image = userImg
-            }
-        }
+        //firebaseの使用容量を超えたのでコメントアウト
+//        storage.child("users").child("\(userId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+//            if let error = error {
+//                print(error)
+//                return
+//            }
+//            if let imageData = data {
+//                let userImg = UIImage(data: imageData)
+//                self.userImageView.image = userImg
+//            }
+//        }
+        self.userImageView.image = UIImage(named: userId)
         changeImageButton.addTarget(self, action: #selector(self.tapChangeImageButton(_:)), for: .touchUpInside)
         editOneButton.addTarget(self, action: #selector(self.tapEditOneButton(_:)), for: .touchUpInside)
         editTwoButton.addTarget(self, action: #selector(self.tapEditTwoButton(_:)), for: .touchUpInside)
