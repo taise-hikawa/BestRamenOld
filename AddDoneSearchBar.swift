@@ -27,7 +27,6 @@ class AddDoneSearchBar: UISearchBar {
     @objc func closeButtonTapped(){
         self.endEditing(true)
         self.resignFirstResponder()
-        print("a")
     }
 }
 
