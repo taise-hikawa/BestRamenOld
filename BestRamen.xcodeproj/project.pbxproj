@@ -229,9 +229,9 @@
 			isa = PBXGroup;
 			children = (
 				D337ABBE2502666D000C0D1E /* FirstViewController.swift */,
-				D368C021251B4B7C0062BED0 /* FollowListViewController.swift */,
 				D390231625068ECA00C13328 /* ShopPageViewController.swift */,
 				D375B66825065A5E00F511D0 /* PostViewController.swift */,
+				D368C021251B4B7C0062BED0 /* FollowListViewController.swift */,
 				D337ABC02502666D000C0D1E /* SecondViewController.swift */,
 				D33D66C52521B3BA00A1A28D /* SemiModalViewController.swift */,
 				D390231325068DCD00C13328 /* UserPageViewController.swift */,
