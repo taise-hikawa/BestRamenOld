@@ -23,4 +23,33 @@ SNS形式でラーメンの口コミを投稿する。
 機械学習を用いて、好みそうな投稿、趣味が合いそうなユーザーをおすすめ表示。
 いいね機能/メッセージ機能などを追加しSNSとしての役割も充実。
 
+## 開発環境
+* 言語：Swift5
+
+### 活用した技術
+* Xcode 12.0.1
+* GitHub
+
+* Illustrator(ポートフォリオムービー作成)
+* PremierePro(ポートフォリオムービー作成)
+
+#### フレームワーク・ライブラリ・モジュール
+* Map Kit
+* Firebase/Storage
+* Firebase/Firestore
+* Firebase/Auth
+* GoogleSignIn
+* RSKImageCropper
+
+#### デバイス
+* iPhone 11
+その他のデバイスの動作確認中
+
+#### 実行
+
+gem 3.0.3
+cocoapods 1.10.0
+Xcode 12.0.1
+
+動画->[https://www.youtube.com/watch?v=JU4YCqh2cOA](https://www.youtube.com/watch?v=JU4YCqh2cOA)
 ### 作成中
