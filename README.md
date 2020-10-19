@@ -72,7 +72,7 @@ Xcode 12.0.1
 ![mypage](https://i.imgur.com/NSIPtsJ.png "mypage")
 ![map](https://i.imgur.com/GYzWoFV.png "map")
 ![maptapped](https://i.imgur.com/DEbs8bR.png "post")
-<img src="https://i.imgur.com/6HVv73h.png" width="340">
+<img src="https://i.imgur.com/6HVv73h.png">
 ![posttapped]( "posttapped")
 ![resize](https://i.imgur.com/6UwS2f6.png "resize")
 ![posting](https://i.imgur.com/HfHmNNa.png "posting")
