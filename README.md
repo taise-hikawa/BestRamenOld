@@ -80,7 +80,7 @@ pod "RSKImageCropper"
 pod 'GoogleSignIn'
 pod install
 ```
-
+※現在Firebaseの使用上限量に達したため、デフォルト画像を表示する設定になっております。()
 ### 未実装箇所
 * Map画面で店舗を検索する機能は未実施。現在検索フィールドのみ存在。
 
