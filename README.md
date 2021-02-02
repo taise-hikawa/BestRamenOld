@@ -52,7 +52,7 @@ SNS形式でラーメンの口コミを投稿する。
 * Illustrator(ポートフォリオムービー作成)
 * PremierePro(ポートフォリオムービー作成)
 
-#### フレームワーク・ライブラリ・モジュール
+#### ライブラリ
 * Map Kit
 * Firebase/Storage
 * Firebase/Firestore
