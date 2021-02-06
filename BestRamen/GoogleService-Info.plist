@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>52385335347-2nhr02fk7g4vcm071eeagujl2ih29bbr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.52385335347-2nhr02fk7g4vcm071eeagujl2ih29bbr</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCbQO43xalgMBK6uBaEBlnJY3EHwsg-nZo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>52385335347</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.hikawaproj.BestRamen</string>
+	<key>PROJECT_ID</key>
+	<string>bestramen-90259</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bestramen-90259.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:52385335347:ios:babf7d6b8782ee939dbb46</string>
+	<key>DATABASE_URL</key>
+	<string>https://bestramen-90259.firebaseio.com</string>
+</dict>
+</plist>

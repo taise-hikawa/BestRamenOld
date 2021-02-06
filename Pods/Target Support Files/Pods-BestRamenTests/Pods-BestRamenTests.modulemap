@@ -1,0 +1,6 @@
+framework module Pods_BestRamenTests {
+  umbrella header "Pods-BestRamenTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
