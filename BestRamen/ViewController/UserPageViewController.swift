@@ -419,12 +419,12 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPostViewController" {
             let nextVC = segue.destination as! PostViewController
-            nextVC.userName = postsAry[collectionSelectedNum!]["userName"] as? String
-            nextVC.userId = userId
-            nextVC.shopName = postsAry[collectionSelectedNum!]["shopName"] as? String
-            nextVC.shopId = postsAry[collectionSelectedNum!]["shopId"] as? String
-            nextVC.postContent = postsAry[collectionSelectedNum!]["postContent"] as? String
-            nextVC.postId = postsAry[collectionSelectedNum!]["postId"] as? String
+//            nextVC.userName = postsAry[collectionSelectedNum!]["userName"] as? String
+//            nextVC.userId = userId
+//            nextVC.shopName = postsAry[collectionSelectedNum!]["shopName"] as? String
+//            nextVC.shopId = postsAry[collectionSelectedNum!]["shopId"] as? String
+//            nextVC.postContent = postsAry[collectionSelectedNum!]["postContent"] as? String
+//            nextVC.postId = postsAry[collectionSelectedNum!]["postId"] as? String
         }
         else if segue.identifier == "toFollowListViewController"{
             let nextVC = segue.destination as! FollowListViewController

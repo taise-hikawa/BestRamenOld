@@ -46,6 +46,16 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var shopName: UILabel!
     
+    func initSelf(item: [String: String]) {
+        postImageView.contentMode = .scaleAspectFill
+        userName.text = item["userName"]
+        shopName.text = item["shopName"]
+        userImageView.image = UIImage(named: item["userId"] ?? "default")
+        if let postImage = UIImage(named: item["postId"] ?? "a") {
+            setPostedImage(image: postImage)
+        }
+    }
+    
     //セルの再表示処理
     override func prepareForReuse() {
         super.prepareForReuse()

@@ -4,22 +4,21 @@ import Firebase
 
 class PostViewController: UIViewController {
     
-    var shopName:String!
-    var shopId:String!
-    var userName:String!
-    var postContent:String!
-    var userId:String!
-    var postId:String!
+    var item: [String: String] = [:]
     let storage = Storage.storage().reference(forURL: "gs://bestramen-90259.appspot.com")
     var deleteButton: UIBarButtonItem!
     let db = Firestore.firestore()
+    
+    func initSelf(item: [String: String]) {
+        self.item = item
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let currentUser = Auth.auth().currentUser
-        userButton.setTitle(userName, for: .normal)
-        shopButton.setTitle(shopName, for: .normal)
-        postLabel.text = postContent
+        userButton.setTitle(item["userName"], for: .normal)
+        shopButton.setTitle(item["shopName"], for: .normal)
+        postLabel.text = item["postContent"]
         postImage.contentMode = .scaleAspectFill
         self.shopButton.addTarget(self,action: #selector(self.tapShopButton(_ :)),for: .touchUpInside)
         self.userButton.addTarget(self,action: #selector(self.tapUserButton(_ :)),for: .touchUpInside)
@@ -33,7 +32,7 @@ class PostViewController: UIViewController {
 //                self.userImage.image = userImg
 //            }
 //        }
-        self.userImage.image = UIImage(named: userId) ?? UIImage(named: "default")
+        self.userImage.image = UIImage(named: item["userId"] ?? "default")
 //        storage.child("posts").child("\(postId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
 //            if error != nil {
 //                return
@@ -43,12 +42,12 @@ class PostViewController: UIViewController {
 //                self.postImage.image = postImg
 //            }
 //        }
-        self.postImage.image = UIImage(named: postId) ?? UIImage(named: "a")
+        self.postImage.image = UIImage(named: item["postId"] ?? "a")
         deleteButton = UIBarButtonItem(title: "削除", style: .done, target: self, action: #selector(deleteButtonTapped(_:)))
         self.navigationItem.rightBarButtonItem = deleteButton
         deleteButton.isEnabled = false
         deleteButton.tintColor = UIColor.clear
-        if userId == currentUser?.uid{
+        if item["userId"] == currentUser?.uid{
             deleteButton.isEnabled = true
             deleteButton.tintColor = .white
         }
@@ -69,7 +68,7 @@ class PostViewController: UIViewController {
         dispatchQueue.async(group: dispatchGroup) {
             print(1,"start")
             //Firestoreのドキュメントを削除
-            self.db.collection("posts").document(self.postId).delete() { err in
+            self.db.collection("posts").document(self.item["postId"] ?? "a").delete() { err in
                 if let err = err {
                     print("Error removing document: \(err)")
                 } else {
@@ -108,13 +107,13 @@ class PostViewController: UIViewController {
             // 2. 遷移先のViewControllerを取得
             let nextVC = segue.destination as! UserPageViewController
             // 3. １で用意した遷移先の変数に値を渡す
-            nextVC.userId = userId
+            nextVC.userId = item["userId"]
             nextVC.fromSegue = true
             
         }
         if segue.identifier == "toShopPage"{
             let nextVC = segue.destination as! ShopPageViewController
-            nextVC.shopId = shopId
+            nextVC.shopId = item["shopId"]
             
         }
     }
