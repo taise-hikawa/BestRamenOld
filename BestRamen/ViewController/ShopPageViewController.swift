@@ -104,7 +104,7 @@ class ShopPageViewController: UIViewController ,UICollectionViewDelegate,UIColle
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPostViewController" {
             let nextVC = segue.destination as! PostViewController
-            nextVC.initSelf(item: [:])
+//            nextVC.initSelf(item: [:])
 //            nextVC.userId = postsAry[collectionSelectedNum!]["userId"] as? String
 //            nextVC.userName = postsAry[collectionSelectedNum!]["userName"] as? String
 //            nextVC.shopId = shopId

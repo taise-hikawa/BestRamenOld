@@ -7,12 +7,17 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
 public struct Post: Codable {
-    let userId: Int?
+    @DocumentID var id: String?
+    let userId: String?
     let userName: String?
-    let shopId: Int?
+    let shopId: String?
     let shopName: String?
-    let postId: Int?
     let postContent: String?
+}
+
+extension Post {
+    var postId: String? { id }
 }

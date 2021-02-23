@@ -3,22 +3,28 @@ import FirebaseStorage
 import Firebase
 
 class PostViewController: UIViewController {
+
+    @IBOutlet weak var postImage: UIImageView!
+    @IBOutlet weak var shopButton: UIButton!
+    @IBOutlet weak var userButton: UIButton!
+    @IBOutlet weak var postLabel: UILabel!
+    @IBOutlet weak var userImage: UIImageView!
     
-    var item: [String: String] = [:]
-    let storage = Storage.storage().reference(forURL: "gs://bestramen-90259.appspot.com")
+    var item: Post?
+    
     var deleteButton: UIBarButtonItem!
-    let db = Firestore.firestore()
+    let viewModel: PostViewModel? = PostViewModel()
     
-    func initSelf(item: [String: String]) {
+    func initSelf(item: Post) {
         self.item = item
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let currentUser = Auth.auth().currentUser
-        userButton.setTitle(item["userName"], for: .normal)
-        shopButton.setTitle(item["shopName"], for: .normal)
-        postLabel.text = item["postContent"]
+        
+        userButton.setTitle(item?.userName, for: .normal)
+        shopButton.setTitle(item?.shopName, for: .normal)
+        postLabel.text = item?.postContent
         postImage.contentMode = .scaleAspectFill
         self.shopButton.addTarget(self,action: #selector(self.tapShopButton(_ :)),for: .touchUpInside)
         self.userButton.addTarget(self,action: #selector(self.tapUserButton(_ :)),for: .touchUpInside)
@@ -32,7 +38,7 @@ class PostViewController: UIViewController {
 //                self.userImage.image = userImg
 //            }
 //        }
-        self.userImage.image = UIImage(named: item["userId"] ?? "default")
+        self.userImage.image = UIImage(named: item?.userId?.description ?? "default")
 //        storage.child("posts").child("\(postId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
 //            if error != nil {
 //                return
@@ -42,12 +48,12 @@ class PostViewController: UIViewController {
 //                self.postImage.image = postImg
 //            }
 //        }
-        self.postImage.image = UIImage(named: item["postId"] ?? "a")
+        self.postImage.image = UIImage(named: item?.postId?.description ?? "a")
         deleteButton = UIBarButtonItem(title: "削除", style: .done, target: self, action: #selector(deleteButtonTapped(_:)))
         self.navigationItem.rightBarButtonItem = deleteButton
         deleteButton.isEnabled = false
         deleteButton.tintColor = UIColor.clear
-        if item["userId"] == currentUser?.uid{
+        if item?.userId == viewModel?.currentUser {
             deleteButton.isEnabled = true
             deleteButton.tintColor = .white
         }
@@ -62,22 +68,7 @@ class PostViewController: UIViewController {
     //投稿を削除する
     @objc func deleteButtonTapped(_ sender: UIButton){
         deleteButton.isEnabled = false
-        let dispatchGroup = DispatchGroup()
-        let dispatchQueue = DispatchQueue(label: "queue", attributes: .concurrent)
-        dispatchGroup.enter()
-        dispatchQueue.async(group: dispatchGroup) {
-            print(1,"start")
-            //Firestoreのドキュメントを削除
-            self.db.collection("posts").document(self.item["postId"] ?? "a").delete() { err in
-                if let err = err {
-                    print("Error removing document: \(err)")
-                } else {
-                    print("Document successfully removed!")
-                }
-                dispatchGroup.leave()
-            }
-        }
-//        dispatchQueue.async(group: dispatchGroup) {
+        
 //            //Storageの画像ファイルを削除
 //            self.storage.child("posts").child("\(self.postId ?? "").jpg").delete { error in
 //                if let error = error {
@@ -90,37 +81,33 @@ class PostViewController: UIViewController {
 //                dispatchGroup.leave()
 //            }
 //        }
-        dispatchGroup.notify(queue: .main) {
+        guard let id = item?.postId else { return }
+        viewModel?.deletePost(id: id)
+        //TODO: deleteが行われた後以下の処理をしないといけない
             //現在のタブはtabNavigatinoControllerのトップへ
             self.navigationController?.popToRootViewController(animated: true)
             //画面を一番右のtab(マイページ)へ遷移
             let UINavigationController = self.tabBarController?.viewControllers?[2]
             self.tabBarController?.selectedViewController = UINavigationController
-        }
         
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // segueのIDを確認して特定のsegueのときのみ動作させる
-        if segue.identifier == "toUserPage" {
-            // 2. 遷移先のViewControllerを取得
-            let nextVC = segue.destination as! UserPageViewController
-            // 3. １で用意した遷移先の変数に値を渡す
-            nextVC.userId = item["userId"]
-            nextVC.fromSegue = true
-            
-        }
-        if segue.identifier == "toShopPage"{
-            let nextVC = segue.destination as! ShopPageViewController
-            nextVC.shopId = item["shopId"]
-            
-        }
+//        // segueのIDを確認して特定のsegueのときのみ動作させる
+//        if segue.identifier == "toUserPage" {
+//            // 2. 遷移先のViewControllerを取得
+//            let nextVC = segue.destination as! UserPageViewController
+//            // 3. １で用意した遷移先の変数に値を渡す
+//            nextVC.userId = item["userId"]
+//            nextVC.fromSegue = true
+//
+//        }
+//        if segue.identifier == "toShopPage"{
+//            let nextVC = segue.destination as! ShopPageViewController
+//            nextVC.shopId = item["shopId"]
+//
+//        }
     }
     
-    @IBOutlet weak var postImage: UIImageView!
-    @IBOutlet weak var shopButton: UIButton!
-    @IBOutlet weak var userButton: UIButton!
-    @IBOutlet weak var postLabel: UILabel!
-    @IBOutlet weak var userImage: UIImageView!
 }

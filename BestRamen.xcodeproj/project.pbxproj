@@ -19,7 +19,7 @@
 		D32DF6502535F43900F34A62 /* AddDoneSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32DF64F2535F43900F34A62 /* AddDoneSearchBar.swift */; };
 		D337ABBB2502666D000C0D1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBA2502666D000C0D1E /* AppDelegate.swift */; };
 		D337ABBD2502666D000C0D1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBC2502666D000C0D1E /* SceneDelegate.swift */; };
-		D337ABBF2502666D000C0D1E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBE2502666D000C0D1E /* FirstViewController.swift */; };
+		D337ABBF2502666D000C0D1E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABBE2502666D000C0D1E /* HomeViewController.swift */; };
 		D337ABC12502666D000C0D1E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D337ABC02502666D000C0D1E /* SecondViewController.swift */; };
 		D337ABC42502666D000C0D1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D337ABC22502666D000C0D1E /* Main.storyboard */; };
 		D337ABC625026673000C0D1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D337ABC525026673000C0D1E /* Assets.xcassets */; };
@@ -46,6 +46,8 @@
 		D53BD9C225E5278900E03845 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53BD9C125E5278900E03845 /* Post.swift */; };
 		D5D3AF5D25E52EA800CE6C50 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3AF5C25E52EA800CE6C50 /* User.swift */; };
 		D5D3AF6225E52EBD00CE6C50 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3AF6125E52EBD00CE6C50 /* Shop.swift */; };
+		D5D3AF6A25E531F400CE6C50 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3AF6925E531F400CE6C50 /* PostModel.swift */; };
+		D5D3AF6F25E5320400CE6C50 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3AF6E25E5320400CE6C50 /* PostViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +86,7 @@
 		D337ABB72502666D000C0D1E /* BestRamen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestRamen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D337ABBA2502666D000C0D1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D337ABBC2502666D000C0D1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D337ABBE2502666D000C0D1E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		D337ABBE2502666D000C0D1E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D337ABC02502666D000C0D1E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		D337ABC32502666D000C0D1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D337ABC525026673000C0D1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,6 +118,8 @@
 		D53BD9C125E5278900E03845 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D5D3AF5C25E52EA800CE6C50 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D5D3AF6125E52EBD00CE6C50 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		D5D3AF6925E531F400CE6C50 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		D5D3AF6E25E5320400CE6C50 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		EBB13ADE04C2392F1334FFF3 /* Pods-BestRamen-BestRamenUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen-BestRamenUITests.debug.xcconfig"; path = "Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				8EF797F725CE774F00AE553C /* HomePostsViewModel.swift */,
+				D5D3AF6E25E5320400CE6C50 /* PostViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 				D53BD9C125E5278900E03845 /* Post.swift */,
 				D5D3AF5C25E52EA800CE6C50 /* User.swift */,
 				D5D3AF6125E52EBD00CE6C50 /* Shop.swift */,
+				D5D3AF6925E531F400CE6C50 /* PostModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -257,7 +263,7 @@
 		D390231525068DF300C13328 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D337ABBE2502666D000C0D1E /* FirstViewController.swift */,
+				D337ABBE2502666D000C0D1E /* HomeViewController.swift */,
 				D390231625068ECA00C13328 /* ShopPageViewController.swift */,
 				D375B66825065A5E00F511D0 /* PostViewController.swift */,
 				D368C021251B4B7C0062BED0 /* FollowListViewController.swift */,
@@ -569,9 +575,10 @@
 				D390231425068DCE00C13328 /* UserPageViewController.swift in Sources */,
 				D5D3AF5D25E52EA800CE6C50 /* User.swift in Sources */,
 				D53BD9C225E5278900E03845 /* Post.swift in Sources */,
-				D337ABBF2502666D000C0D1E /* FirstViewController.swift in Sources */,
+				D337ABBF2502666D000C0D1E /* HomeViewController.swift in Sources */,
 				D3B218E3252657130025BC35 /* SecondCustomTableViewCell.swift in Sources */,
 				D390231725068ECA00C13328 /* ShopPageViewController.swift in Sources */,
+				D5D3AF6F25E5320400CE6C50 /* PostViewModel.swift in Sources */,
 				D3F17FAE2535F9210048715D /* CustomNavigationController.swift in Sources */,
 				D32DF62825346CF500F34A62 /* AddDoneTextField.swift in Sources */,
 				D3B218C825259BA30025BC35 /* EditViewController.swift in Sources */,
@@ -583,6 +590,7 @@
 				D33D66C62521B3BA00A1A28D /* SemiModalViewController.swift in Sources */,
 				D337ABBD2502666D000C0D1E /* SceneDelegate.swift in Sources */,
 				D359AB902521BC88001C3213 /* CustomFloatingPanelLayout.swift in Sources */,
+				D5D3AF6A25E531F400CE6C50 /* PostModel.swift in Sources */,
 				D368C01C251B4A500062BED0 /* FollowListTableViewCell.swift in Sources */,
 				D3423172251A51E2004E8A0F /* CustomCollectionViewCell.swift in Sources */,
 				D5D3AF6225E52EBD00CE6C50 /* Shop.swift in Sources */,

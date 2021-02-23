@@ -15,7 +15,9 @@ class HomePostsModel {
         Firestore.firestore().collection("posts")
             .order(by: "createdAt", descending: true)
             .getDocuments{(querySnapshot, error) in
-                if let result = querySnapshot?.documents.compactMap({ try? $0.data(as: Post.self)}) {
+                if let result = querySnapshot?.documents.compactMap({
+                    try? $0.data(as: Post.self)
+                }) {
                 complete(result)
             }
         }

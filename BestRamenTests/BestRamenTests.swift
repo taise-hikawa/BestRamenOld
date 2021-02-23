@@ -2,7 +2,7 @@
 //  BestRamenTests.swift
 //  BestRamenTests
 //
-//  Created by Sakurako Shimbori on 2020/09/04.
+//  Created by STaisei Hikawa on 2020/09/04.
 //  Copyright © 2020 Taisei Hikawa. All rights reserved.
 //
 

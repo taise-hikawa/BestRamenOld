@@ -2,7 +2,7 @@
 //  CustomCellTableViewCell.swift
 //  BestRamen
 //
-//  Created by Sakurako Shimbori on 2020/09/05.
+//  Created by Taisei Hikawa on 2020/09/05.
 //  Copyright © 2020 Taisei Hikawa. All rights reserved.
 //
 
