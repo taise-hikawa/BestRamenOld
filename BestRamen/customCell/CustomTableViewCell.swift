@@ -46,12 +46,12 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var shopName: UILabel!
     
-    func initSelf(item: [String: String]) {
+    func initSelf(item: Post) {
         postImageView.contentMode = .scaleAspectFill
-        userName.text = item["userName"]
-        shopName.text = item["shopName"]
-        userImageView.image = UIImage(named: item["userId"] ?? "default")
-        if let postImage = UIImage(named: item["postId"] ?? "a") {
+        userName.text = item.userName
+        shopName.text = item.shopName
+        userImageView.image = UIImage(named: item.userId?.description ?? "default")
+        if let postImage = UIImage(named: item.postId?.description ?? "a") {
             setPostedImage(image: postImage)
         }
     }

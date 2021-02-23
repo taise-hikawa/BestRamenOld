@@ -2,7 +2,7 @@ import UIKit
 
 class FirstViewController: UIViewController {
     
-    let viewModel: FirstViewModel = FirstViewModel()
+    let viewModel: HomePostsViewModel = HomePostsViewModel()
     var userCount:Int = 0
     var imageSetFlag:Dictionary<String,Bool> = ["post": false,"user": false]{
         didSet{
@@ -23,7 +23,7 @@ class FirstViewController: UIViewController {
         homeTableView.dataSource = self
         //空の行の線を消す
         homeTableView.tableFooterView = UIView()
-        viewModel.getList()
+        viewModel.fetchPosts()
     }
     
     
@@ -37,7 +37,7 @@ class FirstViewController: UIViewController {
         if segue.identifier == "toNextViewController" {
             let nextVC = segue.destination as! PostViewController
             let row = self.homeTableView.indexPathForSelectedRow?.row ?? 0
-            nextVC.initSelf(item: viewModel.postsArry[row])
+//            nextVC.initSelf(item: viewModel.postsArry[row])
         }
     }
     
@@ -71,7 +71,7 @@ extension FirstViewController: UITableViewDataSource {
     }
 }
 
-extension FirstViewController: FirstViewModelDelegate {
+extension FirstViewController: HomePostsViewModelDelegate {
     func reloadData() {
         homeTableView.reloadData()
     }
