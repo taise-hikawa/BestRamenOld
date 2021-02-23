@@ -2,7 +2,7 @@
 //  MakePostViewController.swift
 //  BestRamen
 //
-//  Created by Sakurako Shimbori on 2020/10/05.
+//  Created by Taisei Hikawa on 2020/10/05.
 //  Copyright © 2020 Taisei Hikawa. All rights reserved.
 //
 

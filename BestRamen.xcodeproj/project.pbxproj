@@ -44,6 +44,8 @@
 		D3B218E4252657130025BC35 /* SecondCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */; };
 		D3F17FAE2535F9210048715D /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F17FAD2535F9210048715D /* CustomNavigationController.swift */; };
 		D53BD9C225E5278900E03845 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53BD9C125E5278900E03845 /* Post.swift */; };
+		D5D3AF5D25E52EA800CE6C50 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3AF5C25E52EA800CE6C50 /* User.swift */; };
+		D5D3AF6225E52EBD00CE6C50 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3AF6125E52EBD00CE6C50 /* Shop.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,8 @@
 		D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondCustomTableViewCell.xib; sourceTree = "<group>"; };
 		D3F17FAD2535F9210048715D /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		D53BD9C125E5278900E03845 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		D5D3AF5C25E52EA800CE6C50 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D5D3AF6125E52EBD00CE6C50 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		EBB13ADE04C2392F1334FFF3 /* Pods-BestRamen-BestRamenUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen-BestRamenUITests.debug.xcconfig"; path = "Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +170,8 @@
 			children = (
 				8EF7980025CE776C00AE553C /* HomePostsModel.swift */,
 				D53BD9C125E5278900E03845 /* Post.swift */,
+				D5D3AF5C25E52EA800CE6C50 /* User.swift */,
+				D5D3AF6125E52EBD00CE6C50 /* Shop.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -561,6 +567,7 @@
 				D375B66925065A5E00F511D0 /* PostViewController.swift in Sources */,
 				D337ABC12502666D000C0D1E /* SecondViewController.swift in Sources */,
 				D390231425068DCE00C13328 /* UserPageViewController.swift in Sources */,
+				D5D3AF5D25E52EA800CE6C50 /* User.swift in Sources */,
 				D53BD9C225E5278900E03845 /* Post.swift in Sources */,
 				D337ABBF2502666D000C0D1E /* FirstViewController.swift in Sources */,
 				D3B218E3252657130025BC35 /* SecondCustomTableViewCell.swift in Sources */,
@@ -578,6 +585,7 @@
 				D359AB902521BC88001C3213 /* CustomFloatingPanelLayout.swift in Sources */,
 				D368C01C251B4A500062BED0 /* FollowListTableViewCell.swift in Sources */,
 				D3423172251A51E2004E8A0F /* CustomCollectionViewCell.swift in Sources */,
+				D5D3AF6225E52EBD00CE6C50 /* Shop.swift in Sources */,
 				D32DF62325346C7400F34A62 /* AddDonePlaceholderTextView.swift in Sources */,
 				8EF7980125CE776C00AE553C /* HomePostsModel.swift in Sources */,
 				D368C022251B4B7C0062BED0 /* FollowListViewController.swift in Sources */,

@@ -1,6 +1,6 @@
 import UIKit
 
-class FirstViewController: UIViewController {
+class HomeViewController: UIViewController {
     
     let viewModel: HomePostsViewModel = HomePostsViewModel()
     var userCount:Int = 0
@@ -46,7 +46,7 @@ class FirstViewController: UIViewController {
     
 }
 
-extension FirstViewController: UITableViewDelegate {
+extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //セルをカスタムセルに
@@ -65,13 +65,13 @@ extension FirstViewController: UITableViewDelegate {
     }
 }
 
-extension FirstViewController: UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.postsArry.count
     }
 }
 
-extension FirstViewController: HomePostsViewModelDelegate {
+extension HomeViewController: HomePostsViewModelDelegate {
     func reloadData() {
         homeTableView.reloadData()
     }
