@@ -173,10 +173,8 @@
 		8EF797FF25CE775600AE553C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D5C3A7B626137D3E0048F610 /* Entity */,
 				8EF7980025CE776C00AE553C /* HomePostsModel.swift */,
-				D53BD9C125E5278900E03845 /* Post.swift */,
-				D5D3AF5C25E52EA800CE6C50 /* User.swift */,
-				D5D3AF6125E52EBD00CE6C50 /* Shop.swift */,
 				D5D3AF6925E531F400CE6C50 /* PostModel.swift */,
 			);
 			path = Model;
@@ -275,6 +273,16 @@
 				D3B218CF25264C1F0025BC35 /* RamenChooseViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D5C3A7B626137D3E0048F610 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				D53BD9C125E5278900E03845 /* Post.swift */,
+				D5D3AF5C25E52EA800CE6C50 /* User.swift */,
+				D5D3AF6125E52EBD00CE6C50 /* Shop.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		DF6935385E923622FB6C4B5C /* Pods */ = {
