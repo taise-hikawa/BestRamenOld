@@ -44,6 +44,7 @@
 		D3B218E4252657130025BC35 /* SecondCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */; };
 		D3F17FAE2535F9210048715D /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F17FAD2535F9210048715D /* CustomNavigationController.swift */; };
 		D53BD9C225E5278900E03845 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53BD9C125E5278900E03845 /* Post.swift */; };
+		D5C3A7B826137DB90048F610 /* FirebaseManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3A7B726137DB90048F610 /* FirebaseManeger.swift */; };
 		D5D3AF5D25E52EA800CE6C50 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3AF5C25E52EA800CE6C50 /* User.swift */; };
 		D5D3AF6225E52EBD00CE6C50 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3AF6125E52EBD00CE6C50 /* Shop.swift */; };
 		D5D3AF6A25E531F400CE6C50 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3AF6925E531F400CE6C50 /* PostModel.swift */; };
@@ -116,6 +117,7 @@
 		D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondCustomTableViewCell.xib; sourceTree = "<group>"; };
 		D3F17FAD2535F9210048715D /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		D53BD9C125E5278900E03845 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		D5C3A7B726137DB90048F610 /* FirebaseManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManeger.swift; sourceTree = "<group>"; };
 		D5D3AF5C25E52EA800CE6C50 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D5D3AF6125E52EBD00CE6C50 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		D5D3AF6925E531F400CE6C50 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				D5C3A7B626137D3E0048F610 /* Entity */,
 				8EF7980025CE776C00AE553C /* HomePostsModel.swift */,
 				D5D3AF6925E531F400CE6C50 /* PostModel.swift */,
+				D5C3A7B726137DB90048F610 /* FirebaseManeger.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				D337ABBF2502666D000C0D1E /* HomeViewController.swift in Sources */,
 				D3B218E3252657130025BC35 /* SecondCustomTableViewCell.swift in Sources */,
 				D390231725068ECA00C13328 /* ShopPageViewController.swift in Sources */,
+				D5C3A7B826137DB90048F610 /* FirebaseManeger.swift in Sources */,
 				D5D3AF6F25E5320400CE6C50 /* PostViewModel.swift in Sources */,
 				D3F17FAE2535F9210048715D /* CustomNavigationController.swift in Sources */,
 				D32DF62825346CF500F34A62 /* AddDoneTextField.swift in Sources */,
