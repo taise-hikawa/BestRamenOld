@@ -44,6 +44,10 @@
 		D3B218E4252657130025BC35 /* SecondCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */; };
 		D3F17FAE2535F9210048715D /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F17FAD2535F9210048715D /* CustomNavigationController.swift */; };
 		D53BD9C225E5278900E03845 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53BD9C125E5278900E03845 /* Post.swift */; };
+		D56A6FB5262492970009A7C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A6FB4262492970009A7C4 /* ContentView.swift */; };
+		D56A6FBA2624969B0009A7C4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A6FB92624969B0009A7C4 /* HomeView.swift */; };
+		D56A6FBF262496DE0009A7C4 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A6FBE262496DE0009A7C4 /* UserView.swift */; };
+		D56A6FC4262497440009A7C4 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A6FC3262497440009A7C4 /* MapView.swift */; };
 		D5C3A7B826137DB90048F610 /* FirebaseManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3A7B726137DB90048F610 /* FirebaseManeger.swift */; };
 		D5D3AF5D25E52EA800CE6C50 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3AF5C25E52EA800CE6C50 /* User.swift */; };
 		D5D3AF6225E52EBD00CE6C50 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3AF6125E52EBD00CE6C50 /* Shop.swift */; };
@@ -117,6 +121,10 @@
 		D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondCustomTableViewCell.xib; sourceTree = "<group>"; };
 		D3F17FAD2535F9210048715D /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		D53BD9C125E5278900E03845 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		D56A6FB4262492970009A7C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D56A6FB92624969B0009A7C4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D56A6FBE262496DE0009A7C4 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		D56A6FC3262497440009A7C4 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D5C3A7B726137DB90048F610 /* FirebaseManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManeger.swift; sourceTree = "<group>"; };
 		D5D3AF5C25E52EA800CE6C50 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D5D3AF6125E52EBD00CE6C50 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
@@ -208,6 +216,7 @@
 		D337ABB92502666D000C0D1E /* BestRamen */ = {
 			isa = PBXGroup;
 			children = (
+				D56A6FB3262491ED0009A7C4 /* View */,
 				D390231525068DF300C13328 /* ViewController */,
 				8EF797F625CE76BC00AE553C /* ViewModel */,
 				8EF797FF25CE775600AE553C /* Model */,
@@ -276,6 +285,17 @@
 				D3B218CF25264C1F0025BC35 /* RamenChooseViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D56A6FB3262491ED0009A7C4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D56A6FB4262492970009A7C4 /* ContentView.swift */,
+				D56A6FB92624969B0009A7C4 /* HomeView.swift */,
+				D56A6FBE262496DE0009A7C4 /* UserView.swift */,
+				D56A6FC3262497440009A7C4 /* MapView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D5C3A7B626137D3E0048F610 /* Entity */ = {
@@ -584,6 +604,7 @@
 				D375B66925065A5E00F511D0 /* PostViewController.swift in Sources */,
 				D337ABC12502666D000C0D1E /* SecondViewController.swift in Sources */,
 				D390231425068DCE00C13328 /* UserPageViewController.swift in Sources */,
+				D56A6FBF262496DE0009A7C4 /* UserView.swift in Sources */,
 				D5D3AF5D25E52EA800CE6C50 /* User.swift in Sources */,
 				D53BD9C225E5278900E03845 /* Post.swift in Sources */,
 				D337ABBF2502666D000C0D1E /* HomeViewController.swift in Sources */,
@@ -597,6 +618,7 @@
 				D375B6592503333500F511D0 /* CustomTableViewCell.swift in Sources */,
 				D32C4A39252A5FBD0092F5F4 /* MakePostViewController.swift in Sources */,
 				D3B218D025264C1F0025BC35 /* RamenChooseViewController.swift in Sources */,
+				D56A6FBA2624969B0009A7C4 /* HomeView.swift in Sources */,
 				D337ABBB2502666D000C0D1E /* AppDelegate.swift in Sources */,
 				8EF797F825CE774F00AE553C /* HomePostsViewModel.swift in Sources */,
 				D33D66C62521B3BA00A1A28D /* SemiModalViewController.swift in Sources */,
@@ -604,9 +626,11 @@
 				D359AB902521BC88001C3213 /* CustomFloatingPanelLayout.swift in Sources */,
 				D5D3AF6A25E531F400CE6C50 /* PostModel.swift in Sources */,
 				D368C01C251B4A500062BED0 /* FollowListTableViewCell.swift in Sources */,
+				D56A6FC4262497440009A7C4 /* MapView.swift in Sources */,
 				D3423172251A51E2004E8A0F /* CustomCollectionViewCell.swift in Sources */,
 				D5D3AF6225E52EBD00CE6C50 /* Shop.swift in Sources */,
 				D32DF62325346C7400F34A62 /* AddDonePlaceholderTextView.swift in Sources */,
+				D56A6FB5262492970009A7C4 /* ContentView.swift in Sources */,
 				8EF7980125CE776C00AE553C /* HomePostsModel.swift in Sources */,
 				D368C022251B4B7C0062BED0 /* FollowListViewController.swift in Sources */,
 				D32DF6502535F43900F34A62 /* AddDoneSearchBar.swift in Sources */,
