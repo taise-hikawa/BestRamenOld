@@ -13,7 +13,7 @@ class PostViewController: UIViewController {
     var item: Post?
     
     var deleteButton: UIBarButtonItem!
-    let viewModel: PostViewModel? = PostViewModel()
+    let viewModel: PostViewModel? = PostViewModel(id: "")
     
     func initSelf(item: Post) {
         self.item = item
@@ -53,10 +53,10 @@ class PostViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = deleteButton
         deleteButton.isEnabled = false
         deleteButton.tintColor = UIColor.clear
-        if item?.userId == viewModel?.currentUser {
-            deleteButton.isEnabled = true
-            deleteButton.tintColor = .white
-        }
+//        if item?.userId == viewModel?.currentUser {
+//            deleteButton.isEnabled = true
+//            deleteButton.tintColor = .white
+//        }
     }
     
     @objc func tapShopButton(_ sender: UIButton){
@@ -82,7 +82,7 @@ class PostViewController: UIViewController {
 //            }
 //        }
         guard let id = item?.postId else { return }
-        viewModel?.deletePost(id: id)
+//        viewModel?.deletePost(id: id)
         //TODO: deleteが行われた後以下の処理をしないといけない
             //現在のタブはtabNavigatinoControllerのトップへ
             self.navigationController?.popToRootViewController(animated: true)

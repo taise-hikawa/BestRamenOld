@@ -9,36 +9,41 @@
 import SwiftUI
 
 struct PostView: View {
+    @ObservedObject private var viewModel: PostViewModel
+    init(id: String) {
+        self.viewModel = PostViewModel(id: id)
+    }
     var body: some View {
+        if let post = viewModel.post {
         VStack(alignment: .leading,spacing: 10) {
             NavigationLink(
                 destination: UserView()) {
                 HStack(spacing: 7) {
-                    Image("default")
+                    Image("default")//TODO: 画像Storageから
                         .resizable()
                         .frame(width: 40, height: 40)
-                    Text("hikawa")
+                    Text(post.userName)
                     Spacer()
                 }
                 .offset(x: 6)
             }.buttonStyle(PlainButtonStyle())
-            Image("a")
+            Image("a") //TODO: 画像Storageから
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             NavigationLink(destination: ShopView()) {
-                Text("店の名前")
+                Text(post.shopName)
                     .offset(x: 6)
             }.buttonStyle(PlainButtonStyle())
-            Text("投稿内容")
+            Text(post.postContent)
                 .offset(x: 6)
             Spacer()
         }
-        
+        }
     }
 }
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView()
+        PostView(id: "")
     }
 }

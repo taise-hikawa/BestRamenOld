@@ -6,14 +6,20 @@
 //  Copyright © 2021 Taisei Hikawa. All rights reserved.
 //
 
-import Foundation
-import Firebase
+import Combine
 
-class PostViewModel {
-    
-    let model: PostModel = PostModel()
-    public let currentUser = Auth.auth().currentUser?.description
-    func deletePost(id: String) {
-        model.delete(id: id)
+class PostViewModel: ObservableObject {
+    private var cancellables = Set<AnyCancellable>()
+    @Published var post: Post?
+    init(id: String) {
+        fetchPost(id: id)
+    }
+    func fetchPost(id: String) {
+        FirebaseManeger.fetchDocument(responseType: Post.self, collection: .posts, id: id)
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { value in
+                    self.post = value
+                  })
+            .store(in: &self.cancellables)
     }
 }

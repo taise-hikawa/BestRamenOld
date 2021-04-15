@@ -19,7 +19,7 @@ struct ShopView: View {
                 LazyVGrid(columns: Array(repeating: GridItem(), count: 3), spacing: 1) {
                     ForEach((1...10), id: \.self) { _ in
                         NavigationLink(
-                            destination: PostView()) {
+                            destination: PostView(id: "")) {
                             Image("a")
                                 .resizable()
                                 .frame(width: UIScreen.main.bounds.width/3 - 2, height: UIScreen.main.bounds.width/3 - 2)
