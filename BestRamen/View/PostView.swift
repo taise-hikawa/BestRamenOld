@@ -11,23 +11,29 @@ import SwiftUI
 struct PostView: View {
     var body: some View {
         VStack(alignment: .leading,spacing: 10) {
-            HStack(spacing: 7) {
-                Image("default")
-                    .resizable()
-                    .frame(width: 40, height: 40)
-                Text("hikawa")
-                Spacer()
+            NavigationLink(
+                destination: UserView()) {
+                HStack(spacing: 7) {
+                    Image("default")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                    Text("hikawa")
+                    Spacer()
+                }
+                .offset(x: 6)
             }
-            .offset(x: 6)
             Image("a")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-            Text("店の名前")
-                .offset(x: 6)
+            NavigationLink(destination: ShopView()) {
+                Text("店の名前")
+                    .offset(x: 6)
+            }
             Text("投稿内容")
                 .offset(x: 6)
             Spacer()
         }
+        
     }
 }
 

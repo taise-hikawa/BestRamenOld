@@ -14,38 +14,56 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            HomeView()
-                .tabItem {
-                    VStack {
+            ZStack(alignment: .top) {
+                NavigationView { HomeView() }
+                naviImageView
+            }
+            .tabItem {
+                VStack {
                         Image("home")
                         Text("ホーム")
                     }
                 }.tag(1)
-            MapView()
+            ZStack(alignment: .top) {
+                NavigationView { MapView() }
+                naviImageView
+            }
                 .tabItem {
                     VStack {
                         Image("search")
                         Text("見つける")
                     }
                 }.tag(2)
-//            if self.session.isLogin {
-//                UserView()
-//                    .tabItem {
-//                        VStack {
-//                            Image("hito")
-//                            Text("マイページ")
-//                        }
-//                    }.tag(3)
-//            } else {
-                SignInView()
-                    .tabItem {
-                        VStack {
-                            Image("hito")
-                            Text("マイページ")
-                        }
-                    }.tag(3)
-//            }
+            
+            //            if self.session.isLogin {
+            ZStack(alignment: .top) {
+                NavigationView { UserView() }
+                naviImageView
+            }
+                .tabItem {
+                    VStack {
+                        Image("hito")
+                        Text("マイページ")
+                    }
+                }.tag(3)
+            
+            //            } else {
+            //               NavigationView { SignInView() }
+            //                    .tabItem {
+            //                        VStack {
+            //                            Image("hito")
+            //                            Text("マイページ")
+            //                        }
+            //                    }.tag(3)
+            //            }
         }
+    }
+    
+    var naviImageView: some View {
+        Image("BestRamen")
+            .resizable()
+            .scaledToFit()
+            .frame(width: UIScreen.main.bounds.width/2)
     }
 }
 

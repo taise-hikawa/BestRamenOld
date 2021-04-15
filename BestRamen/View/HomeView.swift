@@ -11,14 +11,19 @@ import SwiftUI
 struct HomeView: View {
     @ObservedObject private var viewModel = HomeViewModel()
     var body: some View {
-        List(viewModel.postsArray, id: \.self) { item in
-                HomeRow.init(post: item,
-                             postImgData: $viewModel.postImagesDic[item.postId],
-                             userImgData: $viewModel.userImagesDic[item.userId])
-                    .frame(height: 300)
-                    .clipped()
-                    .listRowInsets(EdgeInsets())
-        }
+//        NavigationView {
+            List(viewModel.postsArray, id: \.self) { item in
+                NavigationLink(destination: PostView()) {
+                    HomeRow.init(post: item,
+                                 postImgData: $viewModel.postImagesDic[item.postId],
+                                 userImgData: $viewModel.userImagesDic[item.userId])
+                        .frame(height: 300)
+                        .clipped()
+                        .listRowInsets(EdgeInsets())
+                }
+            }
+//        }
+//        .navigationBarTitle("タイトル", displayMode: .inline)
     }
 }
 

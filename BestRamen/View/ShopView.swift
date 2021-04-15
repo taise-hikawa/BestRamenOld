@@ -16,19 +16,17 @@ struct ShopView: View {
                     .font(.title2)
                 Text("住所")
                     .font(.body)
-                VStack(spacing: 1){
-                ForEach(0..<3) {_ in
-                    HStack(spacing: 1) {
-                        ForEach(0..<3) { _ in
+                LazyVGrid(columns: Array(repeating: GridItem(), count: 3), spacing: 1) {
+                    ForEach((1...10), id: \.self) { _ in
+                        NavigationLink(
+                            destination: PostView()) {
                             Image("a")
                                 .resizable()
                                 .frame(width: UIScreen.main.bounds.width/3 - 2, height: UIScreen.main.bounds.width/3 - 2)
-                                
                         }
-                        
                     }
                 }
-                }
+                
             }
         }
     }
