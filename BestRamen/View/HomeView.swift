@@ -9,10 +9,15 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject private var viewModel = HomeViewModel()
     var body: some View {
-        List {
-            ZStack {
-            }
+        List(viewModel.postsArray, id: \.self) { item in
+                HomeRow.init(post: item,
+                             postImgData: $viewModel.postImagesDic[item.postId],
+                             userImgData: $viewModel.userImagesDic[item.userId])
+                    .frame(height: 300)
+                    .clipped()
+                    .listRowInsets(EdgeInsets())
         }
     }
 }

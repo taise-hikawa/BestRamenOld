@@ -7,10 +7,31 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct MapView: View {
+    @State private var region =
+            MKCoordinateRegion(
+                center: .init(latitude: 35.710263046992736, longitude: 139.81067894034084),
+                latitudinalMeters: 300,
+                longitudinalMeters: 300
+            )
+    struct PinItem: Identifiable {
+            let id = UUID()
+            let coordinate: CLLocationCoordinate2D
+        }
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Map(coordinateRegion: $region,
+                    interactionModes: .zoom,
+                    showsUserLocation: true,
+                    annotationItems: [
+                        PinItem(coordinate: .init(latitude: 35.710263046992736, longitude: 139.81067894034084)),
+                        PinItem(coordinate: .init(latitude: 35.710063046992736, longitude: 139.81047894034084))
+                    ],
+                    annotationContent: { item in
+                        MapMarker(coordinate: item.coordinate)
+                    }
+                ).edgesIgnoringSafeArea(.all)
     }
 }
 

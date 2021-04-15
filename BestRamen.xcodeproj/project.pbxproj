@@ -11,8 +11,8 @@
 		4715CD3AD31730B51D1ED83A /* Pods_BestRamen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20CE0C3E208649DDE8D05A9 /* Pods_BestRamen.framework */; };
 		5213C03BC7FA25859BE3871E /* Pods_BestRamenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2AA6F4CC7B889794D4F271 /* Pods_BestRamenTests.framework */; };
 		8EF797D325CE644000AE553C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8EF797D225CE644000AE553C /* GoogleService-Info.plist */; };
-		8EF797F825CE774F00AE553C /* HomePostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF797F725CE774F00AE553C /* HomePostsViewModel.swift */; };
-		8EF7980125CE776C00AE553C /* HomePostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF7980025CE776C00AE553C /* HomePostsModel.swift */; };
+		8EF797F825CE774F00AE553C /* HomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF797F725CE774F00AE553C /* HomViewModel.swift */; };
+		8EF7980125CE776C00AE553C /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF7980025CE776C00AE553C /* HomeModel.swift */; };
 		D32C4A39252A5FBD0092F5F4 /* MakePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32C4A38252A5FBD0092F5F4 /* MakePostViewController.swift */; };
 		D32DF62325346C7400F34A62 /* AddDonePlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32DF62225346C7400F34A62 /* AddDonePlaceholderTextView.swift */; };
 		D32DF62825346CF500F34A62 /* AddDoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32DF62725346CF500F34A62 /* AddDoneTextField.swift */; };
@@ -44,6 +44,16 @@
 		D3B218E4252657130025BC35 /* SecondCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */; };
 		D3F17FAE2535F9210048715D /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F17FAD2535F9210048715D /* CustomNavigationController.swift */; };
 		D53BD9C225E5278900E03845 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53BD9C125E5278900E03845 /* Post.swift */; };
+		D55E859B2625A67D009860BA /* HomeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E859A2625A67D009860BA /* HomeRow.swift */; };
+		D55E86052625C3A6009860BA /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E86042625C3A6009860BA /* SignInView.swift */; };
+		D55E860A2625C441009860BA /* GoogleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E86092625C441009860BA /* GoogleSignInButton.swift */; };
+		D55E860F2625CEC2009860BA /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E860E2625CEC2009860BA /* PostView.swift */; };
+		D55E86142625D096009860BA /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E86132625D096009860BA /* ShopView.swift */; };
+		D55E861D2625D4D6009860BA /* FollowListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E861C2625D4D6009860BA /* FollowListView.swift */; };
+		D55E86222625E5CC009860BA /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E86212625E5CC009860BA /* CreatePostView.swift */; };
+		D55E86272625E665009860BA /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E86262625E665009860BA /* EditProfileView.swift */; };
+		D55E86322625F379009860BA /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E86312625F379009860BA /* Session.swift */; };
+		D55E86372625F56B009860BA /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E86362625F56B009860BA /* EditProfileViewModel.swift */; };
 		D56A6FB5262492970009A7C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A6FB4262492970009A7C4 /* ContentView.swift */; };
 		D56A6FBA2624969B0009A7C4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A6FB92624969B0009A7C4 /* HomeView.swift */; };
 		D56A6FBF262496DE0009A7C4 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A6FBE262496DE0009A7C4 /* UserView.swift */; };
@@ -78,8 +88,8 @@
 		72ADB7F0616ABEADEB86288F /* Pods-BestRamen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen.debug.xcconfig"; path = "Target Support Files/Pods-BestRamen/Pods-BestRamen.debug.xcconfig"; sourceTree = "<group>"; };
 		8336CE15A3D3E233722DB0C9 /* Pods_BestRamen_BestRamenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestRamen_BestRamenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EF797D225CE644000AE553C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8EF797F725CE774F00AE553C /* HomePostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostsViewModel.swift; sourceTree = "<group>"; };
-		8EF7980025CE776C00AE553C /* HomePostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostsModel.swift; sourceTree = "<group>"; };
+		8EF797F725CE774F00AE553C /* HomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomViewModel.swift; sourceTree = "<group>"; };
+		8EF7980025CE776C00AE553C /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		96D81863365F46BECA80D512 /* Pods-BestRamenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamenTests.release.xcconfig"; path = "Target Support Files/Pods-BestRamenTests/Pods-BestRamenTests.release.xcconfig"; sourceTree = "<group>"; };
 		A937CF1BA8C30F57DD80F28B /* Pods-BestRamen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen.release.xcconfig"; path = "Target Support Files/Pods-BestRamen/Pods-BestRamen.release.xcconfig"; sourceTree = "<group>"; };
 		B547C7A975D50E51620D4EBF /* Pods-BestRamen-BestRamenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestRamen-BestRamenUITests.release.xcconfig"; path = "Target Support Files/Pods-BestRamen-BestRamenUITests/Pods-BestRamen-BestRamenUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -121,6 +131,16 @@
 		D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondCustomTableViewCell.xib; sourceTree = "<group>"; };
 		D3F17FAD2535F9210048715D /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		D53BD9C125E5278900E03845 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		D55E859A2625A67D009860BA /* HomeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRow.swift; sourceTree = "<group>"; };
+		D55E86042625C3A6009860BA /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		D55E86092625C441009860BA /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
+		D55E860E2625CEC2009860BA /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		D55E86132625D096009860BA /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
+		D55E861C2625D4D6009860BA /* FollowListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListView.swift; sourceTree = "<group>"; };
+		D55E86212625E5CC009860BA /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
+		D55E86262625E665009860BA /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		D55E86312625F379009860BA /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		D55E86362625F56B009860BA /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		D56A6FB4262492970009A7C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D56A6FB92624969B0009A7C4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D56A6FBE262496DE0009A7C4 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
@@ -174,8 +194,9 @@
 		8EF797F625CE76BC00AE553C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				8EF797F725CE774F00AE553C /* HomePostsViewModel.swift */,
+				8EF797F725CE774F00AE553C /* HomViewModel.swift */,
 				D5D3AF6E25E5320400CE6C50 /* PostViewModel.swift */,
+				D55E86362625F56B009860BA /* EditProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -184,9 +205,10 @@
 			isa = PBXGroup;
 			children = (
 				D5C3A7B626137D3E0048F610 /* Entity */,
-				8EF7980025CE776C00AE553C /* HomePostsModel.swift */,
+				8EF7980025CE776C00AE553C /* HomeModel.swift */,
 				D5D3AF6925E531F400CE6C50 /* PostModel.swift */,
 				D5C3A7B726137DB90048F610 /* FirebaseManeger.swift */,
+				D55E86312625F379009860BA /* Session.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -287,13 +309,29 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		D55E86182625D0B9009860BA /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				D55E86092625C441009860BA /* GoogleSignInButton.swift */,
+				D55E859A2625A67D009860BA /* HomeRow.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		D56A6FB3262491ED0009A7C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D55E86182625D0B9009860BA /* Component */,
 				D56A6FB4262492970009A7C4 /* ContentView.swift */,
 				D56A6FB92624969B0009A7C4 /* HomeView.swift */,
 				D56A6FBE262496DE0009A7C4 /* UserView.swift */,
 				D56A6FC3262497440009A7C4 /* MapView.swift */,
+				D55E86042625C3A6009860BA /* SignInView.swift */,
+				D55E860E2625CEC2009860BA /* PostView.swift */,
+				D55E86132625D096009860BA /* ShopView.swift */,
+				D55E861C2625D4D6009860BA /* FollowListView.swift */,
+				D55E86262625E665009860BA /* EditProfileView.swift */,
+				D55E86212625E5CC009860BA /* CreatePostView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -605,33 +643,43 @@
 				D337ABC12502666D000C0D1E /* SecondViewController.swift in Sources */,
 				D390231425068DCE00C13328 /* UserPageViewController.swift in Sources */,
 				D56A6FBF262496DE0009A7C4 /* UserView.swift in Sources */,
+				D55E86142625D096009860BA /* ShopView.swift in Sources */,
+				D55E860A2625C441009860BA /* GoogleSignInButton.swift in Sources */,
 				D5D3AF5D25E52EA800CE6C50 /* User.swift in Sources */,
 				D53BD9C225E5278900E03845 /* Post.swift in Sources */,
 				D337ABBF2502666D000C0D1E /* HomeViewController.swift in Sources */,
 				D3B218E3252657130025BC35 /* SecondCustomTableViewCell.swift in Sources */,
+				D55E860F2625CEC2009860BA /* PostView.swift in Sources */,
 				D390231725068ECA00C13328 /* ShopPageViewController.swift in Sources */,
 				D5C3A7B826137DB90048F610 /* FirebaseManeger.swift in Sources */,
 				D5D3AF6F25E5320400CE6C50 /* PostViewModel.swift in Sources */,
+				D55E86322625F379009860BA /* Session.swift in Sources */,
 				D3F17FAE2535F9210048715D /* CustomNavigationController.swift in Sources */,
 				D32DF62825346CF500F34A62 /* AddDoneTextField.swift in Sources */,
 				D3B218C825259BA30025BC35 /* EditViewController.swift in Sources */,
 				D375B6592503333500F511D0 /* CustomTableViewCell.swift in Sources */,
 				D32C4A39252A5FBD0092F5F4 /* MakePostViewController.swift in Sources */,
 				D3B218D025264C1F0025BC35 /* RamenChooseViewController.swift in Sources */,
+				D55E86222625E5CC009860BA /* CreatePostView.swift in Sources */,
 				D56A6FBA2624969B0009A7C4 /* HomeView.swift in Sources */,
 				D337ABBB2502666D000C0D1E /* AppDelegate.swift in Sources */,
-				8EF797F825CE774F00AE553C /* HomePostsViewModel.swift in Sources */,
+				8EF797F825CE774F00AE553C /* HomViewModel.swift in Sources */,
 				D33D66C62521B3BA00A1A28D /* SemiModalViewController.swift in Sources */,
+				D55E86272625E665009860BA /* EditProfileView.swift in Sources */,
 				D337ABBD2502666D000C0D1E /* SceneDelegate.swift in Sources */,
 				D359AB902521BC88001C3213 /* CustomFloatingPanelLayout.swift in Sources */,
 				D5D3AF6A25E531F400CE6C50 /* PostModel.swift in Sources */,
 				D368C01C251B4A500062BED0 /* FollowListTableViewCell.swift in Sources */,
+				D55E86372625F56B009860BA /* EditProfileViewModel.swift in Sources */,
 				D56A6FC4262497440009A7C4 /* MapView.swift in Sources */,
 				D3423172251A51E2004E8A0F /* CustomCollectionViewCell.swift in Sources */,
 				D5D3AF6225E52EBD00CE6C50 /* Shop.swift in Sources */,
+				D55E861D2625D4D6009860BA /* FollowListView.swift in Sources */,
 				D32DF62325346C7400F34A62 /* AddDonePlaceholderTextView.swift in Sources */,
+				D55E86052625C3A6009860BA /* SignInView.swift in Sources */,
 				D56A6FB5262492970009A7C4 /* ContentView.swift in Sources */,
-				8EF7980125CE776C00AE553C /* HomePostsModel.swift in Sources */,
+				D55E859B2625A67D009860BA /* HomeRow.swift in Sources */,
+				8EF7980125CE776C00AE553C /* HomeModel.swift in Sources */,
 				D368C022251B4B7C0062BED0 /* FollowListViewController.swift in Sources */,
 				D32DF6502535F43900F34A62 /* AddDoneSearchBar.swift in Sources */,
 			);
@@ -810,13 +858,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GQ7W4PWBP6;
+				DEVELOPMENT_TEAM = 3Z2LN23FC2;
 				INFOPLIST_FILE = BestRamen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hikawaproj.BestRamen;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hikawaproj.BestRamen0413;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -830,13 +878,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GQ7W4PWBP6;
+				DEVELOPMENT_TEAM = 3Z2LN23FC2;
 				INFOPLIST_FILE = BestRamen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hikawaproj.BestRamen;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hikawaproj.BestRamen0413;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

@@ -38,7 +38,7 @@ class PostViewController: UIViewController {
 //                self.userImage.image = userImg
 //            }
 //        }
-        self.userImage.image = UIImage(named: item?.userId?.description ?? "default")
+        self.userImage.image = UIImage(named: item?.userId.description ?? "a")
 //        storage.child("posts").child("\(postId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
 //            if error != nil {
 //                return
@@ -48,7 +48,7 @@ class PostViewController: UIViewController {
 //                self.postImage.image = postImg
 //            }
 //        }
-        self.postImage.image = UIImage(named: item?.postId?.description ?? "a")
+        self.postImage.image = UIImage(named: item?.postId.description ?? "a")
         deleteButton = UIBarButtonItem(title: "削除", style: .done, target: self, action: #selector(deleteButtonTapped(_:)))
         self.navigationItem.rightBarButtonItem = deleteButton
         deleteButton.isEnabled = false

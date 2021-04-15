@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    let isMe = false
+    @EnvironmentObject var session: Session
+    
     var body: some View {
         TabView {
             HomeView()
@@ -25,13 +28,23 @@ struct ContentView: View {
                         Text("見つける")
                     }
                 }.tag(2)
-            UserView()
-                .tabItem {
-                    VStack {
-                        Image("hito")
-                        Text("マイページ")
-                    }
-                }.tag(3)
+//            if self.session.isLogin {
+//                UserView()
+//                    .tabItem {
+//                        VStack {
+//                            Image("hito")
+//                            Text("マイページ")
+//                        }
+//                    }.tag(3)
+//            } else {
+                SignInView()
+                    .tabItem {
+                        VStack {
+                            Image("hito")
+                            Text("マイページ")
+                        }
+                    }.tag(3)
+//            }
         }
     }
 }
