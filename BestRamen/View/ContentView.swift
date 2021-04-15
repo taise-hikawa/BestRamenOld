@@ -15,7 +15,7 @@ struct ContentView: View {
     var body: some View {
         TabView {
             ZStack(alignment: .top) {
-                NavigationView { HomeView() }
+                NavigationView { HomeView() }.accentColor( .white)
                 naviImageView
             }
             .tabItem {
@@ -25,7 +25,7 @@ struct ContentView: View {
                     }
                 }.tag(1)
             ZStack(alignment: .top) {
-                NavigationView { MapView() }
+                NavigationView { MapView() }.accentColor( .white)
                 naviImageView
             }
                 .tabItem {
@@ -37,7 +37,7 @@ struct ContentView: View {
             
             //            if self.session.isLogin {
             ZStack(alignment: .top) {
-                NavigationView { UserView() }
+                NavigationView { UserView() }.accentColor( .white)
                 naviImageView
             }
                 .tabItem {

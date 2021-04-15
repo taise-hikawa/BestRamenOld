@@ -10,12 +10,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GIDSignInDelegate{
         // Override point for customization after application launch.
         
         let appearance = UINavigationBarAppearance()
-            appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = .orange
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .orange
         UINavigationBar.appearance().standardAppearance = appearance
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance // ラージタイトルの場合の外見
-//            UINavigationBar.appearance().standardAppearance = appearance // 通常の外見
-//            UINavigationBar.appearance().compactAppearance = appearance //横向きの場合
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
             
         FirebaseApp.configure()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
