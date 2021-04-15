@@ -36,7 +36,7 @@ struct UserView: View {
                         Text("0")//TODO: ViewModel実装後
                         Text("フォロワー")
                     }
-                })
+                }).buttonStyle(PlainButtonStyle())
             Spacer()
             NavigationLink(
                 destination: FollowListView(),
@@ -45,7 +45,7 @@ struct UserView: View {
                         Text("0")//TODO: ViewModel実装後
                         Text("フォロー")
                     }
-                })
+                }).buttonStyle(PlainButtonStyle())
             Spacer()
         }
     }

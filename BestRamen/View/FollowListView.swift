@@ -12,13 +12,15 @@ struct FollowListView: View {
     var body: some View {
         List {
             ForEach(0..<3) {_ in
-                HStack(spacing: 8) {
-                    Image("default")
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                    Text("お名前")
-                        .font(.body)
-                    Spacer()
+                NavigationLink(destination: UserView()) {
+                    HStack(spacing: 8) {
+                        Image("default")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                        Text("お名前")
+                            .font(.body)
+                        Spacer()
+                    }
                 }
             }
         }

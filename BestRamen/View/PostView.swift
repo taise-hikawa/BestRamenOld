@@ -21,14 +21,14 @@ struct PostView: View {
                     Spacer()
                 }
                 .offset(x: 6)
-            }
+            }.buttonStyle(PlainButtonStyle())
             Image("a")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             NavigationLink(destination: ShopView()) {
                 Text("店の名前")
                     .offset(x: 6)
-            }
+            }.buttonStyle(PlainButtonStyle())
             Text("投稿内容")
                 .offset(x: 6)
             Spacer()
