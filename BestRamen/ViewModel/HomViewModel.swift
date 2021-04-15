@@ -12,31 +12,33 @@ internal protocol HomeViewModelInputs {}
 internal protocol HomeViewModelOutputs {}
 
 class HomeViewModel: ObservableObject {
-    
-    let model: HomeModel = HomeModel()
+    private var cancellables = Set<AnyCancellable>()
     @Published var postsArray: [Post] = []
     @Published var postImagesDic: [String: Data] = [:] //本当はPostの中に持たせたい
     @Published var userImagesDic: [String: Data] = [:] //本当はPostの中に持たせたい
     init() {
         fetchPosts()
     }
+    
     private func fetchPosts() {
-        model.fetchPosts(complete: { [weak self] item in
-            self?.postsArray = item
-            self?.fetchPostImages()
-            self?.fetchUserImages()
-        })
+        FirebaseManeger.fetchDocuments(responseType: Post.self, collection: .posts)
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { value in
+                    self.postsArray = value
+                  })
+            .store(in: &self.cancellables)
+
     }
-    
-    private func fetchPostImages() {
-        postsArray.forEach {
-            postImagesDic[$0.postId] = model.fetchPostImage(id: $0.postId)
-        }
-    }
-    
-    private func fetchUserImages() {
-        postsArray.forEach {
-            postImagesDic[$0.userId] = model.fetchUserImage(id: $0.userId)
-        }
-    }
+//
+//    private func fetchPostImages() {
+//        postsArray.forEach {
+//            postImagesDic[$0.postId] = model.fetchPostImage(id: $0.postId)
+//        }
+//    }
+//
+//    private func fetchUserImages() {
+//        postsArray.forEach {
+//            postImagesDic[$0.userId] = model.fetchUserImage(id: $0.userId)
+//        }
+//    }
 }
