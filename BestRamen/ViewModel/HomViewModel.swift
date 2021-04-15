@@ -21,7 +21,8 @@ class HomeViewModel: ObservableObject {
     }
     
     private func fetchPosts() {
-        FirebaseManeger.fetchDocuments(responseType: Post.self, collection: .posts)
+        FirebaseManeger().fetchDocuments(responseType: Post.self,
+                                       collection: .posts)
             .sink(receiveCompletion: { _ in },
                   receiveValue: { value in
                     self.postsArray = value

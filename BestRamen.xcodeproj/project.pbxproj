@@ -44,6 +44,7 @@
 		D3B218E4252657130025BC35 /* SecondCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */; };
 		D3F17FAE2535F9210048715D /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F17FAD2535F9210048715D /* CustomNavigationController.swift */; };
 		D53BD9C225E5278900E03845 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53BD9C125E5278900E03845 /* Post.swift */; };
+		D55CF46626287612005D35E2 /* ShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55CF46526287611005D35E2 /* ShopViewModel.swift */; };
 		D55E859B2625A67D009860BA /* HomeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E859A2625A67D009860BA /* HomeRow.swift */; };
 		D55E86052625C3A6009860BA /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E86042625C3A6009860BA /* SignInView.swift */; };
 		D55E860A2625C441009860BA /* GoogleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E86092625C441009860BA /* GoogleSignInButton.swift */; };
@@ -131,6 +132,7 @@
 		D3B218E2252657130025BC35 /* SecondCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondCustomTableViewCell.xib; sourceTree = "<group>"; };
 		D3F17FAD2535F9210048715D /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		D53BD9C125E5278900E03845 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		D55CF46526287611005D35E2 /* ShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewModel.swift; sourceTree = "<group>"; };
 		D55E859A2625A67D009860BA /* HomeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRow.swift; sourceTree = "<group>"; };
 		D55E86042625C3A6009860BA /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		D55E86092625C441009860BA /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				8EF797F725CE774F00AE553C /* HomViewModel.swift */,
 				D5D3AF6E25E5320400CE6C50 /* PostViewModel.swift */,
 				D55E86362625F56B009860BA /* EditProfileViewModel.swift */,
+				D55CF46526287611005D35E2 /* ShopViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -239,8 +242,8 @@
 			isa = PBXGroup;
 			children = (
 				D56A6FB3262491ED0009A7C4 /* View */,
-				D390231525068DF300C13328 /* ViewController */,
 				8EF797F625CE76BC00AE553C /* ViewModel */,
+				D390231525068DF300C13328 /* ViewController */,
 				8EF797FF25CE775600AE553C /* Model */,
 				8EF797D225CE644000AE553C /* GoogleService-Info.plist */,
 				D32DF64F2535F43900F34A62 /* AddDoneSearchBar.swift */,
@@ -659,6 +662,7 @@
 				D3B218C825259BA30025BC35 /* EditViewController.swift in Sources */,
 				D375B6592503333500F511D0 /* CustomTableViewCell.swift in Sources */,
 				D32C4A39252A5FBD0092F5F4 /* MakePostViewController.swift in Sources */,
+				D55CF46626287612005D35E2 /* ShopViewModel.swift in Sources */,
 				D3B218D025264C1F0025BC35 /* RamenChooseViewController.swift in Sources */,
 				D55E86222625E5CC009860BA /* CreatePostView.swift in Sources */,
 				D56A6FBA2624969B0009A7C4 /* HomeView.swift in Sources */,

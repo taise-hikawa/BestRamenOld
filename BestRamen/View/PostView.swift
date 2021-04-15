@@ -30,7 +30,7 @@ struct PostView: View {
             Image("a") //TODO: 画像Storageから
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-            NavigationLink(destination: ShopView()) {
+            NavigationLink(destination: ShopView(id: post.shopId)) {
                 Text(post.shopName)
                     .offset(x: 6)
             }.buttonStyle(PlainButtonStyle())

@@ -15,10 +15,16 @@ public enum Collection: String {
 }
 
 final class FirebaseManeger {
+    let db : Firestore
+    
+    init() {
+        db = Firestore.firestore()
+    }
     // MARK: FireStore
-    static func fetchDocuments<T: Codable>(responseType:T.Type, collection: Collection) -> AnyPublisher<[T], NSError> {
+    func fetchDocuments<T: Codable>(responseType:T.Type,
+                                    collection: Collection) -> AnyPublisher<[T], NSError> {
         Future<[T], NSError> { promise in
-            Firestore.firestore().collection(collection.rawValue)
+            self.db.collection(collection.rawValue)
             .order(by: "createdAt", descending: true)
             .getDocuments{(querySnapshot, error) in
                 if let error = error {
@@ -33,19 +39,22 @@ final class FirebaseManeger {
         }.eraseToAnyPublisher()
     }
     
-    static func fetchDocument<T: Codable>(responseType:T.Type, collection: Collection, id: String) -> Future<T, NSError> {
-        return Future<T, NSError> { promise in
-            Firestore.firestore().collection(collection.rawValue)
-                .document(id)
-                .getDocument{(document, error) in
+    func fetchDocument<T: Codable>(responseType:T.Type,
+                                          collection: Collection,
+                                          id: String) -> AnyPublisher<T, NSError> {
+        Future<T, NSError> { promise in
+            self.db.collection(collection.rawValue)
+                                .document(id)
+                
+                .getDocument {(snapshot, error) in
                     if let error = error {
                         print(error)
                     }
-                    if let result = try? document?.data(as: responseType.self) {
+                    if let result = try? snapshot?.data(as: responseType.self) {
                         promise(.success(result))
                     }
                 }
-        }
+        }.eraseToAnyPublisher()
     }
     // MARK: FirebaseStorage
 }
