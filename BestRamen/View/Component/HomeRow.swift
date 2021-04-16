@@ -20,8 +20,6 @@ struct HomeRow: View {
     }
     var body: some View {
         ZStack {
-//            if let postImgData = postImgData {
-//            let uiImg = UIImage(data: postImgData) ?? UIImage(named: "noimage")!
             Image(uiImage: uiImage)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -42,7 +40,6 @@ struct HomeRow: View {
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(.title3)
-//            }
             }
         }
     }
