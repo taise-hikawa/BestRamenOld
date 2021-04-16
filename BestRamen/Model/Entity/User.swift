@@ -5,12 +5,10 @@
 //  Created by Taisei Hikawa on 2021/02/23.
 //  Copyright © 2021 Taisei Hikawa. All rights reserved.
 //
+import FirebaseFirestoreSwift
 
 public struct User: Codable {
-    let userId: Int?
-    let userName: String?
-    let shopId: Int?
-    let shopName: String?
-    let postId: Int?
-    let postContent: String?
+    @DocumentID var id: String?
+    let userName: String
+    let userProfile: String
 }

@@ -11,21 +11,24 @@ import SwiftUI
 struct ContentView: View {
     let isMe = false
     @EnvironmentObject var session: Session
-    
     var body: some View {
         TabView {
             ZStack(alignment: .top) {
-                NavigationView { HomeView() }.accentColor( .white)
+                NavigationView {
+                    HomeView().navigationBarTitleDisplayMode(.inline)
+                }.accentColor( .white)
                 naviImageView
             }
             .tabItem {
                 VStack {
-                        Image("home")
-                        Text("ホーム")
-                    }
+                    Image("home")
+                    Text("ホーム")
+                }
                 }.tag(1)
             ZStack(alignment: .top) {
-                NavigationView { MapView() }.accentColor( .white)
+                NavigationView {
+                    MapView().navigationBarTitleDisplayMode(.inline)
+                }.accentColor( .white)
                 naviImageView
             }
                 .tabItem {
@@ -37,7 +40,9 @@ struct ContentView: View {
             
             //            if self.session.isLogin {
             ZStack(alignment: .top) {
-                NavigationView { UserView() }.accentColor( .white)
+                NavigationView {
+                    UserView().navigationBarTitleDisplayMode(.inline)
+                }.accentColor( .white)
                 naviImageView
             }
                 .tabItem {
@@ -48,7 +53,7 @@ struct ContentView: View {
                 }.tag(3)
             
             //            } else {
-            //               NavigationView { SignInView() }
+            //               NavigationView { SignInView().navigationBarTitleDisplayMode(.inline) }
             //                    .tabItem {
             //                        VStack {
             //                            Image("hito")
