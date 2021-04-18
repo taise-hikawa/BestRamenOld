@@ -10,7 +10,7 @@ import Combine
 
 class PostViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
-    @Published var post: Post?
+    @Published var post: Post = Post(id: "", userId: "", userName: "", shopId: "", shopName: "", postContent: "")
     init(id: String) {
         fetchPost(id: id)
     }

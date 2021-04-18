@@ -14,30 +14,30 @@ struct PostView: View {
         self.viewModel = PostViewModel(id: id)
     }
     var body: some View {
-        if let post = viewModel.post {
         VStack(alignment: .leading,spacing: 10) {
+            Spacer().frame(height: 2)
             NavigationLink(
-                destination: UserView()) {
+                destination: UserView(id: viewModel.post.userId)) {
                 HStack(spacing: 7) {
                     Image("default")//TODO: 画像Storageから
                         .resizable()
                         .frame(width: 40, height: 40)
-                    Text(post.userName)
+                    Text(viewModel.post.userName)
                     Spacer()
                 }
                 .offset(x: 6)
             }.buttonStyle(PlainButtonStyle())
+            .navigationViewStyle(StackNavigationViewStyle())
             Image("a") //TODO: 画像Storageから
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-            NavigationLink(destination: ShopView(id: post.shopId)) {
-                Text(post.shopName)
+            NavigationLink(destination: ShopView(id: viewModel.post.shopId)) {
+                Text(viewModel.post.shopName)
                     .offset(x: 6)
             }.buttonStyle(PlainButtonStyle())
-            Text(post.postContent)
+            Text(viewModel.post.postContent)
                 .offset(x: 6)
             Spacer()
-        }
         }
     }
 }
