@@ -16,7 +16,10 @@ struct ContentView: View {
             ZStack(alignment: .top) {
                 NavigationView {
                     HomeView().navigationBarTitleDisplayMode(.inline)
-                }.accentColor( .white)
+                }
+                .accentColor( .white)
+                //エラーメッセージ回避 https://developer.apple.com/forums/thread/668433
+                .navigationViewStyle(StackNavigationViewStyle())
                 naviImageView
             }
             .tabItem {
@@ -28,7 +31,9 @@ struct ContentView: View {
             ZStack(alignment: .top) {
                 NavigationView {
                     MapView().navigationBarTitleDisplayMode(.inline)
-                }.accentColor( .white)
+                }
+                .navigationViewStyle(StackNavigationViewStyle())
+                .accentColor( .white)
                 naviImageView
             }
                 .tabItem {
@@ -41,8 +46,11 @@ struct ContentView: View {
             //            if self.session.isLogin {
             ZStack(alignment: .top) {
                 NavigationView {
-                    UserView().navigationBarTitleDisplayMode(.inline)
-                }.accentColor( .white)
+                    //TODO: userID
+                    UserView(id: "Bwl4B5VWZH58h3CPDD2G").navigationBarTitleDisplayMode(.inline)
+                }
+                .navigationViewStyle(StackNavigationViewStyle())
+                .accentColor( .white)
                 naviImageView
             }
                 .tabItem {

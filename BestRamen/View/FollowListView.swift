@@ -12,7 +12,8 @@ struct FollowListView: View {
     var body: some View {
         List {
             ForEach(0..<3) {_ in
-                NavigationLink(destination: UserView()) {
+                //TODO: userID
+                NavigationLink(destination: UserView(id: "U3a62ZBBH7ViN0CqnkWw")) {
                     HStack(spacing: 8) {
                         Image("default")
                             .resizable()

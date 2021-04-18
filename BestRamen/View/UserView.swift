@@ -9,13 +9,18 @@
 import SwiftUI
 
 struct UserView: View {
+    @ObservedObject private var viewModel: UserViewModel
+    init(id: String) {
+        self.viewModel = UserViewModel(id: id)
+    }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
+                Spacer().frame(height: 8)
                 headerView
-                Text("名前").offset(x: 10)
-                Spacer().frame(width: 8)
-                Text("自己紹介").offset(x: 10)
+                Text(viewModel.user.userName).offset(x: 10)
+                Spacer().frame(height: 8)
+                Text(viewModel.user.userProfile).offset(x: 10)
                 favoriteRamenView
                 ramenListView
             }
@@ -59,13 +64,14 @@ struct UserView: View {
     }
     
     var ramenListView: some View {
-        LazyVGrid(columns: Array(repeating: GridItem(), count: 3), spacing: 1) {
+        LazyVGrid(columns: Array(repeating: GridItem(spacing: 1), count: 3), spacing: 1) {
             ForEach((1...10), id: \.self) { _ in
                 NavigationLink(
-                    destination: PostView(id: "")) {
+                    destination: PostView(id: "rLe8PhM4jmh9lNaPLGjb")) {
+                    let imageEdge = (UIScreen.main.bounds.width - 2) / 3
                     Image("a")
                         .resizable()
-                        .frame(width: UIScreen.main.bounds.width/3 - 2, height: UIScreen.main.bounds.width/3 - 2)
+                        .frame(width: imageEdge, height: imageEdge)
                 }
             }
         }
@@ -74,6 +80,6 @@ struct UserView: View {
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
-        UserView()
+        UserView(id: "")
     }
 }
