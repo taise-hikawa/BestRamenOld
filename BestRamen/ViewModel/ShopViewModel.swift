@@ -7,10 +7,11 @@
 //
 
 import Combine
+import FirebaseFirestore
 
 class ShopViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
-    @Published var shop: Shop?
+    @Published var shop: Shop = Shop(id: "", shopName: "", shopAddress: "", shopGeocode: GeoPoint(latitude: 0.0, longitude: 0.0))
     init(id: String) {
         fetchShop(id: id)
     }

@@ -14,25 +14,23 @@ struct ShopView: View {
         self.viewModel = ShopViewModel(id: id)
     }
     var body: some View {
-        if let shop = viewModel.shop {
-            ScrollView(.vertical) {
-                VStack(alignment: .leading, spacing: 5) {
-                    Spacer().frame(height: 8)
-                    Text(shop.shopName)
-                        .font(.title2)
-                        .offset(x: 10)
-                    Text(shop.shopAddress)
-                        .font(.body)
-                        .offset(x: 10)
-                    LazyVGrid(columns: Array(repeating: GridItem(spacing: 1), count: 3), spacing: 1) {
-                        ForEach((1...10), id: \.self) { _ in
-                            NavigationLink(
-                                destination: PostView(id: "")) {
-                                let imageEdge = (UIScreen.main.bounds.width - 2) / 3
-                                Image("a")
-                                    .resizable()
-                                    .frame(width: imageEdge, height: imageEdge)
-                            }
+        ScrollView(.vertical) {
+            VStack(alignment: .leading, spacing: 5) {
+                Spacer().frame(height: 8)
+                Text(viewModel.shop.shopName)
+                    .font(.title2)
+                    .offset(x: 10)
+                Text(viewModel.shop.shopAddress)
+                    .font(.body)
+                    .offset(x: 10)
+                LazyVGrid(columns: Array(repeating: GridItem(spacing: 1), count: 3), spacing: 1) {
+                    ForEach((1...10), id: \.self) { _ in
+                        NavigationLink(
+                            destination: PostView(id: "")) {
+                            let imageEdge = (UIScreen.main.bounds.width - 2) / 3
+                            Image("a")
+                                .resizable()
+                                .frame(width: imageEdge, height: imageEdge)
                         }
                     }
                 }
