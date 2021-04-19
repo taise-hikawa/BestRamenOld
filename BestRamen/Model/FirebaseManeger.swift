@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 public enum Collection: String {
-    case posts, shops, users
+    case posts, shops, users, relationships
 }
 
 final class FirebaseManeger {

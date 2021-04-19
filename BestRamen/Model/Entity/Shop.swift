@@ -14,3 +14,7 @@ public struct Shop: Codable {
     let shopAddress: String
     let shopGeocode: GeoPoint
 }
+extension Shop {
+    var shopId: String { id ?? "" }
+}
+

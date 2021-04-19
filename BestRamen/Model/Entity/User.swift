@@ -12,3 +12,6 @@ public struct User: Codable {
     let userName: String
     let userProfile: String?
 }
+extension User {
+    var userId: String { id ?? "" }
+}

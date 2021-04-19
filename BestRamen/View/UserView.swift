@@ -39,7 +39,7 @@ struct UserView: View {
                 .frame(width: 80, height: 80)
             Spacer()
             NavigationLink(
-                destination: FollowListView(),
+                destination: FollowListView(id: viewModel.user.userId, idType: .followedId),
                 label: {
                     VStack(alignment: .center, spacing: 4) {
                         Text("0")//TODO: ViewModel実装後
@@ -48,7 +48,7 @@ struct UserView: View {
                 }).buttonStyle(PlainButtonStyle())
             Spacer()
             NavigationLink(
-                destination: FollowListView(),
+                destination: FollowListView(id: viewModel.user.userId, idType: .followerId),
                 label: {
                     VStack(alignment: .center, spacing: 4) {
                         Text("0")//TODO: ViewModel実装後

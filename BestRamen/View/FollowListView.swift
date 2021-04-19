@@ -9,6 +9,13 @@
 import SwiftUI
 
 struct FollowListView: View {
+    public enum FollowIdType: String {
+        case followedId, followerId
+    }
+    @ObservedObject private var viewModel: FollowListViewModel
+    init(id: String, idType: FollowIdType) {
+        self.viewModel = FollowListViewModel(id: id,idType: idType)
+    }
     var body: some View {
         List {
             ForEach(0..<3) {_ in
@@ -30,6 +37,6 @@ struct FollowListView: View {
 
 struct FollowListView_Previews: PreviewProvider {
     static var previews: some View {
-        FollowListView()
+        FollowListView(id: "", idType: .followedId)
     }
 }
