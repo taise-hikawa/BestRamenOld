@@ -7,6 +7,7 @@
 //
 
 import Combine
+import FirebaseAuth
 
 class UserViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
@@ -36,5 +37,13 @@ class UserViewModel: ObservableObject {
                     self.postsArray = value
                   })
             .store(in: &self.cancellables)
+    }
+    
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("ログアウト失敗")
+        }
     }
 }

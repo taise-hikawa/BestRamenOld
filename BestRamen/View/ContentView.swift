@@ -7,76 +7,86 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
     let isMe = false
     @EnvironmentObject var session: Session
     var body: some View {
         TabView {
-            ZStack(alignment: .top) {
-                NavigationView {
-                    HomeView().navigationBarTitleDisplayMode(.inline)
-                }
-                .accentColor( .white)
-                //エラーメッセージ回避 https://developer.apple.com/forums/thread/668433
-                .navigationViewStyle(StackNavigationViewStyle())
-                naviImageView
-            }
-            .tabItem {
-                VStack {
-                    Image("home")
-                    Text("ホーム")
-                }
+            homeTabItem
+                .tabItem {
+                    VStack {
+                        Image("home")
+                        Text("ホーム")
+                    }
                 }.tag(1)
-            ZStack(alignment: .top) {
-                NavigationView {
-                    MapView().navigationBarTitleDisplayMode(.inline)
-                }
-                .navigationViewStyle(StackNavigationViewStyle())
-                .accentColor( .white)
-                naviImageView
-            }
+            searchTabItem
                 .tabItem {
                     VStack {
                         Image("search")
                         Text("見つける")
                     }
                 }.tag(2)
-            
-            //            if self.session.isLogin {
-            ZStack(alignment: .top) {
-                NavigationView {
-                    //TODO: userID
-                    UserView(id: "Bwl4B5VWZH58h3CPDD2G").navigationBarTitleDisplayMode(.inline)
+            if GoogleDelegate().signedIn,
+               let userId = Auth.auth().currentUser?.uid {
+                ZStack(alignment: .top) {
+                    NavigationView {
+                        //TODO: userID
+                        UserView(id: userId).navigationBarTitleDisplayMode(.inline)
+                    }
+                    .navigationViewStyle(StackNavigationViewStyle())
+                    .accentColor( .white)
+                    naviImageView
                 }
-                .navigationViewStyle(StackNavigationViewStyle())
-                .accentColor( .white)
-                naviImageView
-            }
                 .tabItem {
                     VStack {
                         Image("hito")
                         Text("マイページ")
                     }
                 }.tag(3)
-            
-            //            } else {
-            //               NavigationView { SignInView().navigationBarTitleDisplayMode(.inline) }
-            //                    .tabItem {
-            //                        VStack {
-            //                            Image("hito")
-            //                            Text("マイページ")
-            //                        }
-            //                    }.tag(3)
-            //            }
+            } else {
+                NavigationView { SignInView().navigationBarTitleDisplayMode(.inline) }
+                    .tabItem {
+                        VStack {
+                            Image("hito")
+                            Text("マイページ")
+                        }
+                    }.tag(3)
+            }
+        }
+    }
+    private var homeTabItem: some View {
+        ZStack(alignment: .top) {
+            NavigationView {
+                HomeView().navigationBarTitleDisplayMode(.inline)
+            }
+            .accentColor( .white)
+            //エラーメッセージ回避 https://developer.apple.com/forums/thread/668433
+            .navigationViewStyle(StackNavigationViewStyle())
+            naviImageView
         }
     }
     
-    var naviImageView: some View {
-        Image("BestRamen")
-            .resizable()
-            .scaledToFit()
-            .frame(width: UIScreen.main.bounds.width/2)
+    private var searchTabItem: some View {
+        ZStack(alignment: .top) {
+            NavigationView {
+                MapView().navigationBarTitleDisplayMode(.inline)
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .accentColor( .white)
+            naviImageView
+        }
+    }
+    
+    private var naviImageView: some View {
+        VStack {
+            Spacer().frame(height: 6)
+            Image("BestRamen")
+                .resizable()
+                .scaledToFit()
+                .frame(width: UIScreen.main.bounds.width/3)
+        }
     }
 }
 

@@ -59,6 +59,7 @@
 		D56A6FBA2624969B0009A7C4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A6FB92624969B0009A7C4 /* HomeView.swift */; };
 		D56A6FBF262496DE0009A7C4 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A6FBE262496DE0009A7C4 /* UserView.swift */; };
 		D56A6FC4262497440009A7C4 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A6FC3262497440009A7C4 /* MapView.swift */; };
+		D570E85F262DD59F008FCFAF /* GoogleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D570E85E262DD59F008FCFAF /* GoogleDelegate.swift */; };
 		D5C3A7B826137DB90048F610 /* FirebaseManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3A7B726137DB90048F610 /* FirebaseManeger.swift */; };
 		D5D3AF5D25E52EA800CE6C50 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3AF5C25E52EA800CE6C50 /* User.swift */; };
 		D5D3AF6225E52EBD00CE6C50 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3AF6125E52EBD00CE6C50 /* Shop.swift */; };
@@ -146,6 +147,7 @@
 		D56A6FB92624969B0009A7C4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D56A6FBE262496DE0009A7C4 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		D56A6FC3262497440009A7C4 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		D570E85E262DD59F008FCFAF /* GoogleDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleDelegate.swift; sourceTree = "<group>"; };
 		D5C3A7B726137DB90048F610 /* FirebaseManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManeger.swift; sourceTree = "<group>"; };
 		D5D3AF5C25E52EA800CE6C50 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D5D3AF6125E52EBD00CE6C50 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				D337ABC22502666D000C0D1E /* Main.storyboard */,
 				D359AB8F2521BC87001C3213 /* CustomFloatingPanelLayout.swift */,
 				D337ABBA2502666D000C0D1E /* AppDelegate.swift */,
+				D570E85E262DD59F008FCFAF /* GoogleDelegate.swift */,
 				D337ABBC2502666D000C0D1E /* SceneDelegate.swift */,
 				D359AB972521BCBB001C3213 /* customCell */,
 				D337ABC525026673000C0D1E /* Assets.xcassets */,
@@ -654,6 +657,7 @@
 				D390231725068ECA00C13328 /* ShopPageViewController.swift in Sources */,
 				D5C3A7B826137DB90048F610 /* FirebaseManeger.swift in Sources */,
 				D5D3AF6F25E5320400CE6C50 /* PostViewModel.swift in Sources */,
+				D570E85F262DD59F008FCFAF /* GoogleDelegate.swift in Sources */,
 				D55E86322625F379009860BA /* Session.swift in Sources */,
 				D3F17FAE2535F9210048715D /* CustomNavigationController.swift in Sources */,
 				D32DF62825346CF500F34A62 /* AddDoneTextField.swift in Sources */,

@@ -10,5 +10,5 @@ import FirebaseFirestoreSwift
 public struct User: Codable {
     @DocumentID var id: String?
     let userName: String
-    let userProfile: String
+    let userProfile: String?
 }

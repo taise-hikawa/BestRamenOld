@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import GoogleSignIn
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -15,11 +16,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        let contentView = ContentView()
+        let googleDelegate = (UIApplication.shared.delegate as! AppDelegate).googleDelegate
+        let contentView = ContentView().environmentObject(googleDelegate)
 
             if let windowScene = scene as? UIWindowScene {
                 let window = UIWindow(windowScene: windowScene)
                 window.rootViewController = UIHostingController(rootView: contentView)
+                GIDSignIn.sharedInstance().presentingViewController = window.rootViewController
                 self.window = window
                 window.makeKeyAndVisible()
             }

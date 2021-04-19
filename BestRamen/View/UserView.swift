@@ -20,14 +20,18 @@ struct UserView: View {
                 headerView
                 Text(viewModel.user.userName).offset(x: 10)
                 Spacer().frame(height: 8)
-                Text(viewModel.user.userProfile).offset(x: 10)
+                Text(viewModel.user.userProfile ?? "").offset(x: 10)
                 favoriteRamenView
                 ramenListView
             }
         }
+        .navigationBarItems(leading:
+                                Button(action: {
+                                    viewModel.signOut()
+                                }) { Text("ログアウト") })
     }
     
-    var headerView: some View {
+    private var headerView: some View {
         HStack{
             Spacer().frame(width: 10)
             Image("a")
@@ -55,7 +59,7 @@ struct UserView: View {
         }
     }
     let ramens = ["best1:ラーメン屋", "best2:ラーメン屋", "best3:ラーメン屋"]
-    var favoriteRamenView: some View {
+    private var favoriteRamenView: some View {
         List {
                     ForEach(0 ..< ramens.count) { index in
                         Text(ramens[index])
@@ -63,7 +67,7 @@ struct UserView: View {
         }.frame(height: CGFloat(ramens.count) * 40)
     }
     
-    var ramenListView: some View {
+    private var ramenListView: some View {
         LazyVGrid(columns: Array(repeating: GridItem(spacing: 1), count: 3), spacing: 1) {
             ForEach(viewModel.postsArray, id: \.self) { item in
                 NavigationLink(
