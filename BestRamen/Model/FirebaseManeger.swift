@@ -22,20 +22,43 @@ final class FirebaseManeger {
     }
     // MARK: FireStore
     func fetchDocuments<T: Codable>(responseType:T.Type,
-                                    collection: Collection) -> AnyPublisher<[T], NSError> {
+                                    collection: Collection)
+    -> AnyPublisher<[T], NSError> {
         Future<[T], NSError> { promise in
             self.db.collection(collection.rawValue)
-            .order(by: "createdAt", descending: true)
-            .getDocuments{(querySnapshot, error) in
-                if let error = error {
-                    print(error)
+                .order(by: "createdAt", descending: true)
+                .getDocuments{(querySnapshot, error) in
+                    if let error = error {
+                        print(error)
+                    }
+                    if let result = querySnapshot?.documents.compactMap({
+                        try? $0.data(as: responseType.self)
+                    }) {
+                        promise(.success(result))
+                    }
                 }
-                if let result = querySnapshot?.documents.compactMap({
-                    try? $0.data(as: responseType.self)
-                }) {
-                    promise(.success(result))
+        }.eraseToAnyPublisher()
+    }
+    
+    func fetchDocumentsWithCondition<T: Codable>(responseType:T.Type,
+                                                 collection: Collection,
+                                                 fieldName: String,
+                                                 fieldValue: String)
+    -> AnyPublisher<[T], NSError> {
+        Future<[T], NSError> { promise in
+            self.db.collection(collection.rawValue)
+                .whereField(fieldName, isEqualTo: fieldValue)
+                .order(by: "createdAt", descending: true)
+                .getDocuments{(querySnapshot, error) in
+                    if let error = error {
+                        print(error)
+                    }
+                    if let result = querySnapshot?.documents.compactMap({
+                        try? $0.data(as: responseType.self)
+                    }) {
+                        promise(.success(result))
+                    }
                 }
-            }
         }.eraseToAnyPublisher()
     }
     

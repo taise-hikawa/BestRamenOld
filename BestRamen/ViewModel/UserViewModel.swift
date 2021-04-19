@@ -11,16 +11,29 @@ import Combine
 class UserViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     @Published var user: User = User(id: "", userName: "", userProfile: "")
+    @Published var postsArray: [Post] = []
     init(id: String) {
         fetchUser(id: id)
+        fetchPosts(id: id)
     }
-    func fetchUser(id: String) {
+    private func fetchUser(id: String) {
         FirebaseManeger().fetchDocument(responseType: User.self,
-                                      collection: .users,
-                                      id: id)
+                                        collection: .users,
+                                        id: id)
             .sink(receiveCompletion: { _ in },
                   receiveValue: { value in
                     self.user = value
+                  })
+            .store(in: &self.cancellables)
+    }
+    private func fetchPosts(id: String) {
+        FirebaseManeger().fetchDocumentsWithCondition(responseType: Post.self,
+                                                      collection: .posts,
+                                                      fieldName: "userId",
+                                                      fieldValue: id)
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { value in
+                    self.postsArray = value
                   })
             .store(in: &self.cancellables)
     }

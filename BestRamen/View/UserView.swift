@@ -65,9 +65,9 @@ struct UserView: View {
     
     var ramenListView: some View {
         LazyVGrid(columns: Array(repeating: GridItem(spacing: 1), count: 3), spacing: 1) {
-            ForEach((1...10), id: \.self) { _ in
+            ForEach(viewModel.postsArray, id: \.self) { item in
                 NavigationLink(
-                    destination: PostView(id: "rLe8PhM4jmh9lNaPLGjb")) {
+                    destination: PostView(id: item.postId)) {
                     let imageEdge = (UIScreen.main.bounds.width - 2) / 3
                     Image("a")
                         .resizable()
