@@ -53,7 +53,7 @@
 		D55E861D2625D4D6009860BA /* FollowListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E861C2625D4D6009860BA /* FollowListView.swift */; };
 		D55E86222625E5CC009860BA /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E86212625E5CC009860BA /* CreatePostView.swift */; };
 		D55E86272625E665009860BA /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E86262625E665009860BA /* EditProfileView.swift */; };
-		D55E86322625F379009860BA /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E86312625F379009860BA /* Session.swift */; };
+		D55E86322625F379009860BA /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E86312625F379009860BA /* AppState.swift */; };
 		D55E86372625F56B009860BA /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E86362625F56B009860BA /* EditProfileViewModel.swift */; };
 		D56A6FB5262492970009A7C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A6FB4262492970009A7C4 /* ContentView.swift */; };
 		D56A6FBA2624969B0009A7C4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A6FB92624969B0009A7C4 /* HomeView.swift */; };
@@ -141,7 +141,7 @@
 		D55E861C2625D4D6009860BA /* FollowListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListView.swift; sourceTree = "<group>"; };
 		D55E86212625E5CC009860BA /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
 		D55E86262625E665009860BA /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
-		D55E86312625F379009860BA /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		D55E86312625F379009860BA /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D55E86362625F56B009860BA /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		D56A6FB4262492970009A7C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D56A6FB92624969B0009A7C4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 			children = (
 				D5C3A7B626137D3E0048F610 /* Entity */,
 				D5C3A7B726137DB90048F610 /* FirebaseManeger.swift */,
-				D55E86312625F379009860BA /* Session.swift */,
+				D55E86312625F379009860BA /* AppState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -658,7 +658,7 @@
 				D5C3A7B826137DB90048F610 /* FirebaseManeger.swift in Sources */,
 				D5D3AF6F25E5320400CE6C50 /* PostViewModel.swift in Sources */,
 				D570E85F262DD59F008FCFAF /* GoogleDelegate.swift in Sources */,
-				D55E86322625F379009860BA /* Session.swift in Sources */,
+				D55E86322625F379009860BA /* AppState.swift in Sources */,
 				D3F17FAE2535F9210048715D /* CustomNavigationController.swift in Sources */,
 				D32DF62825346CF500F34A62 /* AddDoneTextField.swift in Sources */,
 				D3B218C825259BA30025BC35 /* EditViewController.swift in Sources */,

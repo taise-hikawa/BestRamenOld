@@ -10,8 +10,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct ContentView: View {
-    let isMe = false
-    @EnvironmentObject var session: Session
+    @ObservedObject var googleDelegate = GoogleDelegate.shared
     var body: some View {
         TabView {
             homeTabItem
@@ -28,25 +27,16 @@ struct ContentView: View {
                         Text("見つける")
                     }
                 }.tag(2)
-            if GoogleDelegate().signedIn,
-               let userId = Auth.auth().currentUser?.uid {
-                ZStack(alignment: .top) {
-                    NavigationView {
-                        //TODO: userID
-                        UserView(id: userId).navigationBarTitleDisplayMode(.inline)
-                    }
-                    .navigationViewStyle(StackNavigationViewStyle())
-                    .accentColor( .white)
-                    naviImageView
-                }
-                .tabItem {
-                    VStack {
-                        Image("hito")
-                        Text("マイページ")
-                    }
-                }.tag(3)
+            if googleDelegate.signedIn {
+                userTabItem
+                    .tabItem {
+                        VStack {
+                            Image("hito")
+                            Text("マイページ")
+                        }
+                    }.tag(3)
             } else {
-                NavigationView { SignInView().navigationBarTitleDisplayMode(.inline) }
+                signInItem
                     .tabItem {
                         VStack {
                             Image("hito")
@@ -72,6 +62,29 @@ struct ContentView: View {
         ZStack(alignment: .top) {
             NavigationView {
                 MapView().navigationBarTitleDisplayMode(.inline)
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .accentColor( .white)
+            naviImageView
+        }
+    }
+    
+    private var userTabItem: some View {
+        ZStack(alignment: .top) {
+            NavigationView {
+                //TODO: userID
+                UserView(id: "S8AJjhAoAWUkHIoNqHlfsvajSFg1").navigationBarTitleDisplayMode(.inline)
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .accentColor( .white)
+            naviImageView
+        }
+    }
+    
+    private var signInItem: some View {
+        ZStack(alignment: .top) {
+            NavigationView {
+                SignInView().navigationBarTitleDisplayMode(.inline)
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .accentColor( .white)
