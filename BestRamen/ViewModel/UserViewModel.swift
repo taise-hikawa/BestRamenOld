@@ -17,7 +17,7 @@ class UserViewModel: ObservableObject {
     func fetchUser(id: String) {
         FirebaseManeger().fetchDocument(responseType: User.self,
                                       collection: .users,
-                                      id: "U3a62ZBBH7ViN0CqnkWw")//TODO: nilになってしまうことがあるので、値を入れておいた
+                                      id: id)
             .sink(receiveCompletion: { _ in },
                   receiveValue: { value in
                     self.user = value

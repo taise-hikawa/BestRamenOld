@@ -26,7 +26,7 @@ struct ShopView: View {
                 LazyVGrid(columns: Array(repeating: GridItem(spacing: 1), count: 3), spacing: 1) {
                     ForEach((1...10), id: \.self) { _ in
                         NavigationLink(
-                            destination: PostView(id: "")) {
+                            destination: PostView(id: "rLe8PhM4jmh9lNaPLGjb")) {
                             let imageEdge = (UIScreen.main.bounds.width - 2) / 3
                             Image("a")
                                 .resizable()

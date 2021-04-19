@@ -17,7 +17,7 @@ class PostViewModel: ObservableObject {
     func fetchPost(id: String) {
         FirebaseManeger().fetchDocument(responseType: Post.self,
                                       collection: .posts,
-                                      id: "rLe8PhM4jmh9lNaPLGjb") //TODO: nilになってしまうことがあるので、値を入れておいた
+                                      id: id)
             .sink(receiveCompletion: { _ in },
                   receiveValue: { value in
                     self.post = value

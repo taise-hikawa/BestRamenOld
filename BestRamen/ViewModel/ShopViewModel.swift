@@ -18,7 +18,7 @@ class ShopViewModel: ObservableObject {
     func fetchShop(id: String) {
         FirebaseManeger().fetchDocument(responseType: Shop.self,
                                       collection: .shops,
-                                      id: "Bwl4B5VWZH58h3CPDD2G")//TODO: nilになってしまうことがあるので、値を入れておいた
+                                      id: id)
             .sink(receiveCompletion: { _ in },
                   receiveValue: { value in
                     self.shop = value
