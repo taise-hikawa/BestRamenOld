@@ -72,12 +72,11 @@ struct ContentView: View {
     private var userTabItem: some View {
         ZStack(alignment: .top) {
             NavigationView {
-                //TODO: userID
-                UserView(id: "U3a62ZBBH7ViN0CqnkWw").navigationBarTitleDisplayMode(.inline)
+                UserView(id: googleDelegate.userId ?? "")
+                    .navigationBarTitleDisplayMode(.inline)
                     .navigationBarItems(leading:
                                             Button(action: {
                                                 signOut()
-                                                googleDelegate.signedIn = false
                                             }) { Text("ログアウト") })
             }
             
@@ -111,6 +110,8 @@ struct ContentView: View {
     private func signOut() {
         do {
             try Auth.auth().signOut()
+            googleDelegate.signedIn = false
+            googleDelegate.userId = nil
         } catch {
             print("ログアウト失敗")
         }

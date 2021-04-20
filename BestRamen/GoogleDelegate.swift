@@ -15,6 +15,7 @@ import SwiftUI
 class GoogleDelegate: NSObject, GIDSignInDelegate, ObservableObject {
     static let shared = GoogleDelegate()
     @Published var signedIn: Bool = false
+    @Published var userId: String?
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         // ...
@@ -28,6 +29,8 @@ class GoogleDelegate: NSObject, GIDSignInDelegate, ObservableObject {
                                                        accessToken: authentication.accessToken)
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let authResult = authResult {
+                self.userId = authResult.user.uid
+                self.signedIn = true
                 //最初のログインか判定
                 let isFirstLogin = authResult.additionalUserInfo!.isNewUser
                 if isFirstLogin{
@@ -64,6 +67,5 @@ class GoogleDelegate: NSObject, GIDSignInDelegate, ObservableObject {
                 }
             }
         }
-        signedIn = true
     }
 }

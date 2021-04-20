@@ -10,6 +10,7 @@ import SwiftUI
 
 struct PostView: View {
     @ObservedObject private var viewModel: PostViewModel
+    @EnvironmentObject var googleDelegate: GoogleDelegate
     init(id: String) {
         self.viewModel = PostViewModel(id: id)
     }

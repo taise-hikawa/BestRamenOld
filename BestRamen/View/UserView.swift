@@ -10,20 +10,32 @@ import SwiftUI
 
 struct UserView: View {
     @ObservedObject private var viewModel: UserViewModel
+    @EnvironmentObject var googleDelegate: GoogleDelegate
+    @State private var isMe: Bool = false
+    let id: String
     init(id: String) {
+        self.id = id
         self.viewModel = UserViewModel(id: id)
     }
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                Spacer().frame(height: 8)
-                headerView
-                Text(viewModel.user.userName).offset(x: 10)
-                Spacer().frame(height: 8)
-                Text(viewModel.user.userProfile ?? "").offset(x: 10)
-                favoriteRamenView
-                ramenListView
+        ZStack(alignment: .bottomTrailing) {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Spacer().frame(height: 8)
+                    headerView
+                    Text(viewModel.user.userName).offset(x: 10)
+                    Spacer().frame(height: 8)
+                    Text(viewModel.user.userProfile ?? "").offset(x: 10)
+                    favoriteRamenView
+                    ramenListView
+                    
+                }
             }
+            postButton.offset(x: 25, y: 25)
+                .hidden(!isMe)
+        }
+        .onAppear {
+            isMe = googleDelegate.userId == id
         }
     }
     
@@ -74,6 +86,20 @@ struct UserView: View {
                             .resizable()
                             .frame(width: imageEdge, height: imageEdge)
                     })
+            }
+        }
+    }
+    private var postButton: some View {
+        Button(action: {
+            // Do something
+        }) {
+            ZStack {
+                Circle()
+                    .fill(Color.orange)
+                    .frame(width: 110, height: 110)
+                Image("camera")
+                    .resizable()
+                    .frame(width: 80, height: 80)
             }
         }
     }
