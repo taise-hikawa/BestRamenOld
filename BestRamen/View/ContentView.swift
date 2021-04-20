@@ -73,8 +73,14 @@ struct ContentView: View {
         ZStack(alignment: .top) {
             NavigationView {
                 //TODO: userID
-                UserView(id: "S8AJjhAoAWUkHIoNqHlfsvajSFg1").navigationBarTitleDisplayMode(.inline)
+                UserView(id: "U3a62ZBBH7ViN0CqnkWw").navigationBarTitleDisplayMode(.inline)
+                    .navigationBarItems(leading:
+                                            Button(action: {
+                                                signOut()
+                                                googleDelegate.signedIn = false
+                                            }) { Text("ログアウト") })
             }
+            
             .navigationViewStyle(StackNavigationViewStyle())
             .accentColor( .white)
             naviImageView
@@ -94,11 +100,19 @@ struct ContentView: View {
     
     private var naviImageView: some View {
         VStack {
-            Spacer().frame(height: 6)
+            Spacer().frame(height: 12)
             Image("BestRamen")
                 .resizable()
                 .scaledToFit()
                 .frame(width: UIScreen.main.bounds.width/3)
+        }
+    }
+    
+    private func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("ログアウト失敗")
         }
     }
 }

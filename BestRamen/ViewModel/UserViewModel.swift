@@ -92,12 +92,4 @@ class UserViewModel: ObservableObject {
                   })
             .store(in: &self.cancellables)
     }
-    
-    func signOut() {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print("ログアウト失敗")
-        }
-    }
 }
