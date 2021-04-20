@@ -14,9 +14,7 @@ struct HomeView: View {
         List {
             ForEach(viewModel.postsArray, id: \.self) { item in
                 NavigationLink(destination: PostView(id: item.postId)) {
-                    HomeRow.init(post: item,
-                                 postImgData: $viewModel.postImagesDic[item.postId],
-                                 userImgData: $viewModel.userImagesDic[item.userId])
+                    HomeRow.init(post: item)
                 }
                 .frame(height: 300)
                 .clipped()

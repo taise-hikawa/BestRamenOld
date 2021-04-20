@@ -13,10 +13,13 @@ import FirebaseFirestoreSwift
 public enum Collection: String {
     case posts, shops, users, relationships
 }
+public enum Child: String {
+    case posts, users
+}
 
 final class FirebaseManeger {
     let db : Firestore
-    
+    let storage = Storage.storage().reference(forURL: "gs://bestramen-90259.appspot.com")
     init() {
         db = Firestore.firestore()
     }
@@ -80,4 +83,20 @@ final class FirebaseManeger {
         }.eraseToAnyPublisher()
     }
     // MARK: FirebaseStorage
+    
+    func fetchImage(child: Child, id: String) -> AnyPublisher<Data, NSError> {
+        Future<Data, NSError> { promise in
+            self.storage.child(child.rawValue)
+                .child(id + ".jpg")
+                .getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
+                    if let error = error {
+                        print(error)
+                        return
+                    }
+                    if let imageData = data {
+                        promise(.success(imageData))
+                    }
+                }
+        }.eraseToAnyPublisher()
+    }
 }

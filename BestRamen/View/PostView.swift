@@ -19,7 +19,7 @@ struct PostView: View {
             NavigationLink(
                 destination: UserView(id: viewModel.post.userId)) {
                 HStack(spacing: 7) {
-                    Image("default")//TODO: 画像Storageから
+                    Image(uiImage: UIImage(data: viewModel.userImageData) ?? UIImage(named: "default")!)
                         .resizable()
                         .frame(width: 40, height: 40)
                     Text(viewModel.post.userName)
@@ -28,7 +28,7 @@ struct PostView: View {
                 .offset(x: 6)
             }.buttonStyle(PlainButtonStyle())
             .navigationViewStyle(StackNavigationViewStyle())
-            Image("a") //TODO: 画像Storageから
+            Image(uiImage: UIImage(data: viewModel.postImageData) ?? UIImage(named: "noimage")!)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             NavigationLink(destination: ShopView(id: viewModel.post.shopId)) {

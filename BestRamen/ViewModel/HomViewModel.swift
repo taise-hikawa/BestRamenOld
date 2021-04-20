@@ -14,8 +14,6 @@ internal protocol HomeViewModelOutputs {}
 class HomeViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     @Published var postsArray: [Post] = []
-    @Published var postImagesDic: [String: Data] = [:] //本当はPostの中に持たせたい
-    @Published var userImagesDic: [String: Data] = [:] //本当はPostの中に持たせたい
     init() {
         fetchPosts()
     }
@@ -30,16 +28,4 @@ class HomeViewModel: ObservableObject {
             .store(in: &self.cancellables)
 
     }
-//
-//    private func fetchPostImages() {
-//        postsArray.forEach {
-//            postImagesDic[$0.postId] = model.fetchPostImage(id: $0.postId)
-//        }
-//    }
-//
-//    private func fetchUserImages() {
-//        postsArray.forEach {
-//            postImagesDic[$0.userId] = model.fetchUserImage(id: $0.userId)
-//        }
-//    }
 }

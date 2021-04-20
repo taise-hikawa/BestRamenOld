@@ -10,22 +10,19 @@ import SwiftUI
 
 struct HomeRow: View {
     private let post: Post
-    @Binding var postImgData: Data?
-    @Binding var userImgdata: Data?
-    let uiImage = UIImage(named: "a")!
-    init(post: Post, postImgData: Binding<Data?>, userImgData: Binding<Data?>) {
+    @ObservedObject private var viewModel: HomeRowViewModel
+    init(post: Post) {
         self.post = post
-        self._postImgData = postImgData
-        self._userImgdata = userImgData
+        self.viewModel = HomeRowViewModel(post: post)
     }
     var body: some View {
         ZStack {
-            Image(uiImage: uiImage)
+            Image(uiImage: UIImage(data: viewModel.postImageData) ?? UIImage(named: "noimage")!)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
             VStack(alignment: .leading) {
                 HStack(spacing: 10) {
-                    Image(uiImage: uiImage)
+                    Image(uiImage: UIImage(data: viewModel.userImageData) ?? UIImage(named: "default")!)
                         .resizable()
                         .frame(maxWidth: 40, maxHeight: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     Text(post.userName)
