@@ -10,7 +10,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct ContentView: View {
-    @ObservedObject var googleDelegate = GoogleDelegate.shared
+    @EnvironmentObject var googleDelegate: GoogleDelegate
     var body: some View {
         TabView {
             homeTabItem

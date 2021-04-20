@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct UserView: View {
+    @EnvironmentObject var googleDelegate: GoogleDelegate
     @ObservedObject private var viewModel: UserViewModel
     init(id: String) {
         self.viewModel = UserViewModel(id: id)
@@ -28,6 +29,7 @@ struct UserView: View {
         .navigationBarItems(leading:
                                 Button(action: {
                                     viewModel.signOut()
+                                    googleDelegate.signedIn = false
                                 }) { Text("ログアウト") })
     }
     
