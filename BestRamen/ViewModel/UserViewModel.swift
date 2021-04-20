@@ -15,11 +15,16 @@ class UserViewModel: ObservableObject {
     @Published var postsArray: [Post] = []
     @Published var postImagesData: [String: Data] = [:]
     @Published var userImageData: Data = Data.init()
+    @Published var followingCount: Int = 0
+    @Published var followedCount: Int = 0
     init(id: String) {
         fetchUser(id: id)
         fetchPosts(id: id)
         fetchUserImage(id: id)
+        fetchFollowingCount(id: id)
+        fetchFollowedCount(id: id)
     }
+    
     private func fetchUser(id: String) {
         FirebaseManeger().fetchDocument(responseType: User.self,
                                         collection: .users,
@@ -30,6 +35,7 @@ class UserViewModel: ObservableObject {
                   })
             .store(in: &self.cancellables)
     }
+    
     private func fetchPosts(id: String) {
         FirebaseManeger().fetchDocumentsWithCondition(responseType: Post.self,
                                                       collection: .posts,
@@ -59,6 +65,30 @@ class UserViewModel: ObservableObject {
             .sink(receiveCompletion: { _ in },
                   receiveValue: { value in
                     self.userImageData = value
+                  })
+            .store(in: &self.cancellables)
+    }
+    
+    private func fetchFollowingCount(id: String) {
+        FirebaseManeger().fetchDocumentsWithCondition(responseType: Relationships.self,
+                                                      collection: .relationships,
+                                                      fieldName: FollowListView.FollowIdType.followingId.rawValue,
+                                                      fieldValue: id)
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { value in
+                    self.followingCount = value.count
+                  })
+            .store(in: &self.cancellables)
+    }
+    
+    private func fetchFollowedCount(id: String) {
+        FirebaseManeger().fetchDocumentsWithCondition(responseType: Relationships.self,
+                                                      collection: .relationships,
+                                                      fieldName: FollowListView.FollowIdType.followedId.rawValue,
+                                                      fieldValue: id)
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { value in
+                    self.followedCount = value.count
                   })
             .store(in: &self.cancellables)
     }

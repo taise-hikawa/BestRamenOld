@@ -17,12 +17,14 @@ struct HomeRow: View {
     }
     var body: some View {
         ZStack {
-            Image(uiImage: UIImage(data: viewModel.postImageData) ?? UIImage(named: "noimage")!)
+            let postImg = UIImage(data: viewModel.post.postImageData ?? Data.init()) ?? UIImage(named: "noimage")!
+            Image(uiImage: postImg)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
             VStack(alignment: .leading) {
                 HStack(spacing: 10) {
-                    Image(uiImage: UIImage(data: viewModel.userImageData) ?? UIImage(named: "default")!)
+                    let userImg = UIImage(data: viewModel.post.userImageData ?? Data.init()) ?? UIImage(named: "default")!
+                    Image(uiImage: userImg)
                         .resizable()
                         .frame(maxWidth: 40, maxHeight: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     Text(post.userName)

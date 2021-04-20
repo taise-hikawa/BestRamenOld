@@ -15,15 +15,8 @@ public struct Post: Codable, Hashable {
     let shopId: String
     let shopName: String
     let postContent: String
-    
-//    init(id: String, userId: String, userName: String, shopId: String, shopName: String, postContent: String) {
-//        self.id = id
-//        self.userId = userId
-//        self.userName = userName
-//        self.shopId = shopId
-//        self.shopName = shopName
-//        self.postContent = postContent
-//    }
+    var userImageData: Data? = Data.init()
+    var postImageData: Data? = Data.init()
 }
 
 extension Post {

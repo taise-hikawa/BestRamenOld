@@ -42,16 +42,16 @@ struct UserView: View {
                 destination: FollowListView(id: viewModel.user.userId, idType: .followedId),
                 label: {
                     VStack(alignment: .center, spacing: 4) {
-                        Text("0")//TODO: ViewModel実装後
+                        Text(viewModel.followedCount.description)
                         Text("フォロワー")
                     }
                 }).buttonStyle(PlainButtonStyle())
             Spacer()
             NavigationLink(
-                destination: FollowListView(id: viewModel.user.userId, idType: .followerId),
+                destination: FollowListView(id: viewModel.user.userId, idType: .followingId),
                 label: {
                     VStack(alignment: .center, spacing: 4) {
-                        Text("0")//TODO: ViewModel実装後
+                        Text(viewModel.followingCount.description)
                         Text("フォロー")
                     }
                 }).buttonStyle(PlainButtonStyle())

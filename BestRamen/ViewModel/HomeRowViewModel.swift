@@ -11,9 +11,9 @@ import SwiftUI
 
 class HomeRowViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
-    @Published var postImageData: Data = Data.init()
-    @Published var userImageData: Data = Data.init()
+    @Published var post: Post
     init(post: Post) {
+        self.post = post
         fetchPostImage(id: post.postId)
         fetchUserImage(id: post.userId)
     }
@@ -21,7 +21,7 @@ class HomeRowViewModel: ObservableObject {
         FirebaseManeger().fetchImage(child: .posts, id: id)
             .sink(receiveCompletion: { _ in },
                   receiveValue: { value in
-                    self.postImageData = value
+                    self.post.postImageData = value
                   })
             .store(in: &self.cancellables)
     }
@@ -29,7 +29,7 @@ class HomeRowViewModel: ObservableObject {
         FirebaseManeger().fetchImage(child: .users, id: id)
             .sink(receiveCompletion: { _ in },
                   receiveValue: { value in
-                    self.userImageData = value
+                    self.post.userImageData = value
                   })
             .store(in: &self.cancellables)
     }

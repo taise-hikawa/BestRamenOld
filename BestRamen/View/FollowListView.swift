@@ -10,7 +10,7 @@ import SwiftUI
 
 struct FollowListView: View {
     public enum FollowIdType: String {
-        case followedId, followerId
+        case followingId, followedId
     }
     @ObservedObject private var viewModel: FollowListViewModel
     init(id: String, idType: FollowIdType) {
@@ -18,8 +18,7 @@ struct FollowListView: View {
     }
     var body: some View {
         List {
-            ForEach(0..<3) {_ in
-                //TODO: userID
+            ForEach(viewModel.userArray, id: \.self) { item in
                 NavigationLink(destination: UserView(id: "U3a62ZBBH7ViN0CqnkWw")) {
                     HStack(spacing: 8) {
                         Image("default")
