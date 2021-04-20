@@ -77,7 +77,8 @@ pod "Firebase/Storage"
 pod "Firebase/Auth"
 pod "FloatingPanel"
 pod "RSKImageCropper"
-pod 'GoogleSignIn'
+pod 'GoogleSignIn'  
+pod "FirebaseFirestoreSwift"
 pod install
 ```
 ※現在Firebaseの使用上限量に達したため、デフォルト画像を表示する設定になっております。()
