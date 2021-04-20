@@ -26,13 +26,13 @@ final class FirebaseManeger {
     // MARK: FireStore
     func fetchDocuments<T: Codable>(responseType:T.Type,
                                     collection: Collection)
-    -> AnyPublisher<[T], NSError> {
-        Future<[T], NSError> { promise in
+    -> AnyPublisher<[T], Error> {
+        Future<[T], Error> { promise in
             self.db.collection(collection.rawValue)
                 .order(by: "createdAt", descending: true)
                 .getDocuments{(querySnapshot, error) in
                     if let error = error {
-                        print(error)
+                        promise(.failure(error))
                     }
                     if let result = querySnapshot?.documents.compactMap({
                         try? $0.data(as: responseType.self)
@@ -47,14 +47,39 @@ final class FirebaseManeger {
                                                  collection: Collection,
                                                  fieldName: String,
                                                  fieldValue: String)
-    -> AnyPublisher<[T], NSError> {
-        Future<[T], NSError> { promise in
+    -> AnyPublisher<[T], Error> {
+        Future<[T], Error> { promise in
             self.db.collection(collection.rawValue)
                 .whereField(fieldName, isEqualTo: fieldValue)
                 .order(by: "createdAt", descending: true)
                 .getDocuments{(querySnapshot, error) in
                     if let error = error {
-                        print(error)
+                        promise(.failure(error))
+                    }
+                    if let result = querySnapshot?.documents.compactMap({
+                        try? $0.data(as: responseType.self)
+                    }) {
+                        promise(.success(result))
+                    }
+                }
+        }.eraseToAnyPublisher()
+    }
+    
+    func fetchDocumentsWithTwoCondition<T: Codable>(responseType:T.Type,
+                                                 collection: Collection,
+                                                 firstField: String,
+                                                 firstFieldValue: String,
+                                                 secondField: String,
+                                                 secondFieldValue: String)
+    -> AnyPublisher<[T], Error> {
+        Future<[T], Error> { promise in
+            self.db.collection(collection.rawValue)
+                .whereField(firstField, isEqualTo: firstFieldValue)
+                .whereField(secondField, isEqualTo: secondFieldValue)
+                .order(by: "createdAt", descending: true)
+                .getDocuments{(querySnapshot, error) in
+                    if let error = error {
+                        promise(.failure(error))
                     }
                     if let result = querySnapshot?.documents.compactMap({
                         try? $0.data(as: responseType.self)
@@ -66,15 +91,14 @@ final class FirebaseManeger {
     }
     
     func fetchDocument<T: Codable>(responseType:T.Type,
-                                          collection: Collection,
-                                          id: String) -> AnyPublisher<T, NSError> {
-        Future<T, NSError> { promise in
+                                   collection: Collection,
+                                   id: String) -> AnyPublisher<T, Error> {
+        Future<T, Error> { promise in
             self.db.collection(collection.rawValue)
-                                .document(id)
-                
+                .document(id)
                 .getDocument {(snapshot, error) in
                     if let error = error {
-                        print(error)
+                        promise(.failure(error))
                     }
                     if let result = try? snapshot?.data(as: responseType.self) {
                         promise(.success(result))
@@ -82,15 +106,48 @@ final class FirebaseManeger {
                 }
         }.eraseToAnyPublisher()
     }
+    
+    func addDocument<T: Codable>(data: T, collection: Collection) -> AnyPublisher<String, Error>  {
+        var ref: DocumentReference?
+        return Future<String, Error> { promise in
+            do {
+                ref = try self.db.collection(collection.rawValue)
+                    .addDocument(from: data) { error in
+                        if let error = error {
+                            promise(.failure(error))
+                        }
+                        if let id = ref?.documentID {
+                            promise(.success(id))
+                        }
+                    }
+            } catch {
+                promise(.failure(error))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func deleteDocument(collection: Collection, id: String) -> AnyPublisher<Void, Error> {
+        return Future<Void, Error> { promise in
+            self.db.collection(collection.rawValue)
+                .document(id)
+                .delete() { error in
+                    if let error = error {
+                        promise(.failure(error))
+                    }
+                    promise(.success(()))
+                }
+        }.eraseToAnyPublisher()
+    }
+    
     // MARK: FirebaseStorage
     
-    func fetchImage(child: Child, id: String) -> AnyPublisher<Data, NSError> {
-        Future<Data, NSError> { promise in
+    func fetchImage(child: Child, id: String) -> AnyPublisher<Data, Error> {
+        Future<Data, Error> { promise in
             self.storage.child(child.rawValue)
                 .child(id + ".jpg")
                 .getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
                     if let error = error {
-                        print(error)
+                        promise(.failure(error))
                         return
                     }
                     if let imageData = data {

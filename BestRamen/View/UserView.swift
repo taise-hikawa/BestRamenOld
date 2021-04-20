@@ -23,12 +23,17 @@ struct UserView: View {
                 VStack(alignment: .leading) {
                     Spacer().frame(height: 8)
                     headerView
-                    Text(viewModel.user.userName).offset(x: 10)
+                    Text(viewModel.user.userName)
+                        .fontWeight(.bold).offset(x: 10).font(.title2)
                     Spacer().frame(height: 8)
                     Text(viewModel.user.userProfile ?? "").offset(x: 10)
+                    if viewModel.isFollowing {
+                        unFollowButton.hidden(isMe || !googleDelegate.signedIn)
+                    } else {
+                        followButton.hidden(isMe || !googleDelegate.signedIn)
+                    }
                     favoriteRamenView
                     ramenListView
-                    
                 }
             }
             postButton.offset(x: 25, y: 25)
@@ -36,6 +41,9 @@ struct UserView: View {
         }
         .onAppear {
             isMe = googleDelegate.userId == id
+            guard let currentUserId = googleDelegate.userId else { return }
+            viewModel.checkFollowing(userId: id, currentUserId: currentUserId)
+            
         }
     }
     
@@ -89,6 +97,46 @@ struct UserView: View {
             }
         }
     }
+    
+    private var followButton: some View {
+        HStack {
+            Spacer()
+            Button(action: {
+                if let id = googleDelegate.userId {
+                    viewModel.follow(currentUserId: id)
+                }
+            }) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.orange)
+                        .frame(width: 180, height: 30)
+                    Text("フォローする")
+                        .fontWeight(.bold)
+                }
+            }
+            Spacer()
+        }
+    }
+    
+    private var unFollowButton: some View {
+        HStack {
+            Spacer()
+            Button(action: {
+                viewModel.unFollow()
+            }) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.orange, lineWidth: 2)
+                        .frame(width: 180, height: 30)
+                    Text("フォロー中")
+                        .fontWeight(.bold)
+                        .foregroundColor(.orange)
+                }
+            }
+            Spacer()
+        }
+    }
+    
     private var postButton: some View {
         Button(action: {
             // Do something

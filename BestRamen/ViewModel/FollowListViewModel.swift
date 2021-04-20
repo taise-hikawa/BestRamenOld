@@ -16,7 +16,7 @@ class FollowListViewModel: ObservableObject {
         fetchList(id: id, fieldName: idType.rawValue)
     }
     private func fetchList(id: String, fieldName: String) {
-        FirebaseManeger().fetchDocumentsWithCondition(responseType: Relationships.self,
+        FirebaseManeger().fetchDocumentsWithCondition(responseType: Relationship.self,
                                                       collection: .relationships,
                                                       fieldName: fieldName,
                                                       fieldValue: id)
