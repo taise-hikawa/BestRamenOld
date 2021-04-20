@@ -34,7 +34,7 @@ struct UserView: View {
     private var headerView: some View {
         HStack{
             Spacer().frame(width: 10)
-            Image("a")
+            Image(uiImage: UIImage(data: viewModel.userImageData) ?? UIImage(named: "default")!)
                 .resizable()
                 .frame(width: 80, height: 80)
             Spacer()
@@ -71,12 +71,13 @@ struct UserView: View {
         LazyVGrid(columns: Array(repeating: GridItem(spacing: 1), count: 3), spacing: 1) {
             ForEach(viewModel.postsArray, id: \.self) { item in
                 NavigationLink(
-                    destination: PostView(id: item.postId)) {
-                    let imageEdge = (UIScreen.main.bounds.width - 2) / 3
-                    Image("a")
-                        .resizable()
-                        .frame(width: imageEdge, height: imageEdge)
-                }
+                    destination: PostView(id: item.postId), label: {
+                        let imageEdge = (UIScreen.main.bounds.width - 2) / 3
+                        let uiImage = UIImage(data: viewModel.postImagesData[item.postId] ?? Data.init()) ?? UIImage(named: "noimage")!
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .frame(width: imageEdge, height: imageEdge)
+                    })
             }
         }
     }

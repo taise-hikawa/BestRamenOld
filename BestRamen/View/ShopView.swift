@@ -26,12 +26,13 @@ struct ShopView: View {
                 LazyVGrid(columns: Array(repeating: GridItem(spacing: 1), count: 3), spacing: 1) {
                     ForEach(viewModel.postsArray, id: \.self) { item in
                         NavigationLink(
-                            destination: PostView(id: item.postId)) {
-                            let imageEdge = (UIScreen.main.bounds.width - 2) / 3
-                            Image("a")
-                                .resizable()
-                                .frame(width: imageEdge, height: imageEdge)
-                        }
+                            destination: PostView(id: item.postId), label: {
+                                let imageEdge = (UIScreen.main.bounds.width - 2) / 3
+                                let uiImage = UIImage(data: viewModel.postImagesData[item.postId] ?? Data.init()) ?? UIImage(named: "noimage")!
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .frame(width: imageEdge, height: imageEdge)
+                            })
                     }
                 }
             }

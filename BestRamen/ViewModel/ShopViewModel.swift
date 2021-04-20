@@ -13,6 +13,7 @@ class ShopViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     @Published var shop: Shop = Shop(id: "", shopName: "", shopAddress: "", shopGeocode: GeoPoint(latitude: 0.0, longitude: 0.0))
     @Published var postsArray: [Post] = []
+    @Published var postImagesData: [String: Data] = [:]
     init(id: String) {
         fetchShop(id: id)
         fetchPosts(id: id)
@@ -35,6 +36,17 @@ class ShopViewModel: ObservableObject {
             .sink(receiveCompletion: { _ in },
                   receiveValue: { value in
                     self.postsArray = value
+                    for item in value {
+                        self.fetchPostImages(id: item.postId)
+                    }
+                  })
+            .store(in: &self.cancellables)
+    }
+    private func fetchPostImages(id: String) {
+        FirebaseManeger().fetchImage(child: .posts, id: id)
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { value in
+                    self.postImagesData[id] = value
                   })
             .store(in: &self.cancellables)
     }
