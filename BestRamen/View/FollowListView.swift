@@ -7,11 +7,11 @@
 //
 
 import SwiftUI
+public enum FollowIdType: String {
+    case followingId, followedId
+}
 
 struct FollowListView: View {
-    public enum FollowIdType: String {
-        case followingId, followedId
-    }
     @ObservedObject private var viewModel: FollowListViewModel
     init(id: String, idType: FollowIdType) {
         self.viewModel = FollowListViewModel(id: id,idType: idType)
@@ -19,12 +19,13 @@ struct FollowListView: View {
     var body: some View {
         List {
             ForEach(viewModel.userArray, id: \.self) { item in
-                NavigationLink(destination: UserView(id: "U3a62ZBBH7ViN0CqnkWw")) {
+                NavigationLink(destination: UserView(id: item.userId)) {
                     HStack(spacing: 8) {
-                        Image("default")
+                        let img = UIImage(data: item.userImageData ?? Data.init()) ?? UIImage(named: "default")!
+                        Image(uiImage: img)
                             .resizable()
                             .frame(width: 40, height: 40)
-                        Text("お名前")
+                        Text(item.userName)
                             .font(.body)
                         Spacer()
                     }

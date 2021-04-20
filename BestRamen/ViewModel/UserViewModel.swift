@@ -72,7 +72,7 @@ class UserViewModel: ObservableObject {
     private func fetchFollowingCount(id: String) {
         FirebaseManeger().fetchDocumentsWithCondition(responseType: Relationships.self,
                                                       collection: .relationships,
-                                                      fieldName: FollowListView.FollowIdType.followingId.rawValue,
+                                                      fieldName: FollowIdType.followingId.rawValue,
                                                       fieldValue: id)
             .sink(receiveCompletion: { _ in },
                   receiveValue: { value in
@@ -84,7 +84,7 @@ class UserViewModel: ObservableObject {
     private func fetchFollowedCount(id: String) {
         FirebaseManeger().fetchDocumentsWithCondition(responseType: Relationships.self,
                                                       collection: .relationships,
-                                                      fieldName: FollowListView.FollowIdType.followedId.rawValue,
+                                                      fieldName: FollowIdType.followedId.rawValue,
                                                       fieldValue: id)
             .sink(receiveCompletion: { _ in },
                   receiveValue: { value in
