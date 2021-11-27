@@ -50,8 +50,8 @@ class CustomTableViewCell: UITableViewCell {
         postImageView.contentMode = .scaleAspectFill
         userName.text = item.userName
         shopName.text = item.shopName
-        userImageView.image = UIImage(named: item.userId?.description ?? "default")
-        if let postImage = UIImage(named: item.postId?.description ?? "a") {
+        userImageView.image = UIImage(named: item.userId.description)
+        if let postImage = UIImage(named: item.postId.description) {
             setPostedImage(image: postImage)
         }
     }

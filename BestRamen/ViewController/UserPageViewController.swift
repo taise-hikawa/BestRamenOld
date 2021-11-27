@@ -134,7 +134,7 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        currentUser = Auth.auth().currentUser
+//        currentUser = Auth.auth().currentUser
         //タブバーから表示されたかsegueから表示されたかで分岐
         if fromSegue{
             //segueから
@@ -158,29 +158,29 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.setPosts()
             self.setUser()
             //userIdとログインしているユーザー(currentUser)のuidが一致するかで分岐
-            if userId == currentUser?.uid{
-                //ログインユーザーのページの場合
-                self.followButton.isHidden = true
-                stackViewTopConstraint.priority = UILayoutPriority(rawValue: 1000)
-            }else{
-                //その他のユーザーのページの場合
-                self.followButton.isHidden = false
-                stackViewTopConstraint.priority = UILayoutPriority(rawValue: 750)
-                if currentUser != nil{
-                    self.db.collection("relationships").whereField("followedId", isEqualTo: userId!).whereField("followerId", isEqualTo:currentUser!.uid ).getDocuments{(queryDocumentSnapshot,error) in
-                        if let queryDocumentSnapshot = queryDocumentSnapshot,queryDocumentSnapshot.documents.count != 0 {
-                            self.followFlag = true
-                            for document in queryDocumentSnapshot.documents{
-                                self.relationId = document.documentID
-                                
-                            }
-                        }else{
-                            self.followFlag = false
-                        }
-                    }
-                    
-                }
-            }
+//            if userId == currentUser?.uid{
+//                //ログインユーザーのページの場合
+//                self.followButton.isHidden = true
+//                stackViewTopConstraint.priority = UILayoutPriority(rawValue: 1000)
+//            }else{
+//                //その他のユーザーのページの場合
+//                self.followButton.isHidden = false
+//                stackViewTopConstraint.priority = UILayoutPriority(rawValue: 750)
+//                if currentUser != nil{
+//                    self.db.collection("relationships").whereField("followedId", isEqualTo: userId!).whereField("followerId", isEqualTo:currentUser!.uid ).getDocuments{(queryDocumentSnapshot,error) in
+//                        if let queryDocumentSnapshot = queryDocumentSnapshot,queryDocumentSnapshot.documents.count != 0 {
+//                            self.followFlag = true
+//                            for document in queryDocumentSnapshot.documents{
+//                                self.relationId = document.documentID
+//
+//                            }
+//                        }else{
+//                            self.followFlag = false
+//                        }
+//                    }
+//
+//                }
+//            }
         }else{
             //タブバーから
             //ログイン状態で分岐
@@ -478,8 +478,8 @@ class UserPageViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 ref = db.collection("relationships").addDocument(data: [
                     "followedId": userId!,
                     "followedName": self.nameLabel.text!,
-                    "followerId": currentUser.uid,
-                    "followerName":currentUser.displayName!
+//                    "followerId": currentUser.uid,
+//                    "followerName":currentUser.displayName!
                 ]) { err in
                     if let err = err {
                         print("Error adding document: \(err)")

@@ -13,7 +13,7 @@ class PostViewController: UIViewController {
     var item: Post?
     
     var deleteButton: UIBarButtonItem!
-    let viewModel: PostViewModel? = PostViewModel()
+    let viewModel: PostViewModel? = PostViewModel(id: "")
     
     func initSelf(item: Post) {
         self.item = item
@@ -38,7 +38,7 @@ class PostViewController: UIViewController {
 //                self.userImage.image = userImg
 //            }
 //        }
-        self.userImage.image = UIImage(named: item?.userId?.description ?? "default")
+        self.userImage.image = UIImage(named: item?.userId.description ?? "a")
 //        storage.child("posts").child("\(postId ?? "").jpg").getData(maxSize: 1024 * 1024 * 10) { (data: Data?, error: Error?) in
 //            if error != nil {
 //                return
@@ -48,15 +48,15 @@ class PostViewController: UIViewController {
 //                self.postImage.image = postImg
 //            }
 //        }
-        self.postImage.image = UIImage(named: item?.postId?.description ?? "a")
+        self.postImage.image = UIImage(named: item?.postId.description ?? "a")
         deleteButton = UIBarButtonItem(title: "削除", style: .done, target: self, action: #selector(deleteButtonTapped(_:)))
         self.navigationItem.rightBarButtonItem = deleteButton
         deleteButton.isEnabled = false
         deleteButton.tintColor = UIColor.clear
-        if item?.userId == viewModel?.currentUser {
-            deleteButton.isEnabled = true
-            deleteButton.tintColor = .white
-        }
+//        if item?.userId == viewModel?.currentUser {
+//            deleteButton.isEnabled = true
+//            deleteButton.tintColor = .white
+//        }
     }
     
     @objc func tapShopButton(_ sender: UIButton){
@@ -82,7 +82,7 @@ class PostViewController: UIViewController {
 //            }
 //        }
         guard let id = item?.postId else { return }
-        viewModel?.deletePost(id: id)
+//        viewModel?.deletePost(id: id)
         //TODO: deleteが行われた後以下の処理をしないといけない
             //現在のタブはtabNavigatinoControllerのトップへ
             self.navigationController?.popToRootViewController(animated: true)

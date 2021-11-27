@@ -44,7 +44,7 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentUser = Auth.auth().currentUser
+//        currentUser = Auth.auth().currentUser
         postImage.image = captureImage
         print(postImage.image?.size as Any)
         shopChooseButton.addTarget(self, action: #selector(self.shopChooseButtonTapped(_:)), for: .touchUpInside)
@@ -127,8 +127,8 @@ class MakePostViewController: UIViewController,FloatingPanelControllerDelegate,R
         dispatchGroup.enter()
         dispatchQueue.async(group: dispatchGroup) {
             ref = self.db.collection("posts").addDocument(data: [
-                "userId": self.currentUser.uid,
-                "userName": self.currentUser.displayName!,
+//                "userId": self.currentUser.uid,
+//                "userName": self.currentUser.displayName!,
                 "shopId": self.shopId!,
                 "shopName":self.shopName!,
                 "postContent":(self.postContentTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines))!,

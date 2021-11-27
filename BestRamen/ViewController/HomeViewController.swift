@@ -2,7 +2,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    let viewModel: HomePostsViewModel = HomePostsViewModel()
+    let viewModel: HomeViewModel = HomeViewModel()
     var userCount:Int = 0
     var imageSetFlag:Dictionary<String,Bool> = ["post": false,"user": false]{
         didSet{
@@ -15,7 +15,6 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.delegate = self
         homeTableView.estimatedRowHeight = 290
         homeTableView.rowHeight = UITableView.automaticDimension
         homeTableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
@@ -23,7 +22,6 @@ class HomeViewController: UIViewController {
         homeTableView.dataSource = self
         //空の行の線を消す
         homeTableView.tableFooterView = UIView()
-        viewModel.fetchPosts()
     }
     
     
@@ -51,7 +49,7 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //セルをカスタムセルに
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomTableViewCell
-        let item = viewModel.postsArry[indexPath.row]
+        let item = viewModel.postsArray[indexPath.row]
         cell.initSelf(item: item)
         return cell
     }
@@ -59,7 +57,7 @@ extension HomeViewController: UITableViewDelegate {
     //セルが選択された時の処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         // 別の画面に遷移
-        if viewModel.postsArry.count-1 >= indexPath.row{
+        if viewModel.postsArray.count-1 >= indexPath.row{
             performSegue(withIdentifier: "toNextViewController", sender: nil)
         }
     }
@@ -67,13 +65,6 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.postsArry.count
+        return viewModel.postsArray.count
     }
 }
-
-extension HomeViewController: HomePostsViewModelDelegate {
-    func reloadData() {
-        homeTableView.reloadData()
-    }
-}
-
