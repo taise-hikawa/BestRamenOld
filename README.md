@@ -1,4 +1,4 @@
-## PRのrefactor/introduce-swiftUIが最新
+#未経験時代(2020/10)のポートフォリオです
 
 # BestRamen
 
